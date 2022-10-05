@@ -1,0 +1,102 @@
+{
+  "codeLens.enable": true,
+  "codeLens.position": "eol",
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "coc.preferences.enableMessageDialog": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.willSaveHandlerTimeout": 1000,
+  "coc.preferences.enableLinkedEditing": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "c",
+    "go",
+    "python",
+    "rust",
+    "markdown",
+    "javascript",
+    "typescript",
+    "json",
+    "jsonc"
+  ],
+  "coc.source.file.ignoreHidden": false,
+  "clangd.path": "~/bin/clangd",
+  "clangd.arguments": [
+    "--query-driver=/usr/bin/clang++",
+    "--header-insertion-decorators=false",
+    "--background-index"
+  ],
+  "deno.importMap": "./import_map.json",
+  "diagnostic.floatConfig": {
+    "rounded": true,
+    "border": true
+  },
+  "diagnostic.format": "%message [%source]",
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.separateRelatedInformationAsDiagnostics": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "git.addGBlameToVirtualText": true,
+  "hover.floatConfig": {
+    "rounded": true,
+    "border": true
+  },
+  "list.normalMappings": {
+    "<C-c>": "do:exit"
+  },
+  "list.insertMappings": {
+    "<C-c>": "do:exit"
+  },
+  "list.source.grep.useLiteral": false,
+  "list.source.grep.defaultArgs": [
+    "--ignore-case"
+  ],
+  "markdownlint.config": {
+    "default": true,
+    "line-length": false
+  },
+  "python.formatting.provider": "autopep8",
+  "python.linting.enabled": true,
+  "python.analysis.diagnosticMode": "workspace",
+  "python.linting.pylintEnabled": false,
+  "python.linting.flake8Enabled": true,
+  "python.linting.pycodestyle": true,
+  "python.linting.pylamaEnabled": true,
+  "python.linting.banditEnabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.pytypeEnabled": true,
+  "semanticTokens.enable": true,
+  "signature.target": "echo",
+  "suggest.detailField": "abbr",
+  "suggest.defaultSortMethod": "none",
+  "suggest.selection": "recentlyUsedByPrefix",
+  "suggest.noselect": false,
+  "suggest.floatConfig": {
+    "rounded": true,
+    "border": true
+  },
+  "signature.floatConfig": {
+    "rounded": true,
+    "border": true
+  },
+  "sumneko-lua.enableNvimLuaDev": true,
+  "Lua.completion.callSnippet": "Both",
+  "Lua.completion.postfix": ".",
+  "Lua.runtime.version": "LuaJIT",
+  "Lua.telemetry.enable": false,
+  "Lua.diagnostics.globals": [
+    "vim",
+    "jit"
+  ],
+  "snippet.choicesMenuPicker": true,
+  "snippets.ultisnips.enable": false,
+  "snippets.extends": {
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
+  },
+  "languageserver": {}
+}
