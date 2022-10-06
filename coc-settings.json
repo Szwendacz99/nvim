@@ -104,5 +104,6 @@
         "args": ["start"],
         "filetypes": ["sh"]
   }
-}
+},
+"git.enableGutters": true
 }

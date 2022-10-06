@@ -39,6 +39,9 @@ nnoremap <C-e> :NvimTreeFindFile<CR>
 nmap <C-_> <plug>NERDCommenterToggle
 vmap <C-_> <plug>NERDCommenterToggle
 
+" show uncommited git changes in current part of the code
+nnoremap <C-s> :CocCommand git.chunkInfo<CR>
+
 "plugin configuration
 syntax enable
 colorscheme dracula
