@@ -1,7 +1,8 @@
 call plug#begin()
 
-" TODO
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" NERDTree stuff
+Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'scrooloose/nerdtree'
 Plug 'dracula/vim'
@@ -9,6 +10,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'
 Plug 'rmagatti/auto-session'
+Plug 'tpope/vim-fugitive'
 
 "Fuzzy search by Telescope and its dependencies:
 Plug 'nvim-lua/plenary.nvim'
@@ -25,6 +27,11 @@ lua require("general")
 "vnoremap: maps the key in visual mode
 "<C> : represents Control key
 "<A> : Alt key
+
+"nerdtree bindings
+nnoremap <leader>n :NvimTreeFocus<CR>
+nnoremap <C-t> :NvimTreeToggle<CR>
+nnoremap <C-e> :NvimTreeFindFile<CR>
 
 " nerdcommenter custom bindings
 nmap <C-_> <plug>NERDCommenterToggle
@@ -93,6 +100,7 @@ else
 endif
 
 " general configs
+set encoding=UTF-8
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
 "set mouse=v                 " middle-click paste with 
