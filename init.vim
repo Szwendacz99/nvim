@@ -13,11 +13,14 @@ Plug 'rmagatti/auto-session'
 Plug 'tpope/vim-fugitive'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'vmware-archive/salt-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 "Fuzzy search by Telescope and its dependencies:
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plug 'BurntSushi/ripgrep'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -45,6 +48,7 @@ nnoremap <C-s> :CocCommand git.chunkInfo<CR>
 "plugin configuration
 syntax enable
 colorscheme dracula
+let g:airline_theme='dark'
 
 set splitright
 set splitbelow
