@@ -15,6 +15,8 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'vmware-archive/salt-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'honza/vim-snippets'
+Plug 'itchyny/vim-cursorword'
 
 "Fuzzy search by Telescope and its dependencies:
 Plug 'nvim-lua/plenary.nvim'
@@ -138,7 +140,7 @@ endif
 set encoding=UTF-8
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
-"set mouse=v                 " middle-click paste with 
+set mouse=v                 " middle-click paste with 
 set hlsearch                " highlight search 
 set incsearch               " incremental search
 set tabstop=4               " number of columns occupied by a tab 
@@ -158,5 +160,5 @@ filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 " set spell                 " enable spell check (may need to download language package)
-" set noswapfile            " disable creating swap file
+set noswapfile            " disable creating swap file
 " set backupdir=~/.cache/vim " Directory to store backup files.
