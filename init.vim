@@ -99,8 +99,8 @@ set signcolumn=yes
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>ft  <Plug>(coc-format-selected)
+nmap <leader>ft  <Plug>(coc-format-selected)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
