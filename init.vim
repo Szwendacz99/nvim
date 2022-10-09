@@ -17,9 +17,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
-Plug 'olimorris/onedarkpro.nvim'
+Plug 'navarasu/onedark.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'dracula/vim'
+Plug 'vigoux/oak'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'bluz71/vim-moonfly-colors'
 
 "Fuzzy search by Telescope and its dependencies:
 Plug 'nvim-lua/plenary.nvim'
@@ -55,7 +58,23 @@ nnoremap <C-s> :CocCommand git.chunkInfo<CR>
 "theme configuration
 syntax enable
 set termguicolors
-colorscheme gruvbox
+let g:onedark_config = {
+    \ 'style': 'darker',
+\}
+let g:PaperColor_Theme_Options = {
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     },
+  \     'cpp': {
+  \       'highlight_standard_library': 1
+  \     },
+  \     'c': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
+colorscheme moonfly
 let g:airline_theme='dark'
 
 set splitright
