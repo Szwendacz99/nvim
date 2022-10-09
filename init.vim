@@ -5,7 +5,6 @@ Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'scrooloose/nerdtree'
-Plug 'dracula/vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'
@@ -17,6 +16,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/vim-cursorword'
+Plug 'sheerun/vim-polyglot'
+Plug 'olimorris/onedarkpro.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+Plug 'dracula/vim'
 
 "Fuzzy search by Telescope and its dependencies:
 Plug 'nvim-lua/plenary.nvim'
@@ -28,6 +31,8 @@ call plug#end()
 
 " load lua file (empty for now)
 lua require("general")
+
+"autocmd BufEnter *.sls :setlocal filetype=yaml
 
 "inoremap: maps the key in insert mode
 "nnoremap: maps the key in normal mode
@@ -47,9 +52,10 @@ vmap <C-_> <plug>NERDCommenterToggle
 " show uncommited git changes in current part of the code
 nnoremap <C-s> :CocCommand git.chunkInfo<CR>
 
-"plugin configuration
+"theme configuration
 syntax enable
-colorscheme dracula
+set termguicolors
+colorscheme gruvbox
 let g:airline_theme='dark'
 
 set splitright
@@ -137,6 +143,8 @@ else
 endif
 
 " general configs
+set modeline
+let g:sls_use_jinja_syntax = 1
 set encoding=UTF-8
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
