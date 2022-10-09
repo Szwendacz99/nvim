@@ -63,7 +63,7 @@
   "python.linting.pycodestyle": true,
   "python.linting.pylamaEnabled": true,
   "python.linting.banditEnabled": true,
-  "python.linting.mypyEnabled": true,
+  "python.linting.mypyEnabled": false,
   "python.linting.pytypeEnabled": true,
   "semanticTokens.enable": true,
   "signature.target": "echo",

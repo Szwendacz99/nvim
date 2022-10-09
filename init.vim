@@ -31,7 +31,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
-" load lua file (empty for now)
+" load main lua file with additional configs
 lua require("general")
 
 "autocmd BufEnter *.sls :setlocal filetype=yaml
