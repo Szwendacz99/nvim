@@ -4,17 +4,74 @@ vim.g.loaded_netrwPlugin = 1
 
 -- OR setup with some options
 require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = true,
- },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
+    create_in_closed_folder = true,
+    hijack_cursor = true,
+    open_on_setup = true,
+    open_on_setup_file = true,
+    focus_empty_on_setup = true,
+    sync_root_with_cwd = true,
+    view = {
+      adaptive_size = true,
+    },
+    renderer = {
+      full_name = true,
+      group_empty = true,
+      special_files = {},
+      symlink_destination = false,
+      indent_markers = {
+        enable = true,
+      },
+      icons = {
+        git_placement = "signcolumn",
+        show = {
+          file = true,
+          folder = false,
+          folder_arrow = false,
+          git = true,
+        },
+      },
+    },
+    update_focused_file = {
+      enable = true,
+      update_root = true,
+      ignore_list = { "help" },
+    },
+    diagnostics = {
+      enable = true,
+      show_on_dirs = true,
+    },
+    filters = {
+      custom = {
+        "^.git$",
+        "^.mypy_cache$",
+      },
+    },
+    actions = {
+      change_dir = {
+        enable = false,
+        restrict_above_cwd = true,
+      },
+      open_file = {
+        resize_window = true,
+      },
+      remove_file = {
+        close_window = false,
+      },
+    },
+    log = {
+      enable = false,
+      truncate = true,
+      types = {
+        all = false,
+        config = false,
+        copy_paste = false,
+        diagnostics = false,
+        git = false,
+        profile = false,
+        watcher = false,
+      },
+    },
+  })
 
 --Gruvbox theme settings
 -- setup must be called before loading the colorscheme
