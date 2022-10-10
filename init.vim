@@ -4,6 +4,7 @@ call plug#begin()
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'
@@ -16,6 +17,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'honza/vim-snippets'
 Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
+
+" themes
 Plug 'navarasu/onedark.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'dracula/vim'
@@ -51,8 +54,12 @@ nnoremap <C-e> :NvimTreeFindFile<CR>
 nmap <C-_> <plug>NERDCommenterToggle
 vmap <C-_> <plug>NERDCommenterToggle
 
+" saving with Ctrl+s
+nnoremap <silent><C-s> :update<cr>
+inoremap <silent><C-s> <c-o>:update<cr>
+vnoremap <silent><c-s> <c-c>:update<cr>gv " gv to preserve visual selection
 " show uncommited git changes in current part of the code
-nnoremap <C-s> :CocCommand git.chunkInfo<CR>
+nnoremap <C-g> :CocCommand git.chunkInfo<CR>
 
 "theme configuration
 syntax enable
