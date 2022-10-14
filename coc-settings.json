@@ -22,6 +22,8 @@
     "rounded": true,
     "border": true
   },
+  "diagnostic.autoRefresh": true,
+  "diagnostic.refreshOnInsertMode": true,
   "diagnostic.format": "[%severity] %message [%source]",
   "diagnostic.virtualText": true,
   "diagnostic.level": "hint",
