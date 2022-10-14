@@ -47,7 +47,7 @@
   "python.formatting.provider": "yapf",
   "python.linting.enabled": true,
   "python.analysis.diagnosticMode": "workspace",
-  "python.linting.pylintEnabled": false,
+  "python.linting.pylintEnabled": true,
   "python.linting.flake8Enabled": true,
   "python.linting.pylamaEnabled": true,
   "python.linting.banditEnabled": true,
