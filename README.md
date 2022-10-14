@@ -7,7 +7,7 @@ there can be some(read "a lot of") messy stuff.
 Much of this might have been selectively copy pasted from plugin repos.
 Those repos are obviously listed in plugin setup part.
 
-# Neovim
+# Basic usage of this config
 
 Repo: [https://github.com/Szwendacz99/nvim](https://github.com/Szwendacz99/nvim)
 
