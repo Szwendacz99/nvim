@@ -38,6 +38,7 @@ call plug#end()
 lua require("general")
 
 "autocmd BufEnter *.sls :setlocal filetype=yaml
+autocmd BufEnter *.conf :setlocal filetype=apache
 
 "inoremap: maps the key in insert mode
 "nnoremap: maps the key in normal mode
