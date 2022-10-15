@@ -2,6 +2,9 @@
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- load perl lsp 
+require('lspconfig').perlpls.setup{}
+
 -- OR setup with some options
 require("nvim-tree").setup({
     create_in_closed_folder = true,
