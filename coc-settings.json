@@ -75,6 +75,10 @@
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"]
+    },
+    "kotlin": {
+      "command": "kotlin-language-server",
+      "filetypes": ["kotlin"]
     }
   },
   "git.enableGutters": true
