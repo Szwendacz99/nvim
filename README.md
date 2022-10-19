@@ -3,7 +3,7 @@
 I made this public so I can easily clone without authentication,  
 but since I treat this as a personal use only stuff,  
 there can be some(read "a lot of") messy stuff.
-  
+
 Much of this might have been selectively copy pasted from plugin repos.
 Those repos are obviously listed in plugin setup part.
 
@@ -22,7 +22,8 @@ sudo dnf install \
     fd-find \
     nodejs-bash-language-server \
     tree-sitter-cli \
-    wl-clipboard
+    wl-clipboard \
+    unifont-fonts.noarch
 
 pip install \
 	pynvim \
@@ -32,13 +33,12 @@ pip install \
     bandit \
     yapf \
     rope
-    
+
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-#####   
-
+#####
 
 ##### Inside vim
 
@@ -47,14 +47,33 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 :CocInstall coc-git coc-pyright coc-sh coc-json coc-css coc-tsserver coc-eslint coc-prettier coc-snippets coc-yaml
 ```
 
-Hacked font is needed to display file type icons:  
+On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to gacked fonts:  
 [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
+
+##### Optional stuff
+
+perl very basic lsp server:
+
+```bash
+# Install perl module manager
+sudo dnf install perl-App-cpanminus
+
+# install language server module
+sudo cpanm PLS
+
+```
 
 ### Usage
 
 ##### Opened files navigation:
 
-<table border="1" id="bkmrk-ctrl-w-%3Carrow%3E-movin" style="border-collapse: collapse; width: 100%; height: 178.8px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>Ctrl w w  
+<table border="1" id="bkmrk-ctrl-w-%3Carrow%3E-movin" style="border-collapse: collapse; width: 100%; height: 178.8px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>&lt;leader&gt; m m  
+</td><td>open minimap  
+</td></tr><tr><td>&lt;leader&gt; m c  
+</td><td>close minimap  
+</td></tr><tr><td>&lt;leader&gt; m f  
+</td><td>focus minimap  
+</td></tr><tr><td>Ctrl w w  
 </td><td>Move to next splitted frame  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl w &lt;arrow&gt;  
 </td><td style="height: 29.8px;">moving throught splitted frame  
@@ -75,20 +94,20 @@ Hacked font is needed to display file type icons:
 
 ##### File explorer:
 
-<table border="1" id="bkmrk-ctrl%2Bt-toggle-file-e" style="border-collapse: collapse; width: 100%; height: 89.4px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+t  
+<table border="1" id="bkmrk-ctrl%2Bt-toggle-file-e" style="border-collapse: collapse; width: 100%; height: 327.8px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+t  
 </td><td style="height: 29.8px;">Toggle file explorer when not focused on it  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">f  
 </td><td style="height: 29.8px;">Toggle filtering when focused on explorer  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt; n  
 </td><td style="height: 29.8px;">Move focus to explorer  
-</td></tr><tr><td>d  
-</td><td>Delete selected file  
-</td></tr><tr><td>rn  
-</td><td>Rename file  
-</td></tr><tr><td>c  
-</td><td>add file to clipboard  
-</td></tr><tr><td>p  
-</td><td>paste (file) from clipboard  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">d  
+</td><td style="height: 29.8px;">Delete selected file  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">rn  
+</td><td style="height: 29.8px;">Rename file  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">c  
+</td><td style="height: 29.8px;">add file to clipboard  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">p  
+</td><td style="height: 29.8px;">paste (file) from clipboard  
 </td></tr></tbody></table>
 
 ##### File searching / Telescope
@@ -96,7 +115,17 @@ Hacked font is needed to display file type icons:
 <table border="1" id="bkmrk-%3Cleader%3Eff-find-file" style="border-collapse: collapse; width: 100%;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>&lt;leader&gt;ff</td><td>Find files  
 </td></tr><tr><td>&lt;leader&gt;fg</td><td>Live grep  
 </td></tr><tr><td>&lt;leader&gt;fb</td><td>Buffers  
-</td></tr><tr><td>&lt;leader&gt;fh</td><td>Help tags</td></tr></tbody></table>
+</td></tr><tr><td>&lt;leader&gt;fh</td><td>Help tags</td></tr><tr><td>Ctrl+q</td><td>Open search result list as a dedicated split (quickfix list) (will overwrite previous one created this way in current tab)</td></tr><tr><td>Ctrl+u  
+</td><td>Scroll preview up  
+</td></tr><tr><td>Ctrl+d  
+</td><td>Scroll preview down  
+</td></tr><tr><td>Ctrl+x  
+</td><td>Open selection as a split  
+</td></tr><tr><td>Ctrl+v  
+</td><td>Open selection as a vsplit  
+</td></tr><tr><td>Ctrl+t  
+</td><td>Open selection in new tab  
+</td></tr></tbody></table>
 
 ##### Git stuff
 
@@ -108,10 +137,19 @@ Genreal git commands:
 ```bash
 :Git <command>
 
-#example:
+#Commands with dedicated display
+:Git # show nice interactive summary of whole git project state
+:Git mergetool, :Git difftool # load their changesets into the quickfix list
 :Git blame # this will nicely show \
 		   # for every line in separate split
+           # Useful shortcuts for blame mode:
+           # o - jump to patch or blob in horizontal split
+           # A, C, D - different display (lenght) modes
+           # g? - other keybindings
+
+#other examples:
 :Git add .
+:Git commit
 ```
 
 Nice single file diff viewer:
@@ -131,10 +169,13 @@ coc-git provides some commands for git:
 :CocCommand git.showBlameDoc
 ```
 
-##### Code editing stuff  
+##### Code editing stuff
 
-
-<table border="1" id="bkmrk-%3Cleader%3Ern-rename-el" style="border-collapse: collapse; width: 100%; height: 298px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;rn</td><td style="height: 29.8px;">rename element (function name, etc):</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;ft</td><td style="height: 29.8px;">format code  
+<table border="1" id="bkmrk-%3Cleader%3Ern-rename-el" style="border-collapse: collapse; width: 100%; height: 387.4px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">w  
+</td><td style="height: 29.8px;">jump forward by one word  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">b  
+</td><td style="height: 29.8px;">jump backward by one word  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;rn</td><td style="height: 29.8px;">rename element (function name, etc):</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;ft</td><td style="height: 29.8px;">format code  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gd  
 </td><td style="height: 29.8px;">go to definition  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gy  
@@ -150,8 +191,8 @@ coc-git provides some commands for git:
 </td><td style="height: 29.8px;">scroll up popup with docstring  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">ZZ  
 </td><td style="height: 29.8px;">same as :wq  
-</td></tr><tr><td>Ctrl+q  
-</td><td>Visual block mode  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+q  
+</td><td style="height: 29.8px;">Visual block mode  
 </td></tr></tbody></table>
 
 ##### Sessions

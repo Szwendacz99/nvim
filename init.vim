@@ -4,12 +4,13 @@ call plug#begin()
 Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 
-" neovim lsp plugins 
+" neovim lsp plugins and depencencies 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
+" various plugins
 Plug 'gorbit99/codewindow.nvim'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -44,19 +45,12 @@ call plug#end()
 " load main lua file with additional configs
 lua require("general")
 
-"autocmd BufEnter *.sls :setlocal filetype=yaml
+" highlight all .conf files as apache config (:])
 autocmd BufEnter *.conf :setlocal filetype=apache
-
-"inoremap: maps the key in insert mode
-"nnoremap: maps the key in normal mode
-"vnoremap: maps the key in visual mode
-"<C> : represents Control key
-"<A> : Alt key
 
 "nerdtree bindings
 nnoremap <leader>n :NvimTreeFocus<CR>
 nnoremap <C-t> :NvimTreeToggle<CR>
-nnoremap <C-e> :NvimTreeFindFile<CR>
 
 " nerdcommenter custom bindings
 nmap <C-_> <plug>NERDCommenterToggle
@@ -66,6 +60,7 @@ vmap <C-_> <plug>NERDCommenterToggle
 nnoremap <silent><C-s> :update<cr>
 inoremap <silent><C-s> <c-o>:update<cr>
 vnoremap <silent><c-s> <c-c>:update<cr>gv " gv to preserve visual selection
+
 " show uncommited git changes in current part of the code
 nnoremap <C-g> :CocCommand git.chunkInfo<CR>
 
@@ -112,14 +107,15 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
-
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+""""""""""""""""""""""""""""
 " config for coc#pum#visible
+""""""""""""""""""""""""""""
 
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -174,6 +170,7 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
 
 " general configs
 set modeline
