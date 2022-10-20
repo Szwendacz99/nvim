@@ -57,9 +57,9 @@ nmap <C-_> <plug>NERDCommenterToggle
 vmap <C-_> <plug>NERDCommenterToggle
 
 " saving with Ctrl+s
-nnoremap <silent><C-s> :update<cr>
-inoremap <silent><C-s> <c-o>:update<cr>
-vnoremap <silent><c-s> <c-c>:update<cr>gv " gv to preserve visual selection
+"nnoremap <silent><C-s> :update<cr>
+"inoremap <silent><C-s> <c-o>:update<cr>
+"vnoremap <silent><c-s> <c-c>:update<cr>gv " gv to preserve visual selection
 
 " show uncommited git changes in current part of the code
 nnoremap <C-g> :CocCommand git.chunkInfo<CR>
