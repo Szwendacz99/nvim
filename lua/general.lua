@@ -2,14 +2,27 @@
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
--- load lsp stuff
+-- load lsp and dependencies (help for both coc and independent lsp setup)
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "bashls",
+        "pyright",
+        "perlnavigator",
+        "salt_ls",
+        "dockerls",
+        "kotlin_language_server",
+        "intelephense",
+        "phpactor",
+        "eslint"
+    }
+})
 require("null-ls").setup({
     sources = {
         require("null-ls").builtins.formatting.stylua,
         require("null-ls").builtins.diagnostics.eslint,
         require("null-ls").builtins.completion.spell,
+        require("null-ls").builtins.code_actions.gitsigns,
     },
 })
 
@@ -26,20 +39,18 @@ codewindow.setup({
 codewindow.apply_default_keybinds()
 
 
--- load perl lsp 
-local config = {
-  cmd = { 'pls' }, -- complete path to where PLS is located
-  settings = {
-    pls = {
-      --inc = { '/my/perl/5.34/lib', '/some/other/perl/lib' },  -- add list of dirs to @INC
-      --cwd = { '/my/projects' },   -- working directory for PLS
-      perlcritic = { enabled = true },  -- use perlcritic and pass a non-default location for its config
-      syntax = { enabled = true, perl = '/usr/bin/perl' }, -- enable syntax checking and use a non-default perl binary
-      --perltidy = { perltidyrc = '/my/projects/.perltidyrc' } -- non-default location for perltidy's config
+-- load perl lsp
+require'lspconfig'.perlnavigator.setup{
+    settings = {
+      perlnavigator = {
+          perlPath = 'perl',
+          enableWarnings = true,
+          perltidyProfile = '',
+          perlcriticProfile = '',
+          perlcriticEnabled = true,
+      }
     }
-  }
 }
-require'lspconfig'.perlpls.setup(config)
 
 require("nvim-tree").setup({
     create_in_closed_folder = true,
