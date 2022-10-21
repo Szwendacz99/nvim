@@ -1,10 +1,10 @@
 call plug#begin()
 
 " NERDTree stuff
-Plug 'kyazdani42/nvim-web-devicons' " optional, for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 
-" neovim lsp plugins and depencencies 
+" neovim lsp plugins and depencencies
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
@@ -42,6 +42,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
+" set termguicolors before lua config,
+" as it can contain some theme stuff that
+" checks for termguicolors
+set termguicolors
+
 " load main lua file with additional configs
 lua require("general")
 
@@ -66,7 +71,6 @@ nnoremap <C-g> :CocCommand git.chunkInfo<CR>
 
 "theme configuration
 syntax enable
-set termguicolors
 let g:onedark_config = {
     \ 'style': 'darker',
 \}
@@ -176,12 +180,12 @@ endif
 set modeline
 let g:sls_use_jinja_syntax = 1
 set encoding=UTF-8
-set showmatch               " show matching 
-set ignorecase              " case insensitive 
-set mouse=v                 " middle-click paste with 
-set hlsearch                " highlight search 
+set showmatch               " show matching
+set ignorecase              " case insensitive
+set mouse=v                 " middle-click paste with
+set hlsearch                " highlight search
 set incsearch               " incremental search
-set tabstop=4               " number of columns occupied by a tab 
+set tabstop=4               " number of columns occupied by a tab
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
