@@ -11,6 +11,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " various plugins
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'gorbit99/codewindow.nvim'
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
