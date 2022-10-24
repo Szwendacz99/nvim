@@ -73,8 +73,8 @@ require("nvim-tree").setup({
         git_placement = "signcolumn",
         show = {
           file = true,
-          folder = false,
-          folder_arrow = false,
+          folder = true,
+          folder_arrow = true,
           git = true,
         },
       },
