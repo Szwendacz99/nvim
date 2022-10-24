@@ -33,6 +33,7 @@ codewindow.setup({
     width_multiplier = 4, -- How many characters one dot represents
     use_lsp = true, -- Use the builtin LSP to show errors and warnings
     use_treesitter = true, -- Use nvim-treesitter to highlight the code
+    show_cursor = true,
     exclude_filetypes = {}, -- Choose certain filetypes to not show minimap on
     z_index = 1, -- The z-index the floating window will be on
     })
@@ -150,7 +151,7 @@ require("gruvbox").setup({
             left_mouse_command = "buffer %d",    -- can be a string | function, see "Mouse actions"
             middle_mouse_command = nil,          -- can be a string | function, see "Mouse actions"
             indicator = {
-                icon = '▎', -- this should be omitted if indicator style is not 'icon'
+                icon = '>', -- this should be omitted if indicator style is not 'icon'
                 style = 'icon',
             },
             buffer_close_icon = '',
