@@ -12,7 +12,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-
+Plug 'dense-analysis/ale'
 
 " various plugins
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
@@ -103,6 +103,12 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+
+let g:ale_set_balloons = 1
+let g:ale_linters = {
+\   'pyhon': ['bandit'],
+\}
+let g:ale_fixers = {'python': ['yapf']}
 
 " general configs
 set modeline
