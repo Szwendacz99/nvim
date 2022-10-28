@@ -12,7 +12,8 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'dense-analysis/ale'
+Plug 'mfussenegger/nvim-lint'
+"Plug 'dense-analysis/ale'
 
 " various plugins
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
@@ -52,6 +53,8 @@ call plug#end()
 set termguicolors
 
 " load main lua file with additional configs
+lua require("my-lspconfig")
+lua require("my-lint")
 lua require("general")
 
 " highlight all .conf files as apache config (:])
@@ -102,13 +105,6 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-
-let g:ale_set_balloons = 1
-let g:ale_linters = {
-\   'pyhon': ['bandit'],
-\}
-let g:ale_fixers = {'python': ['yapf']}
 
 " general configs
 set modeline
