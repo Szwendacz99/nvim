@@ -11,25 +11,23 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'mfussenegger/nvim-lint'
 "Plug 'dense-analysis/ale'
 
 " various plugins
+Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'gorbit99/codewindow.nvim'
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 Plug 'preservim/nerdcommenter'
-Plug 'mhinz/vim-startify'
 Plug 'rmagatti/auto-session'
 Plug 'tpope/vim-fugitive'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'vmware-archive/salt-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'honza/vim-snippets'
 Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
+Plug 'f-person/git-blame.nvim'
 
 " themes
 Plug 'navarasu/onedark.nvim'
@@ -53,9 +51,9 @@ call plug#end()
 set termguicolors
 
 " load main lua file with additional configs
+lua require("general")
 lua require("my-lspconfig")
 lua require("my-lint")
-lua require("general")
 
 " highlight all .conf files as apache config (:])
 autocmd BufEnter *.conf :setlocal filetype=apache
@@ -105,6 +103,16 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" gitgutter setup
+let g:gitgutter_sign_added = '|'
+let g:gitgutter_sign_modified = '|'
+let g:gitgutter_sign_removed = '|'
+let g:gitgutter_sign_removed_first_line = '|'
+let g:gitgutter_sign_removed_above_and_below = '|'
+let g:gitgutter_sign_modified_removed = '|'
+let g:gitgutter_preview_win_floating = 1
+nnoremap <C-g> <cmd>GitGutterPreviewHunk<cr>
 
 " general configs
 set modeline

@@ -1,16 +1,27 @@
--- load lsp and dependencies (help for both coc and independent lsp setup)
+-- load lsp and dependencies
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = {
         "bashls",
         "pyright",
+        "pylsp",
+        --"pyre",
         "perlnavigator",
         "salt_ls",
         "dockerls",
         "kotlin_language_server",
         "intelephense",
-        "phpactor",
-        "eslint"
+        "eslint",
+        "tsserver",
+        "markdownlint",
+        "cssls",
+        "cssmodules_ls",
+        "diagnosticls",
+        "jsonls",
+        "sumneko_lua",
+        "sqlls",
+        "yamlls",
+        "lemminx"
     }
 })
 
@@ -28,21 +39,10 @@ codewindow.setup({
 codewindow.apply_default_keybinds()
 
 
-
-
 -- Set up nvim-cmp.
 local cmp = require'cmp'
 
 cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
-        -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-      end,
-    },
     window = {
       -- completion = cmp.config.window.bordered(),
       -- documentation = cmp.config.window.bordered(),
@@ -92,14 +92,6 @@ cmp.setup.cmdline(':', {
         })
 })
 
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
-    capabilities = capabilities
-}
-
-require'lspconfig'.tsserver.setup{}
 
 require("nvim-tree").setup({
     create_in_closed_folder = true,
