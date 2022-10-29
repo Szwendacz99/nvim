@@ -9,8 +9,6 @@ Those repos are obviously listed in plugin setup part.
 
 # Basic usage of this config
 
-Repo: [https://github.com/Szwendacz99/nvim](https://github.com/Szwendacz99/nvim)
-
 ### First Time Setup
 
 Installing system stuff (Fedora example):
@@ -20,61 +18,45 @@ sudo dnf install \
 	neovim \
     ripgrep \
     fd-find \
-    nodejs-bash-language-server \
+    npm \
     tree-sitter-cli \
     wl-clipboard \
-    unifont-fonts.noarch
+    dejavu-fonts-all-2.37-18.fc36.noarch
 
 pip install \
 	pynvim \
-    'pylama[all]' \
+    'python-lsp-server[all]' \
     flake8 \
-    jedi \
-    bandit \
-    yapf \
-    rope
 
+    
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-#####
+#####   
+
 
 ##### Inside vim
 
 ```
 :PlugInstall
-:CocInstall coc-git coc-pyright coc-sh coc-json coc-css coc-tsserver coc-eslint coc-prettier coc-snippets coc-yaml
 ```
 
-On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to gacked fonts:  
+On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to hacked fonts:  
 [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
-
-##### Optional stuff
-
-perl very basic lsp server:
-
-```bash
-# Install perl module manager
-sudo dnf install perl-App-cpanminus
-
-# install language server module
-sudo cpanm PLS
-
-```
 
 ### Usage
 
 ##### Opened files navigation:
 
-<table border="1" id="bkmrk-ctrl-w-%3Carrow%3E-movin" style="border-collapse: collapse; width: 100%; height: 178.8px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>&lt;leader&gt; m m  
-</td><td>open minimap  
-</td></tr><tr><td>&lt;leader&gt; m c  
-</td><td>close minimap  
-</td></tr><tr><td>&lt;leader&gt; m f  
-</td><td>focus minimap  
-</td></tr><tr><td>Ctrl w w  
-</td><td>Move to next splitted frame  
+<table border="1" id="bkmrk-ctrl-w-%3Carrow%3E-movin" style="border-collapse: collapse; width: 100%; height: 506.6px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt; m m  
+</td><td style="height: 29.8px;">open minimap  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt; m c  
+</td><td style="height: 29.8px;">close minimap  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt; m f  
+</td><td style="height: 29.8px;">focus minimap  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl w w  
+</td><td style="height: 29.8px;">Move to next splitted frame  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl w &lt;arrow&gt;  
 </td><td style="height: 29.8px;">moving throught splitted frame  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl w c  
@@ -82,14 +64,22 @@ sudo cpanm PLS
 </td><td style="height: 29.8px;">split vertically  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl w s  
 </td><td style="height: 29.8px;">split horizontally  
-</td></tr><tr><td>Ctrl w x  
-</td><td>swap places of two splits  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl w x  
+</td><td style="height: 29.8px;">swap places of two splits  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gt</td><td style="height: 29.8px;">next tab</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gT  
 </td><td style="height: 29.8px;">previous tab  
-</td></tr><tr><td>:tabnew  
-</td><td>Create new tab  
-</td></tr><tr><td>Ctrl g t  
-</td><td>(when in file tree) open selected file in new tab  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">:tabnew  
+</td><td style="height: 29.8px;">Create new tab  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+g Ctrl+t  
+</td><td style="height: 29.8px;">(when in file tree) open selected file in new tab  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">:bd  
+</td><td style="height: 29.8px;">close buffer  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">:bnext  
+</td><td style="height: 29.8px;">next buffer  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">:b3  
+</td><td style="height: 29.8px;">switch to buffer 3  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">:buffers  
+</td><td style="height: 29.8px;">list buffers and their numbers  
 </td></tr></tbody></table>
 
 ##### File explorer:
@@ -158,15 +148,14 @@ Nice single file diff viewer:
 :Gdiffsplit
 ```
 
-coc-git provides some commands for git:
+GitGuter provides some commands for git:
 
 ```bash
-:CocCommand git.<command>
+:GitGutter*
 
 #examples:
-:CocCommand git.chunkUndo
-:CocCommand git.showCommit
-:CocCommand git.showBlameDoc
+:GitGutterUndoHunk
+:GitGutterDiffOrig
 ```
 
 ##### Code editing stuff
@@ -175,26 +164,38 @@ coc-git provides some commands for git:
 </td><td style="height: 29.8px;">jump forward by one word  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">b  
 </td><td style="height: 29.8px;">jump backward by one word  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;rn</td><td style="height: 29.8px;">rename element (function name, etc):</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;ft</td><td style="height: 29.8px;">format code  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gd  
-</td><td style="height: 29.8px;">go to definition  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gy  
-</td><td style="height: 29.8px;">go to type definition</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gi  
-</td><td style="height: 29.8px;">go to implementation  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gr  
-</td><td style="height: 29.8px;">go to references  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">:%s/^original.\*/replacement/gc  
 </td><td style="height: 29.8px;">regex replacing (c is for choice prompt, its optional)  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+f  
-</td><td style="height: 29.8px;">scroll down popup with docstring  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+b  
-</td><td style="height: 29.8px;">scroll up popup with docstring  
-</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">ZZ  
-</td><td style="height: 29.8px;">same as :wq  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+q  
-</td><td style="height: 29.8px;">Visual block mode  
+</td><td style="height: 29.8px;">Visual block select mode  
 </td></tr></tbody></table>
+
+##### LSP usage  
+
+
+<table border="1" id="bkmrk-%3Cspace%3Eq-open-list-w" style="border-collapse: collapse; width: 100%; height: 476.8px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;space&gt;q  
+</td><td style="height: 29.8px;">open list with diagnostics postions  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;space&gt;e  
+</td><td style="height: 29.8px;">open diagnostics floating window  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">\[d  
+</td><td style="height: 29.8px;">next diagnostic  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">\]  
+</td><td style="height: 29.8px;">previous diagnostic  
+</td></tr><tr><td>&lt;leader&gt;k  
+</td><td>open hoover box and enter it  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;rn</td><td style="height: 29.8px;">rename element (function name, etc):</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;f</td><td style="height: 29.8px;">format file  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gd</td><td style="height: 29.8px;">go to definition</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gD</td><td style="height: 29.8px;">go to declaration</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;space&gt;D</td><td style="height: 29.8px;">go to type definition</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gi</td><td style="height: 29.8px;">go to implementation</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gr</td><td style="height: 29.8px;">go to references</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+f</td><td style="height: 29.8px;">scroll down popup with docstring</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+b</td><td style="height: 29.8px;">scroll up popup with docstring</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;wa  
+</td><td style="height: 29.8px;">add workspace folder</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;wr  
+</td><td style="height: 29.8px;">remove workspace folder  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;wl  
+</td><td style="height: 29.8px;">list workspace folders  
+</td></tr></tbody></table>
+
+#####   
+
 
 ##### Sessions
 
 To save **new** session on specific path, just use `:SaveSession`, then when opening nvim there, without arguments, the session will be restored.
+
+
