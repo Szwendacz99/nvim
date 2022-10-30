@@ -13,7 +13,6 @@ require("mason-lspconfig").setup({
         "intelephense",
         "eslint",
         "tsserver",
-        "markdownlint",
         "cssls",
         "cssmodules_ls",
         "diagnosticls",
