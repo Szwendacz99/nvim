@@ -7,7 +7,6 @@ require("mason-lspconfig").setup({
         "pylsp",
         --"pyre",
         "perlnavigator",
-        "salt_ls",
         "dockerls",
         "kotlin_language_server",
         "intelephense",
@@ -20,7 +19,8 @@ require("mason-lspconfig").setup({
         "sumneko_lua",
         "sqlls",
         "yamlls",
-        "lemminx"
+        "lemminx",
+        "marksman"
     }
 })
 
