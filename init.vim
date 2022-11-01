@@ -15,6 +15,7 @@ Plug 'mfussenegger/nvim-lint'
 "Plug 'dense-analysis/ale'
 
 " various plugins
+Plug 'lambdalisue/suda.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'gorbit99/codewindow.nvim'
