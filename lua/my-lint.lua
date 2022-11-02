@@ -1,15 +1,15 @@
 require('lint').linters_by_ft = {
-    python = { 'flake8', 'pylint', 'pycodestyle', 'pydocstyle'},
+    python = { 'flake8', 'pylint', 'pycodestyle', 'pydocstyle' },
     php = { 'phpcs' },
     markdown = { 'markdownlint' }
 }
 
 local pydocstyle = require('lint.linters.pydocstyle')
 pydocstyle.args = {
-    '--ignore=D100', -- disable missing module docstring info
-    '--ignore=D203', -- disable one line before class docstring required
-    '--ignore=D213', -- disable multiline docstring summary
-                     -- should start at the second line
+    '--ignore=D100,D203,D213', -- disable missing module docstring info
+    -- disable one line before class docstring required
+    -- disable multiline docstring summary
+    -- should start at the second line
 }
 local pylint = require('lint.linters.pylint')
 pylint.args = {
