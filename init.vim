@@ -15,6 +15,7 @@ Plug 'mfussenegger/nvim-lint'
 "Plug 'dense-analysis/ale'
 
 " various plugins
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
 Plug 'lambdalisue/suda.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
@@ -64,8 +65,8 @@ nnoremap <leader>n :NvimTreeFocus<CR>
 nnoremap <C-t> :NvimTreeToggle<CR>
 
 " nerdcommenter custom bindings
-nmap <C-_> <plug>NERDCommenterToggle
-vmap <C-_> <plug>NERDCommenterToggle
+nmap <c-/> <plug>NERDCommenterToggle
+vmap <c-/> <plug>NERDCommenterToggle
 
 "theme configuration
 syntax enable
