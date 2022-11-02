@@ -7,6 +7,9 @@ require('lint').linters_by_ft = {
 local pydocstyle = require('lint.linters.pydocstyle')
 pydocstyle.args = {
     '--ignore=D100', -- disable missing module docstring info
+    '--ignore=D203', -- disable one line before class docstring required
+    '--ignore=D213', -- disable multiline docstring summary
+                     -- should start at the second line
 }
 local pylint = require('lint.linters.pylint')
 pylint.args = {
