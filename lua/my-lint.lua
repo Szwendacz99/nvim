@@ -1,9 +1,13 @@
 require('lint').linters_by_ft = {
-    python = { 'flake8', 'pylint', 'pycodestyle', },
+    python = { 'flake8', 'pylint', 'pycodestyle', 'pydocstyle'},
     php = { 'phpcs' },
     markdown = { 'markdownlint' }
 }
 
+local pydocstyle = require('lint.linters.pydocstyle')
+pydocstyle.args = {
+    '--ignore=D100', -- disable missing module docstring info
+}
 local pylint = require('lint.linters.pylint')
 pylint.args = {
     '-f',
