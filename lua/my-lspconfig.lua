@@ -51,10 +51,6 @@ require 'lspconfig'.bashls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
-require 'lspconfig'.salt_ls.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
 require 'lspconfig'.dockerls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
