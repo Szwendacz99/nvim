@@ -1,3 +1,51 @@
+require('lualine').setup {
+    options = {
+        icons_enabled = true,
+        theme = 'dracula',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+        }
+    },
+    sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'tabs' }
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {}
+    },
+    tabline = {},
+    winbar = {},
+    inactive_winbar = {},
+    extensions = {
+        'quickfix',
+        'nvim-tree',
+        'symbols-outline',
+        'fugitive',
+        'man'
+    }
+
+}
+
 -- load lsp and dependencies
 require("mason").setup()
 require("mason-lspconfig").setup({
@@ -71,12 +119,12 @@ cmp.setup({
         { name = 'path' },
     }),
     formatting = {
-    format = lspkind.cmp_format({
-      --mode = 'symbol', -- show only symbol annotations
-      maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-    })
-  }
+        format = lspkind.cmp_format({
+            --mode = 'symbol', -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+        })
+    }
 })
 
 -- Set configuration for specific filetype.
@@ -212,17 +260,6 @@ require('bufferline').setup {
         close_icon = '',
         left_trunc_marker = '',
         right_trunc_marker = '',
-        --- name_formatter can be used to change the buffer's label in the bufferline.
-        --- Please note some names can/will break the
-        --- bufferline so use this at your discretion knowing that it has
-        --- some limitations that will *NOT* be fixed.
-        name_formatter = function(buf) -- buf contains:
-            -- name                | str        | the basename of the active file
-            -- path                | str        | the full path of the active file
-            -- bufnr (buffer only) | int        | the number of the active buffer
-            -- buffers (tabs only) | table(int) | the numbers of the buffers in the tab
-            -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
-        end,
         max_name_length = 18,
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         truncate_names = true, -- whether or not tab names should be truncated
@@ -248,6 +285,6 @@ require('bufferline').setup {
             delay = 200,
             reveal = { 'close' }
         },
-        sort_by = 'tabs'
+        sort_by = 'tabs',
     }
 }
