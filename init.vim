@@ -28,8 +28,8 @@ Plug 'rmagatti/auto-session'
 Plug 'tpope/vim-fugitive'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'vmware-archive/salt-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
 Plug 'f-person/git-blame.nvim'
@@ -90,7 +90,6 @@ let g:PaperColor_Theme_Options = {
   \   }
   \ }
 colorscheme moonfly
-let g:airline_theme='dark'
 
 set splitright
 set splitbelow
