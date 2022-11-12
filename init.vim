@@ -15,13 +15,15 @@ Plug 'mfussenegger/nvim-lint'
 Plug 'onsails/lspkind.nvim'
 
 " various plugins
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'petertriho/nvim-scrollbar'
+Plug 'kevinhwang91/nvim-hlslens'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'hrsh7th/cmp-path'
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v1.*'}
+Plug 'L3MON4D3/LuaSnip', {'tag': '*'}
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'lambdalisue/suda.vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
 Plug 'gorbit99/codewindow.nvim'
 Plug 'preservim/nerdcommenter'
 Plug 'rmagatti/auto-session'
@@ -32,7 +34,6 @@ Plug 'vmware-archive/salt-vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
-Plug 'f-person/git-blame.nvim'
 
 " themes
 Plug 'navarasu/onedark.nvim'
