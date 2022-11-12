@@ -15,35 +15,65 @@ Installing system stuff (Fedora example):
 
 ```bash
 sudo dnf install \
+	python3-pip \
 	neovim \
     ripgrep \
     fd-find \
     npm \
     tree-sitter-cli \
     wl-clipboard \
-    dejavu-fonts-all-2.37-18.fc36.noarch
+    dejavu-fonts-all \
+    gnu-free-mono-fonts
 
 pip install \
 	pynvim \
     'python-lsp-server[all]' \
     flake8 \
+    pyright
 
     
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
+#####   
+
 
 ##### Inside vim
 
 ```
 :PlugInstall
+
+# installing packages, which mason-lspconfig cannot autoinstall (?)
+:MasonInstall phpcs
 ```
 
 On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to hacked fonts:  
 [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
 
+#### General info
+
+##### Mason:
+
+Mason installs stuff in `.local/share/nvim/mason/packages` so they are independent from system stuff, like pip installed python packages.
+
 ### Usage
+
+##### root perms when editing
+
+```bash
+# Re-open a current file with sudo
+:SudaRead
+# Open /etc/sudoers with sudo
+:SudaRead /etc/sudoers
+```
+
+```bash
+# Forcedly save a current file with sudo
+:SudaWrite
+# Write contents to /etc/profile
+:SudaWrite /etc/profile
+```
 
 ##### Opened files navigation:
 
@@ -117,8 +147,15 @@ On Fedora there is need to make sure your system can display any unicode charact
 
 ##### Git stuff
 
-<table border="1" id="bkmrk-ctrl%2Bs-show-current-" style="border-collapse: collapse; width: 100%;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>Ctrl+g  
-</td><td>show current code chunk changes</td></tr></tbody></table>
+<table border="1" id="bkmrk-ctrl%2Bs-show-current-" style="border-collapse: collapse; width: 100%; height: 208.6px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+g  
+</td><td style="height: 29.8px;">show current code chunk changes</td></tr><tr><td>&lt;leader&gt;hb  
+</td><td>show full git blame of current line  
+</td></tr><tr><td>&lt;leader&gt;hD</td><td>show splitted blame diff  
+</td></tr><tr><td>&lt;leader&gt;hd</td><td>show splitted diff</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;hr  
+</td><td style="height: 29.8px;">reset hunk  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;hR</td><td style="height: 29.8px;">reset whole buffer  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;td</td><td style="height: 29.8px;">toggle deleted  
+</td></tr></tbody></table>
 
 Genreal git commands:
 
@@ -146,14 +183,16 @@ Nice single file diff viewer:
 :Gdiffsplit
 ```
 
-GitGuter provides some commands for git:
+GitSings provides some commands for displaying git stuff:
 
 ```bash
-:GitGutter*
+:Gitsigns *
 
 #examples:
-:GitGutterUndoHunk
-:GitGutterDiffOrig
+:Gitsigns toggle_word_diff
+:Gitsigns toggle_linehl
+:Gitsigns toggle_numhl
+:Gitsigns toggle_signs
 ```
 
 ##### Code editing stuff
@@ -195,5 +234,3 @@ GitGuter provides some commands for git:
 ##### Sessions
 
 To save **new** session on specific path, just use `:SaveSession`, then when opening nvim there, without arguments, the session will be restored.
-
-
