@@ -41,12 +41,44 @@ require 'lspconfig'.pyright.setup {
 }
 require 'lspconfig'.pylsp.setup {
     on_attach = on_attach,
-    capabilities = capabilities,
+    capabilities = capabilities
+    , settings = {
+        pylsp = {
+            plugins = {
+                flake8 = {
+                    enabled = 1
+                },
+                pylint = {
+                    enabled = true,
+                    args = {
+                        '--disable=C0114' -- disable missing module docstring info
+                    }
+                },
+                yapf = {
+                    enabled = true
+                },
+                autopep8 = {
+                    enabled = false
+                },
+                pyflakes = {enabled = true},
+                pyodestyle = {enabled = true},
+                pydocstyle = {
+                    enabled = false,
+                    ignore = {
+                        'D100', -- disable missing module docstring info
+                        'D203', -- disable one line before class docstring required
+                        'D213' -- disable multiline docstring summary
+                        -- should start at the second line
+                    }
+                },
+            }
+        }
+    }
 }
-require 'lspconfig'.pyre.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+--require 'lspconfig'.pyre.setup {
+--on_attach = on_attach,
+--capabilities = capabilities,
+--}
 require 'lspconfig'.bashls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
