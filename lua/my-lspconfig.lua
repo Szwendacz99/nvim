@@ -79,6 +79,10 @@ require 'lspconfig'.pylsp.setup {
 --on_attach = on_attach,
 --capabilities = capabilities,
 --}
+require'lspconfig'.sourcekit.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
 require 'lspconfig'.bashls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
