@@ -293,10 +293,8 @@ require("nvim-tree").setup({
         show_on_dirs = true,
     },
     filters = {
-        custom = {
-            "^.git$",
-            "^.mypy_cache$",
-        },
+        custom = {},
+        dotfiles = false,
     },
     actions = {
         change_dir = {
@@ -323,6 +321,12 @@ require("nvim-tree").setup({
             watcher = false,
         },
     },
+    git = {
+        enable = true,
+        ignore = false,
+        show_on_dirs = true,
+        timeout = 400,
+      },
 })
 
 --Gruvbox theme settings
