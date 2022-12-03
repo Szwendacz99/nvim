@@ -69,8 +69,8 @@ nnoremap <leader>n :NvimTreeFocus<CR>
 nnoremap <C-t> :NvimTreeToggle<CR>
 
 " nerdcommenter custom bindings
-nmap <c-/> <plug>NERDCommenterToggle
-vmap <c-/> <plug>NERDCommenterToggle
+nmap <c-_> <plug>NERDCommenterToggle
+vmap <c-_> <plug>NERDCommenterToggle
 
 "theme configuration
 syntax enable
