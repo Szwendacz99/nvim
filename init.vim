@@ -36,12 +36,17 @@ Plug 'itchyny/vim-cursorword'
 Plug 'sheerun/vim-polyglot'
 
 " themes
-Plug 'navarasu/onedark.nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'olimorris/onedarkpro.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
-Plug 'dracula/vim'
+Plug 'Mofiqul/dracula.nvim'
 Plug 'vigoux/oak'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'bluz71/vim-moonfly-colors'
+Plug 'luisiacc/gruvbox-baby'
+Plug 'catppuccin/nvim'
+Plug 'EdenEast/nightfox.nvim'
+Plug 'projekt0n/github-nvim-theme'
 
 "Fuzzy search by Telescope and its dependencies:
 Plug 'nvim-lua/plenary.nvim'
@@ -74,23 +79,7 @@ vmap <c-/> <plug>NERDCommenterToggle
 
 "theme configuration
 syntax enable
-let g:onedark_config = {
-    \ 'style': 'darker',
-\}
-let g:PaperColor_Theme_Options = {
-  \   'language': {
-  \     'python': {
-  \       'highlight_builtins' : 1
-  \     },
-  \     'cpp': {
-  \       'highlight_standard_library': 1
-  \     },
-  \     'c': {
-  \       'highlight_builtins' : 1
-  \     }
-  \   }
-  \ }
-colorscheme moonfly
+colorscheme gruvbox
 
 set splitright
 set splitbelow
@@ -109,19 +98,8 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" gitgutter setup
-let g:gitgutter_sign_added = '|'
-let g:gitgutter_sign_modified = '|'
-let g:gitgutter_sign_removed = '|'
-let g:gitgutter_sign_removed_first_line = '|'
-let g:gitgutter_sign_removed_above_and_below = '|'
-let g:gitgutter_sign_modified_removed = '|'
-let g:gitgutter_preview_win_floating = 1
-nnoremap <C-g> <cmd>GitGutterPreviewHunk<cr>
-
 " general configs
 set modeline
-let g:sls_use_jinja_syntax = 1
 set encoding=UTF-8
 set showmatch               " show matching
 set ignorecase              " case insensitive
