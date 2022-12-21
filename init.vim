@@ -3,10 +3,7 @@
 " checks for termguicolors
 set termguicolors
 " load main lua file with additional configs
-lua require("packer-setup")
-lua require("general")
-lua require("my-lspconfig")
-lua require("my-lint")
+lua require("initializer")
 
 " highlight all .conf files as apache config (:])
 autocmd BufEnter *.conf :setlocal filetype=apache
