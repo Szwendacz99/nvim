@@ -7,6 +7,7 @@ lua require("initializer")
 
 " highlight all .conf files as apache config (:])
 autocmd BufEnter *.conf :setlocal filetype=apache
+au BufNewFile,BufRead *.sls set filetype=sls.yaml
 
 "nerdtree bindings
 nnoremap <leader>n :NvimTreeFocus<CR>
