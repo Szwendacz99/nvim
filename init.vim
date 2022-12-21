@@ -1,67 +1,9 @@
-call plug#begin()
-
-" NERDTree stuff
-Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
-Plug 'nvim-tree/nvim-tree.lua'
-
-" neovim lsp plugins and depencencies
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'mfussenegger/nvim-lint'
-Plug 'onsails/lspkind.nvim'
-
-" various plugins
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'petertriho/nvim-scrollbar'
-Plug 'kevinhwang91/nvim-hlslens'
-Plug 'windwp/nvim-ts-autotag'
-Plug 'hrsh7th/cmp-path'
-Plug 'L3MON4D3/LuaSnip', {'tag': '*'}
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'lambdalisue/suda.vim'
-Plug 'akinsho/bufferline.nvim', { 'tag': '*' }
-Plug 'gorbit99/codewindow.nvim'
-Plug 'preservim/nerdcommenter'
-Plug 'rmagatti/auto-session'
-Plug 'tpope/vim-fugitive'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'vmware-archive/salt-vim'
-
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'itchyny/vim-cursorword'
-Plug 'sheerun/vim-polyglot'
-
-" themes
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'olimorris/onedarkpro.nvim'
-Plug 'ellisonleao/gruvbox.nvim'
-Plug 'Mofiqul/dracula.nvim'
-Plug 'vigoux/oak'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'luisiacc/gruvbox-baby'
-Plug 'catppuccin/nvim'
-Plug 'EdenEast/nightfox.nvim'
-Plug 'projekt0n/github-nvim-theme'
-
-"Fuzzy search by Telescope and its dependencies:
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
-Plug 'BurntSushi/ripgrep'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-call plug#end()
-
 " set termguicolors before lua config,
 " as it can contain some theme stuff that
 " checks for termguicolors
 set termguicolors
-
 " load main lua file with additional configs
+lua require("packer-setup")
 lua require("general")
 lua require("my-lspconfig")
 lua require("my-lint")
