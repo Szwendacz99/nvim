@@ -23,17 +23,14 @@ sudo dnf install \
     tree-sitter-cli \
     wl-clipboard \
     dejavu-fonts-all \
-    gnu-free-mono-fonts
+    gnu-free-mono-fonts \
+    clang \
+    perl-App-cpanminus # optional, allow perlnavigator lsp working properly
 
-pip install \
-	pynvim \
-    'python-lsp-server[all]' \
-    flake8 \
-    pyright
+pip install pynvim
 
-    
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
 #####   
@@ -42,10 +39,14 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 ##### Inside vim
 
 ```
-:PlugInstall
+:PackerInstall
+:PackerSync
 
 # installing packages, which mason-lspconfig cannot autoinstall (?)
 :MasonInstall phpcs
+
+# tree-sitter setup
+:TSInstall html dockerfile cpp css markdown c gitcommit bash phpdoc comment python http php regex json5 lua gitattributes gitignore json git_rebase javascript perl sql yaml
 ```
 
 On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to hacked fonts:  
@@ -149,8 +150,8 @@ Mason installs stuff in `.local/share/nvim/mason/packages` so they are independe
 
 <table border="1" id="bkmrk-ctrl%2Bs-show-current-" style="border-collapse: collapse; width: 100%; height: 208.6px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">Ctrl+g  
 </td><td style="height: 29.8px;">show current code chunk changes</td></tr><tr><td>&lt;leader&gt;hb  
-</td><td>show full git blame of current line  
-</td></tr><tr><td>&lt;leader&gt;hD</td><td>show splitted blame diff  
+</td><td>show full git blame of current line (double use to enter displayed diff)  
+</td></tr><tr><td>&lt;leader&gt;hD</td><td>show splitted blame diff (double use to enter displayed diff)  
 </td></tr><tr><td>&lt;leader&gt;hd</td><td>show splitted diff</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;hr  
 </td><td style="height: 29.8px;">reset hunk  
 </td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;hR</td><td style="height: 29.8px;">reset whole buffer  
