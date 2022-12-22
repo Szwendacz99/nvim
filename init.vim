@@ -19,7 +19,7 @@ vmap <c-/> <plug>NERDCommenterToggle
 
 "theme configuration
 syntax enable
-colorscheme gruvbox
+colorscheme dracula
 
 set splitright
 set splitbelow
