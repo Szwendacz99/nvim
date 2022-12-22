@@ -11,4 +11,5 @@ require("conf-nvim-tree")
 require("conf-bufferline")
 require("conf-themes")
 require("conf-treesitter")
+require("conf-indent-blankline")
 require("my-lspconfig") -- need to be after treesitter initialization

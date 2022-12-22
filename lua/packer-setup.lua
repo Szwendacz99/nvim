@@ -32,6 +32,7 @@ return require('packer').startup(function(use)
     use 'Glench/Vim-Jinja2-Syntax'
     use 'vmware-archive/salt-vim'
     use 'stephpy/vim-yaml'
+    use 'lukas-reineke/indent-blankline.nvim'
 
     use 'nvim-lualine/lualine.nvim'
     use 'itchyny/vim-cursorword'
