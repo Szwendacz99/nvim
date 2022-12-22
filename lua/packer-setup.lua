@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use 'Glench/Vim-Jinja2-Syntax'
     use 'vmware-archive/salt-vim'
+    use 'stephpy/vim-yaml'
 
     use 'nvim-lualine/lualine.nvim'
     use 'itchyny/vim-cursorword'
