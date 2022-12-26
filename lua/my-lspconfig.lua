@@ -97,10 +97,9 @@ local cfg = {
 require 'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use toggle_key
 
 
-require 'lspconfig'.pyright.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+-----------------
+-- attaching all lsp servers, order matters (for example in autocompletion)
+-----------------
 require 'lspconfig'.pylsp.setup {
     on_attach = on_attach,
     capabilities = capabilities
@@ -127,7 +126,7 @@ require 'lspconfig'.pylsp.setup {
                 pyflakes = { enabled = true },
                 pyodestyle = { enabled = true },
                 pydocstyle = {
-                    enabled = false,
+                    enabled = true,
                     ignore = {
                         'D100', -- disable missing module docstring info
                         'D203', -- disable one line before class docstring required
@@ -138,6 +137,14 @@ require 'lspconfig'.pylsp.setup {
             }
         }
     }
+}
+require'lspconfig'.jedi_language_server.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+require 'lspconfig'.pyright.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
 }
 require 'lspconfig'.pyre.setup {
     on_attach = on_attach,
@@ -234,10 +241,6 @@ require 'lspconfig'.lemminx.setup {
 }
 
 require 'lspconfig'.marksman.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
-require'lspconfig'.jedi_language_server.setup{
     on_attach = on_attach,
     capabilities = capabilities,
 }
