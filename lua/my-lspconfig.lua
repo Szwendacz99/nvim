@@ -106,8 +106,8 @@ require 'lspconfig'.pylsp.setup {
     , settings = {
         pylsp = {
             plugins = {
-                rope_autoimport = { enabled = true, memory = true },
-                rope_completion = { enabled = true, eager = true },
+                rope_autoimport = { enabled = false, memory = true },
+                rope_completion = { enabled = false, eager = true },
                 jedi_completion = {
                     enabled = true,
                     include_params = true,
