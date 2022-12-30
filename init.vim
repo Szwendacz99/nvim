@@ -2,6 +2,7 @@
 " as it can contain some theme stuff that
 " checks for termguicolors
 set termguicolors
+highlight clear
 " load main lua file with additional configs
 lua require("initializer")
 

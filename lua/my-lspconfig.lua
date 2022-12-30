@@ -106,8 +106,24 @@ require 'lspconfig'.pylsp.setup {
     , settings = {
         pylsp = {
             plugins = {
+                rope_autoimport = { enabled = true, memory = true },
+                rope_completion = { enabled = true, eager = true },
+                jedi_completion = {
+                    enabled = true,
+                    include_params = true,
+                    include_class_objects = true,
+                    include_function_objects = true,
+                    fuzzy = true,
+                    eager = true,
+
+                },
+                jedi_hover = { enabled = true },
+                jedi_references = { enabled = true },
+                jedi_signature_help = { enabled = true },
+                jedi_symbols = { enabled = true },
+                --ruff = { enabled = true },
                 flake8 = {
-                    enabled = true
+                    enabled = false -- ruff_lsp
                 },
                 pylint = {
                     enabled = true,
@@ -123,8 +139,8 @@ require 'lspconfig'.pylsp.setup {
                 autopep8 = {
                     enabled = false
                 },
-                pyflakes = { enabled = true },
-                pyodestyle = { enabled = true },
+                pyflakes = { enabled = false }, -- ruff_lsp
+                pyodestyle = { enabled = false }, -- ruff_lsp
                 pydocstyle = {
                     enabled = true,
                     ignore = {
@@ -138,17 +154,21 @@ require 'lspconfig'.pylsp.setup {
         }
     }
 }
---require'lspconfig'.jedi_language_server.setup{
-    --on_attach = on_attach,
-    --capabilities = capabilities,
---}
-require 'lspconfig'.pyright.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
+require'lspconfig'.ruff_lsp.setup{
+on_attach = on_attach,
+capabilities = capabilities,
 }
+require 'lspconfig'.pyright.setup {
+on_attach = on_attach,
+capabilities = capabilities,
+}
+--require'lspconfig'.jedi_language_server.setup{
+--on_attach = on_attach,
+--capabilities = capabilities,
+--}
 --require 'lspconfig'.pyre.setup {
-    --on_attach = on_attach,
-    --capabilities = capabilities,
+--on_attach = on_attach,
+--capabilities = capabilities,
 --}
 require 'lspconfig'.sourcekit.setup {
     on_attach = on_attach,
@@ -162,10 +182,10 @@ require 'lspconfig'.dockerls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
-require 'lspconfig'.kotlin_language_server.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+--require 'lspconfig'.kotlin_language_server.setup {
+    --on_attach = on_attach,
+    --capabilities = capabilities,
+--}
 require 'lspconfig'.intelephense.setup {
     on_attach = on_attach,
     capabilities = capabilities,
