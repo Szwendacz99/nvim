@@ -4,7 +4,7 @@ require("mason-lspconfig").setup({
         "bashls",
         "pyright",
         "pylsp",
-        "ruff-lsp",
+        "ruff_lsp",
         --"python-jedi-server",
         --"pyre",
         "perlnavigator",
