@@ -15,6 +15,7 @@ Installing system stuff (Fedora example):
 
 ```bash
 sudo dnf install \
+	git \
 	python3-pip \
 	neovim \
     ripgrep \
@@ -29,8 +30,7 @@ sudo dnf install \
 
 pip install pynvim
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+git clone https://github.com/Szwendacz99/nvim ~/.config/nvim
 ```
 
 #####   
@@ -39,14 +39,12 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ##### Inside vim
 
 ```
-:PackerInstall
-:PackerSync
+# manage plugins:
+:Lazy
 
 # installing packages, which mason-lspconfig cannot autoinstall (?)
 :MasonInstall phpcs
 
-# tree-sitter setup
-:TSInstall html dockerfile cpp css markdown c gitcommit bash phpdoc comment python http php regex json5 lua gitattributes gitignore json git_rebase javascript perl sql yaml
 ```
 
 On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to hacked fonts:  

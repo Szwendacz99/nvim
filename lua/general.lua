@@ -12,7 +12,3 @@ codewindow.setup({
     z_index = 1, -- The z-index the floating window will be on
 })
 codewindow.apply_default_keybinds()
-
-
-
-
