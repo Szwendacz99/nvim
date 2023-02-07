@@ -1,5 +1,3 @@
-vim.g.mapleader = " " -- make sure to set `mapleader` before lazy so your mappings are correct
-
 require("lazy").setup({
     -- NERDTree stuff
     { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
@@ -16,6 +14,15 @@ require("lazy").setup({
     { 'williamboman/mason-lspconfig.nvim' },
     { 'mfussenegger/nvim-lint' },
     { 'onsails/lspkind.nvim' },
+    { 'folke/trouble.nvim',
+    keys = {
+        { "<leader>xx", "<cmd>TroubleToggle<cr>" },
+        { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
+        { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
+        { "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
+        { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
+        { "gR", "<cmd>TroubleToggle lsp_references<cr>" }
+}},
 
     -- various plugins
     { 'lewis6991/gitsigns.nvim' },
@@ -35,7 +42,7 @@ require("lazy").setup({
     { 'lukas-reineke/indent-blankline.nvim' },
 
     { 'nvim-lualine/lualine.nvim' },
-    { 'itchyny/vim-cursorword' },
+    { 'RRethy/vim-illuminate' },
     { 'sheerun/vim-polyglot' },
     { 'ray-x/lsp_signature.nvim' },
 
