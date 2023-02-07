@@ -1,15 +1,10 @@
-" set termguicolors before lua config,
-" as it can contain some theme stuff that
-" checks for termguicolors
-set termguicolors
-highlight clear
 " load main lua file with additional configs
 lua require("initializer")
 
 " highlight all .conf files as apache config (:])
 autocmd BufEnter *.conf :setlocal filetype=apache
 "au BufNewFile,BufRead *.sls set filetype=sls.yaml
-
+let mapleader = "\\"
 "nerdtree bindings
 nnoremap <leader>n :NvimTreeFocus<CR>
 nnoremap <C-t> :NvimTreeToggle<CR>
@@ -18,8 +13,8 @@ nnoremap <C-t> :NvimTreeToggle<CR>
 nmap <c-/> <plug>NERDCommenterToggle
 vmap <c-/> <plug>NERDCommenterToggle
 
-"theme configuration
-syntax enable
+set termguicolors
+highlight clear
 colorscheme dracula
 
 set splitright
