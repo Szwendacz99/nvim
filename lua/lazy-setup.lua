@@ -1,7 +1,11 @@
 require("lazy").setup({
     -- NERDTree stuff
     { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
-    { 'nvim-tree/nvim-tree.lua' },
+    { 'nvim-tree/nvim-tree.lua',
+        keys = {
+            { "<leader>n", "<cmd>NvimTreeFocus<cr>" },
+            { "<C-t>", "<cmd>NvimTreeToggle<cr>" }
+        } },
 
     -- neovim lsp plugins and depencencies
     { 'neovim/nvim-lspconfig' },
@@ -28,58 +32,26 @@ require("lazy").setup({
     { 'lewis6991/gitsigns.nvim' },
     { 'petertriho/nvim-scrollbar' },
     { 'kevinhwang91/nvim-hlslens' },
-    { 'L3MON4D3/LuaSnip',                   version = '*' },
+    { 'L3MON4D3/LuaSnip',         version = '*' },
     { 'saadparwaiz1/cmp_luasnip' },
     { 'lambdalisue/suda.vim' },
-    { 'akinsho/bufferline.nvim',            version = '*' },
+    { 'akinsho/bufferline.nvim',  version = '*' },
     { 'gorbit99/codewindow.nvim' },
-    { 'preservim/nerdcommenter' },
+    { 'preservim/nerdcommenter',
+        keys = {
+            { "<c-/>", "<plug>NERDCommenterToggle", mode = "v" },
+            { "<c-/>", "<plug>NERDCommenterToggle", mode = "n" }
+        } },
     { 'rmagatti/auto-session' },
     { 'tpope/vim-fugitive' },
     { 'Glench/Vim-Jinja2-Syntax' },
     { 'vmware-archive/salt-vim' },
     { 'stephpy/vim-yaml' },
     { 'lukas-reineke/indent-blankline.nvim' },
-    { 'rcarriga/nvim-notify' },
     { 'MunifTanjim/nui.nvim' },
     { 'folke/noice.nvim',
-        config = {
-            lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                override = {
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true,
-                },
-            },
-            -- you can enable a preset for easier configuration
-            presets = {
-                bottom_search = true, -- use a classic bottom cmdline for search
-                command_palette = true, -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false, -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = false, -- add a border to hover docs and signature help
-            },
-            hover = {
-                enabled = true,
-                view = nil, -- when nil, use defaults from documentation
-                ---@type NoiceViewOptions
-                opts = {}, -- merged with defaults from documentation
-            },
-            signature = {
-                enabled = false,
-                auto_open = {
-                    enabled = true,
-                    trigger = true, -- Automatically show signature help when typing a trigger character from the LSP
-                    luasnip = true, -- Will open signature help when jumping to Luasnip insert nodes
-                    throttle = 50, -- Debounce lsp signature help request by 50ms
-                },
-                view = nil, -- when nil, use defaults from documentation
-                ---@type NoiceViewOptions
-                opts = {}, -- merged with defaults from documentation
-            },
-        },
         dependencies = {
+            config = require("config-noice").config,
             "MunifTanjim/nui.nvim",
             -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
@@ -104,10 +76,17 @@ require("lazy").setup({
     { 'projekt0n/github-nvim-theme' },
 
     --Fuzzy search by Telescope and its dependencies:
-    { 'nvim-lua/plenary.nvim' },
     {
         'nvim-telescope/telescope.nvim', branch = 'master',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        keys = {
+            { "<leader>ff", "<cmd>Telescope find_files<cr>" },
+            { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
+            { "<leader>fb", "<cmd>Telescope buffers<cr>" },
+            { "<leader>fh", "<cmd>Telescope help_tags<cr>" }
+
+        }
+
     },
     { 'BurntSushi/ripgrep' },
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
