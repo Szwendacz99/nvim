@@ -13,7 +13,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.opt.termguicolors = true
-
 -- load all plugins
 require("lazy-load")
 -- load general config
