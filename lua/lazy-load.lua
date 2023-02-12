@@ -5,9 +5,14 @@ require("lazy").setup({
         config = require('plugins.nvim-tree').config,
         keys = require('plugins.nvim-tree').keys },
 
+    { 'nvim-treesitter/nvim-treesitter',
+        config = require('plugins.treesitter').config,
+        build = ':TSUpdate',
+        priority = 200},
     -- neovim lsp plugins and depencencies
     { 'neovim/nvim-lspconfig',
-        init = require('plugins.nvim-lspconfig').init },
+        init = require('plugins.nvim-lspconfig').init,
+        priority = 100},
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-cmdline' },
@@ -71,7 +76,8 @@ require("lazy").setup({
     -- themes
     { 'olimorris/onedarkpro.nvim' },
     { 'ellisonleao/gruvbox.nvim' },
-    { 'Mofiqul/dracula.nvim' },
+    { 'Mofiqul/dracula.nvim',
+    priority = 300},
     { 'vigoux/oak' },
     { 'NLKNguyen/papercolor-theme' },
     { 'bluz71/vim-moonfly-colors' },
@@ -94,9 +100,6 @@ require("lazy").setup({
 
     },
     { 'BurntSushi/ripgrep' },
-    { 'nvim-treesitter/nvim-treesitter',
-        config = require('plugins.treesitter').config,
-        build = ':TSUpdate' },
 
 },
     {

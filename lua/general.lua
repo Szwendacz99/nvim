@@ -39,5 +39,6 @@ vim.opt.cursorline = true
 vim.cmd [[
     highlight clear
     colorscheme dracula
+    TSEnable highlight
 ]]
 
