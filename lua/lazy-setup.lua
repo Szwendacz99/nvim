@@ -4,7 +4,7 @@ require("lazy").setup({
     { 'nvim-tree/nvim-tree.lua',
         keys = {
             { "<leader>n", "<cmd>NvimTreeFocus<cr>" },
-            { "<C-t>", "<cmd>NvimTreeToggle<cr>" }
+            { "<C-t>",     "<cmd>NvimTreeToggle<cr>" }
         } },
 
     -- neovim lsp plugins and depencencies
@@ -14,29 +14,31 @@ require("lazy").setup({
     { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/cmp-path' },
     { 'hrsh7th/nvim-cmp' },
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
+    { 'williamboman/mason.nvim',
+        config = {} },
+    { 'williamboman/mason-lspconfig.nvim',
+        config = require('plugins.mason-lspconfig').config,
+        dependencies = { 'williamboman/mason.nvim' } },
     { 'mfussenegger/nvim-lint' },
     { 'onsails/lspkind.nvim' },
     { 'folke/trouble.nvim',
-        keys = {
-            { "<leader>xx", "<cmd>TroubleToggle<cr>" },
-            { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>" },
-            { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>" },
-            { "<leader>xl", "<cmd>TroubleToggle loclist<cr>" },
-            { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>" },
-            { "gR",         "<cmd>TroubleToggle lsp_references<cr>" }
-        } },
+        config = require('plugins.trouble').config,
+        keys = require("plugins.trouble").keys
+    },
 
     -- various plugins
     { 'lewis6991/gitsigns.nvim' },
-    { 'petertriho/nvim-scrollbar' },
+    { 'petertriho/nvim-scrollbar',
+        config = {} },
     { 'kevinhwang91/nvim-hlslens' },
     { 'L3MON4D3/LuaSnip',         version = '*' },
     { 'saadparwaiz1/cmp_luasnip' },
     { 'lambdalisue/suda.vim' },
     { 'akinsho/bufferline.nvim',  version = '*' },
-    { 'gorbit99/codewindow.nvim' },
+    { 'gorbit99/codewindow.nvim',
+        config = require('plugins.codewindow').config,
+        init = require('plugins.codewindow').build
+    },
     { 'preservim/nerdcommenter',
         keys = {
             { "<c-/>", "<plug>NERDCommenterToggle", mode = "v" },
@@ -50,8 +52,8 @@ require("lazy").setup({
     { 'lukas-reineke/indent-blankline.nvim' },
     { 'MunifTanjim/nui.nvim' },
     { 'folke/noice.nvim',
+        config = require("plugins.noice").config,
         dependencies = {
-            config = require("config-noice").config,
             "MunifTanjim/nui.nvim",
             -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
@@ -61,7 +63,6 @@ require("lazy").setup({
     { 'nvim-lualine/lualine.nvim' },
     { 'RRethy/vim-illuminate' },
     { 'sheerun/vim-polyglot' },
-    --{ 'ray-x/lsp_signature.nvim' },
 
     -- themes
     { 'olimorris/onedarkpro.nvim' },

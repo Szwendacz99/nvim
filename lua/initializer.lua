@@ -11,15 +11,12 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 -- load all modules
-vim.g.mapleader = "\\"
 require("lazy-setup")
 require("general")
 require("my-lint")
-require("conf-trouble")
 require("conf-hlslens")
 require("conf-gitsigns")
 require("conf-lualine")
-require("conf-mason")
 require("conf-nvim-cmp")
 require("conf-nvim-tree")
 require("conf-bufferline")
