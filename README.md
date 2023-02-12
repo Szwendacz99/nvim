@@ -74,6 +74,11 @@ Mason installs stuff in `.local/share/nvim/mason/packages` so they are independe
 :SudaWrite /etc/profile
 ```
 
+##### General
+
+<table border="1" id="bkmrk-%3Cleader%3El-disable-%28s" style="border-collapse: collapse; width: 100%;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>&lt;leader&gt;l  
+</td><td>disable (search) highlighting</td></tr></tbody></table>
+
 ##### Opened files navigation:
 
 <table border="1" id="bkmrk-ctrl-w-%3Carrow%3E-movin" style="border-collapse: collapse; width: 100%; height: 506.6px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt; m m  
@@ -227,9 +232,24 @@ GitSings provides some commands for displaying git stuff:
 </td><td style="height: 29.8px;">list workspace folders  
 </td></tr></tbody></table>
 
-#####   
+##### LSP diagnostics, etc:  
 
+
+<table border="1" id="bkmrk-%3Cleader%3Exx-open-diag" style="border-collapse: collapse; width: 100%; height: 178.8px;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;xx  
+</td><td style="height: 29.8px;">Open diagnostics window  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;xw</td><td style="height: 29.8px;">workspace diagnostics  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;xd</td><td style="height: 29.8px;">document diagnostics  
+</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;xl</td><td style="height: 29.8px;">loclist</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">&lt;leader&gt;xq</td><td style="height: 29.8px;">quickfix</td></tr><tr style="height: 29.8px;"><td style="height: 29.8px;">gR  
+</td><td style="height: 29.8px;">lsp references  
+</td></tr></tbody></table>
 
 ##### Sessions
 
 To save **new** session on specific path, just use `:SaveSession`, then when opening nvim there, without arguments, the session will be restored.
+
+##### Notifications
+
+<table border="1" id="bkmrk-%3Anotifications-show-" style="border-collapse: collapse; width: 100%;"><colgroup><col style="width: 50%;"></col><col style="width: 50%;"></col></colgroup><tbody><tr><td>:Notifications  
+</td><td>show recent notifications  
+</td></tr><tr><td>:Telescope notify  
+</td><td>show recent notifications in telescope gui</td></tr></tbody></table>
