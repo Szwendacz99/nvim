@@ -1,55 +1,58 @@
 require("lazy").setup({
-    -- NERDTree stuff
+    -- Nvim-tree stuff
     { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
     { 'nvim-tree/nvim-tree.lua',
-        keys = {
-            { "<leader>n", "<cmd>NvimTreeFocus<cr>" },
-            { "<C-t>",     "<cmd>NvimTreeToggle<cr>" }
-        } },
+        config = require('plugins.nvim-tree').config,
+        keys = require('plugins.nvim-tree').keys },
 
     -- neovim lsp plugins and depencencies
-    { 'neovim/nvim-lspconfig' },
+    { 'neovim/nvim-lspconfig',
+        init = require('plugins.nvim-lspconfig').init },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-cmdline' },
     { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/nvim-cmp',
+        init = require('plugins.nvim-cmp').init,
+        dependencies = { { 'onsails/lspkind.nvim' } } },
     { 'williamboman/mason.nvim',
         config = {} },
     { 'williamboman/mason-lspconfig.nvim',
         config = require('plugins.mason-lspconfig').config,
         dependencies = { 'williamboman/mason.nvim' } },
-    { 'mfussenegger/nvim-lint' },
-    { 'onsails/lspkind.nvim' },
+    { 'mfussenegger/nvim-lint',
+        init = require('plugins.nvim-lint').init },
+    {},
     { 'folke/trouble.nvim',
         config = require('plugins.trouble').config,
         keys = require("plugins.trouble").keys
     },
 
     -- various plugins
-    { 'lewis6991/gitsigns.nvim' },
+    { 'lewis6991/gitsigns.nvim',
+        config = require('plugins.gitsigns').config },
     { 'petertriho/nvim-scrollbar',
         config = {} },
-    { 'kevinhwang91/nvim-hlslens' },
-    { 'L3MON4D3/LuaSnip',         version = '*' },
+    { 'kevinhwang91/nvim-hlslens', config = {},
+        keys = require('plugins.hlslens').keys },
+    { 'L3MON4D3/LuaSnip',        version = '*' },
     { 'saadparwaiz1/cmp_luasnip' },
     { 'lambdalisue/suda.vim' },
-    { 'akinsho/bufferline.nvim',  version = '*' },
+    { 'akinsho/bufferline.nvim', version = '*',
+        config = require('plugins.bufferline').config },
     { 'gorbit99/codewindow.nvim',
         config = require('plugins.codewindow').config,
         init = require('plugins.codewindow').build
     },
     { 'preservim/nerdcommenter',
-        keys = {
-            { "<c-/>", "<plug>NERDCommenterToggle", mode = "v" },
-            { "<c-/>", "<plug>NERDCommenterToggle", mode = "n" }
-        } },
+        keys = require('plugins.nerdcommenter').keys },
     { 'rmagatti/auto-session' },
     { 'tpope/vim-fugitive' },
     { 'Glench/Vim-Jinja2-Syntax' },
     { 'vmware-archive/salt-vim' },
-    { 'stephpy/vim-yaml' },
-    { 'lukas-reineke/indent-blankline.nvim' },
+    { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
+    { 'lukas-reineke/indent-blankline.nvim',
+        config = require('plugins.indent-blankline').config },
     { 'MunifTanjim/nui.nvim' },
     { 'folke/noice.nvim',
         config = require("plugins.noice").config,
@@ -59,8 +62,9 @@ require("lazy").setup({
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
             "rcarriga/nvim-notify", } },
-
-    { 'nvim-lualine/lualine.nvim' },
+    { 'rcarriga/nvim-notify', config = require('plugins.nvim-notify').config },
+    { 'nvim-lualine/lualine.nvim',
+        config = require('plugins.lualine').config },
     { 'RRethy/vim-illuminate' },
     { 'sheerun/vim-polyglot' },
 
@@ -90,7 +94,9 @@ require("lazy").setup({
 
     },
     { 'BurntSushi/ripgrep' },
-    { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+    { 'nvim-treesitter/nvim-treesitter',
+        config = require('plugins.treesitter').config,
+        build = ':TSUpdate' },
 
 },
     {

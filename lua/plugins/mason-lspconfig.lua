@@ -15,7 +15,7 @@ return {
             "cssmodules_ls",
             "diagnosticls",
             "jsonls",
-            "sumneko_lua",
+            "lua_ls",
             "sqlls",
             "yamlls",
             "lemminx",
