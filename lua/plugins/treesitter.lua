@@ -1,5 +1,5 @@
-return {
-    config = {
+return function()
+    require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all"
         ensure_installed = { "html", "dockerfile", "cpp", "css", "markdown", "c", "gitcommit", "bash", "phpdoc", "comment", "python", "http", "php", "regex", "json5", "lua", "gitattributes", "gitignore", "json", "git_rebase", "javascript", "perl", "sql", "yaml" },
 
@@ -41,4 +41,4 @@ return {
             additional_vim_regex_highlighting = false, -- default=false
         },
     }
-}
+end
