@@ -13,7 +13,7 @@ require("lazy").setup({
     -- neovim lsp plugins and depencencies
     { 'neovim/nvim-lspconfig',
         init = require('plugins.nvim-lspconfig').init,
-        priority = 60 },
+        priority = 20 },
     { 'hrsh7th/cmp-nvim-lsp' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-cmdline' },
@@ -216,7 +216,7 @@ require("lazy").setup({
         },
         performance = {
             cache = {
-                enabled = false,
+                enabled = true,
                 path = vim.fn.stdpath("cache") .. "/lazy/cache",
                 -- Once one of the following events triggers, caching will be disabled.
                 -- To cache all modules, set this to `{}`, but that is not recommended.
