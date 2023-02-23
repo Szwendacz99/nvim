@@ -28,11 +28,10 @@ require("lazy").setup({
         dependencies = { 'williamboman/mason.nvim' },
         priority = 150 },
     { 'neovim/nvim-lspconfig',
-        config = require('plugins.nvim-lspconfig').init,
+        init = require('plugins.nvim-lspconfig').init,
         priority = 100 },
     { 'mfussenegger/nvim-lint',
-        conifg = require('plugins.nvim-lint').init },
-    {},
+        init = require('plugins.nvim-lint').init },
     { 'folke/trouble.nvim',
         opts = require('plugins.trouble').config,
         keys = require("plugins.trouble").keys

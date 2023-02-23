@@ -151,11 +151,6 @@ return {
             capabilities = capabilities,
         }
 
-        require 'lspconfig'.diagnosticls.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-
         require 'lspconfig'.jsonls.setup {
             on_attach = on_attach,
             capabilities = capabilities,
@@ -190,6 +185,10 @@ return {
         }
 
         require 'lspconfig'.marksman.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+        require 'lspconfig'.html.setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }

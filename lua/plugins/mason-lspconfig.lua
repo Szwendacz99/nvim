@@ -13,13 +13,13 @@ return {
             "tsserver",
             "cssls",
             "cssmodules_ls",
-            "diagnosticls",
             "jsonls",
             "lua_ls",
             "sqlls",
             "yamlls",
             "lemminx",
-            "marksman"
+            "marksman",
+            "html",
         },
         -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
         -- This setting has no relation with the `ensure_installed` setting.
@@ -28,6 +28,6 @@ return {
         --   - true: All servers set up via lspconfig are automatically installed.
         --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
         --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-        automatic_installation = false,
+        automatic_installation = true,
     }
 }

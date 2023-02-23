@@ -2,13 +2,13 @@ return {
     init = function()
         require('lint').linters_by_ft = {
             --python = {
-            --'ruff'
+            --'ruff',
             --'flake8',
             --'pylint',
             --'pycodestyle',
             --'pydocstyle'
             --},
-            php = { 'phpcs' },
+            php = { 'phpcs', },
             markdown = { 'markdownlint' }
         }
 
@@ -26,11 +26,11 @@ return {
         --'--disable=C0114', -- disable missing module docstring info
         --}
 
-        --vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        --callback = function()
-        --require("lint").try_lint()
-        --end,
-        --})
+        vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        callback = function()
+        require("lint").try_lint()
+        end,
+        })
 
         vim.api.nvim_create_autocmd({ "BufEnter" }, {
             callback = function()
