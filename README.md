@@ -9,52 +9,90 @@ Those repos are obviously listed in plugin setup part.
 
 # Basic usage of this config
 
-### First Time Setup
+<p class="callout warning">Tested only with rootless podman, docker might require additional setup, or proper in-container user setup</p>
 
-Installing system stuff (Fedora example):
+### Host system Setup
+
+Installing host system stuff, currently just fonts (Fedora example):
 
 ```bash
-sudo dnf install \
-	git \
-	python3-pip \
-	neovim \
-    ripgrep \
-    fd-find \
-    npm \
-    tree-sitter-cli \
-    wl-clipboard \
+sudo dnf install -y \
     dejavu-fonts-all \
-    gnu-free-mono-fonts \
-    clang \
-    perl-App-cpanminus # optional, allow perlnavigator lsp working properly
-
-pip install pynvim
-
-git clone https://github.com/Szwendacz99/nvim ~/.config/nvim
+    gnu-free-mono-fonts
 ```
 
-#####   
+##### Image management:
 
+build:
+
+```bash
+git clone https://github.com/Szwendacz99/nvim && \
+podman build -t neovim ./nvim
+```
+
+pack to file with high compression:
+
+```bash
+podman save localhost/neovim:latest -o /dev/stdout | xz -z -9 -e -c > neovim.tar.xz
+```
+
+import file back to local registry:
+
+```bash
+podman load -i ./neovim.tar.xz
+```
+
+##### Image usage examples  
+
+
+basic startup for editing current folder:
+
+```bash
+podman run --privileged -it --rm \
+    -e XDG_RUNTIME_DIR=/runtime_dir \
+    -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+    -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY \
+    --workdir /data \
+    -v "./:/data:rw" \
+    	neovim:latest
+```
+
+function to run neovim container easily,  
+allowing passing parameters and mounting files:
+
+```bash
+function nvim() {
+    if [ $1 ] && [ -f $1 ]; then
+        MOUNT_FILE="-v "$1:$1"";
+        echo "mounting file $1";
+   	else
+        MOUNT_FOLDER="--workdir /data -v ./:/data:rw"
+    fi
+    podman run --privileged -it --rm \
+      -e XDG_RUNTIME_DIR=/runtime_dir \
+      -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
+      -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY \
+      $MOUNT_FILE \
+      $MOUNT_FOLDER \
+          neovim:latest "$@"
+}
+```
 
 ##### Inside vim
 
 ```
 # manage plugins:
 :Lazy
-
-# installing packages, which mason-lspconfig cannot autoinstall (?)
-:MasonInstall phpcs
-
 ```
 
-On Fedora there is need to make sure your system can display any unicode character. Hacked fonts are needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to hacked fonts:  
+There is need to make sure your system can display (almost) any unicode character. Hacked fonts may be needed for filetype icons but there is also need for a dedicated package with unicode fonts (like unifont-fonts.noarch) that will have every character missing from default font used in Neovim editor. Link to hacked fonts:  
 [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
 
 #### General info
 
 ##### Mason:
 
-Mason installs stuff in `.local/share/nvim/mason/packages` so they are independent from system stuff, like pip installed python packages.
+Mason installs stuff in `.local/share/nvim/mason/packages` so they are independent from system stuff, like pip installed python packages. All that is saved in image, so that is why image is so heavy.
 
 ### Usage
 
