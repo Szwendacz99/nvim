@@ -1,4 +1,4 @@
-# My personal nvim configuration
+# My personal **neovim as container** configuration
 
 I made this public so I can easily clone without authentication,  
 but since I treat this as a personal use only stuff,  
@@ -9,7 +9,7 @@ Those repos are obviously listed in plugin setup part.
 
 # Basic usage of this config
 
-<p class="callout warning">Tested only with rootless podman, docker might require additional setup, or proper in-container user setup</p>
+<p class="callout warning">**Tested only with rootless podman, docker might require additional setup, or proper in-container user setup**</p>
 
 ### Host system Setup
 
@@ -72,6 +72,7 @@ function nvim() {
       -e XDG_RUNTIME_DIR=/runtime_dir \
       -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
       -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY \
+      -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions \
       $MOUNT_FILE \
       $MOUNT_FOLDER \
           neovim:latest "$@"
