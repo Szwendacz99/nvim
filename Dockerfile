@@ -20,7 +20,7 @@ RUN dnf install -y \
     pip install pynvim
     
 # install lsp and liners using mason
-RUN nvim --headless +"MasonInstall \
+RUN nvim --headless +TSUpdateSync +"MasonInstall \
     bash-language-server \
     css-lsp \
     cssmodules-language-server \
