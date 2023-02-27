@@ -9,7 +9,7 @@ Those repos are obviously listed in plugin setup part.
 
 # Basic usage of this config
 
-<p class="callout warning">**Tested only with rootless podman, docker might require additional setup, or proper in-container user setup**</p>
+**Tested only with rootless podman, docker might require additional setup, or proper in-container user setup**
 
 ### Host system Setup
 
@@ -33,7 +33,7 @@ podman build -t neovim ./nvim
 pack to file with high compression:
 
 ```bash
-podman save localhost/neovim:latest -o /dev/stdout | xz -z -9 -e -c > neovim.tar.xz
+podman save localhost/neovim:latest -o /dev/stdout | xz -z -9 -e -c > neovim$(date +"%Y-%m-%dT%H-%M").tar.xz
 ```
 
 import file back to local registry:
@@ -52,31 +52,74 @@ podman run --privileged -it --rm \
     -e XDG_RUNTIME_DIR=/runtime_dir \
     -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
     -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY \
+    - v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions \
     --workdir /data \
     -v "./:/data:rw" \
     	neovim:latest
 ```
 
-function to run neovim container easily,  
-allowing passing parameters and mounting files:
+function for opening current dir or some files/folders in temporary container:
 
 ```bash
 function nvim() {
-    if [ $1 ] && [ -f $1 ]; then
-        MOUNT_FILE="-v "$1:$1"";
-        echo "mounting file $1";
-   	else
-        MOUNT_FOLDER="--workdir /data -v ./:/data:rw"
+    for arg in "$@"; do
+        if [ "$arg" ] && [ -f "$arg" -o -d "$arg" ] ; then
+                local MOUNT_FILE="$MOUNT_FILE -v "$arg:$arg:rw"";
+                echo "Mounting $arg"
+        fi 
+    done
+    if [ -z "$MOUNT_FILE" ]; then
+        # mount current workdir if no arguments with path
+        local MOUNT_FOLDER="--workdir /data -v "$(pwd):/data:rw""
     fi
+
     podman run --privileged -it --rm \
       -e XDG_RUNTIME_DIR=/runtime_dir \
-      -e WAYLAND_DISPLAY=$WAYLAND_DISPLAY \
-      -v $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY \
-      -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions \
+      -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+      -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
+      -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
       $MOUNT_FILE \
       $MOUNT_FOLDER \
           neovim:latest "$@"
 }
+```
+
+If there is need to make more persistent container that will also start with bash so you can install project dependencies and stuff, then use function below.
+
+```bash
+function nvim_project() {
+    if [ -z "$1" ]; then
+        echo "give project/container name as first parameter";
+        return 1;
+    fi
+    for arg in "$@"; do
+        if [ "$arg" ] && [ -f "$arg" -o -d "$arg" ] ; then
+                local MOUNT_FILE="$MOUNT_FILE -v "$arg:$arg:rw"";
+                echo "Mounting $arg"
+        fi 
+    done
+    if [ -z "$MOUNT_FILE" ]; then
+        # mount current workdir if no arguments with path
+        local MOUNT_FOLDER="--workdir /data -v "$(pwd):/data:rw""
+    fi
+
+    podman run --privileged -it \
+      -e XDG_RUNTIME_DIR=/runtime_dir \
+      -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+      -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
+      -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
+      $MOUNT_FILE \
+      $MOUNT_FOLDER \
+      --entrypoint bash \
+      --name "$1" \
+          neovim:latest
+}
+```
+
+\*\*This container will not be removed on exit, you can reenter later with\*\*
+
+```bash
+podman start -ai {project/container name}
 ```
 
 ##### Inside vim

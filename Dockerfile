@@ -1,26 +1,27 @@
 FROM registry.fedoraproject.org/fedora:37
 
-COPY . /root/.config/nvim
-
-# install system dependencies
-RUN dnf install -y \
+ENV NEOVIM_PKGS="\
     wget \
     unzip \
 	git \
-	python3-pip \
+    python3-pip \
 	neovim \
     ripgrep \
     fd-find \
     npm \
     tree-sitter-cli \
     wl-clipboard \
-    clang \
-    && \
-    dnf clean all && \
-    pip install pynvim
-    
-# install lsp and liners using mason
-RUN nvim --headless +TSUpdateSync +"MasonInstall \
+    clang"
+
+ENV GENERAL_PKGS="\
+    bash-completion \
+    procps"
+
+ENV PYTHON_DEVEL_PKGS="\
+    python3\
+    conda"
+
+ENV MASON_PKGS=" \
     bash-language-server \
     css-lsp \
     cssmodules-language-server \
@@ -41,7 +42,19 @@ RUN nvim --headless +TSUpdateSync +"MasonInstall \
     sqlls \
     typescript-language-server \
     yaml-language-server \
-    markdownlint" \
+    markdownlint"
+
+COPY . /root/.config/nvim
+
+# install system dependencies
+RUN dnf install -y \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} \
+    && dnf clean all
+RUN pip install pynvim
+    
+# install lsp and linters using mason
+RUN nvim --headless +TSUpdateSync \
+    +"MasonInstall ${MASON_PKGS}" \
     +qa || true
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
