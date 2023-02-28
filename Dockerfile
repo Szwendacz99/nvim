@@ -9,6 +9,7 @@ ENV NEOVIM_PKGS="\
     ripgrep \
     fd-find \
     npm \
+    ShellCheck \
     tree-sitter-cli \
     wl-clipboard \
     clang"

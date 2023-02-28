@@ -95,15 +95,9 @@ require("lazy").setup({
     --Fuzzy search by Telescope and its dependencies:
     {
         'nvim-telescope/telescope.nvim', branch = 'master',
+        config = require('plugins.nvim-telescope').config,
         dependencies = { 'nvim-lua/plenary.nvim' },
-        keys = {
-            { "<leader>ff", "<cmd>Telescope find_files<cr>" },
-            { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
-            { "<leader>fb", "<cmd>Telescope buffers<cr>" },
-            { "<leader>fh", "<cmd>Telescope help_tags<cr>" }
-
-        }
-
+        priority = 100
     },
     { 'BurntSushi/ripgrep' },
 
