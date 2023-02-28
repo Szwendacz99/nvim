@@ -33,7 +33,7 @@ podman build -t neovim ./nvim
 pack to file with high compression:
 
 ```bash
-podman save localhost/neovim:latest -o /dev/stdout | xz -z -9 -e -c > neovim$(date +"%Y-%m-%dT%H-%M").tar.xz
+podman save localhost/neovim:latest -o /dev/stdout | xz -z -T 8 -c > neovim$(date +"%Y-%m-%dT%H-%M").tar.xz
 ```
 
 import file back to local registry:
@@ -70,7 +70,9 @@ function nvim() {
     done
     if [ -z "$MOUNT_FILE" ]; then
         # mount current workdir if no arguments with path
-        local MOUNT_FOLDER="--workdir /data -v "$(pwd):/data:rw""
+        # mount on base_path to make sessions saving work
+        local base_path="$(pwd)"
+        local MOUNT_FOLDER="--workdir /data$base_path -v "$base_path:/data$base_path:rw""
     fi
 
     podman run --privileged -it --rm \
@@ -82,6 +84,7 @@ function nvim() {
       $MOUNT_FOLDER \
           neovim:latest "$@"
 }
+
 ```
 
 If there is need to make more persistent container that will also start with bash so you can install project dependencies and stuff, then use function below.
@@ -100,7 +103,9 @@ function nvim_project() {
     done
     if [ -z "$MOUNT_FILE" ]; then
         # mount current workdir if no arguments with path
-        local MOUNT_FOLDER="--workdir /data -v "$(pwd):/data:rw""
+        # mount on base_path to make sessions saving work
+        local base_path="$(pwd)"
+        local MOUNT_FOLDER="--workdir /data$base_path -v "$base_path:/data$base_path:rw""
     fi
 
     podman run --privileged -it \
@@ -114,6 +119,7 @@ function nvim_project() {
       --name "$1" \
           neovim:latest
 }
+
 ```
 
 \*\*This container will not be removed on exit, you can reenter later with\*\*
