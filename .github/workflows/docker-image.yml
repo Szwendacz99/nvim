@@ -3,6 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+  schedule:
+    - cron: '30 4 * * 0,2,4'
 
 jobs:
 
@@ -16,13 +18,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag nvim:latest
+      run: docker build . --file Dockerfile --tag neovim:latest
     - name: Log in to registry
       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
     - name: Push image
       run: |
-        IMAGE_NAME="nvim"
+        IMAGE_NAME="neovim"
         IMAGE_ID=ghcr.io/szwendacz99/$IMAGE_NAME
-        TAG=$(date +"%Y-%m-%dT%H-%M")
-        docker tag $IMAGE_NAME:latest $IMAGE_ID:$TAG
-        docker push $IMAGE_ID:$TAG
+        TAG=$(date +"%Y-%m-%d")
+        docker push $IMAGE_ID:latest
+        docker tag $IMAGE_ID:latest $IMAGE_ID:$TAG
