@@ -24,7 +24,8 @@ jobs:
     - name: Push image
       run: |
         IMAGE_NAME="neovim"
-        IMAGE_ID=ghcr.io/szwendacz99/$IMAGE_NAME
+        IMAGE_ID="ghcr.io/szwendacz99/$IMAGE_NAME"
         TAG=$(date +"%Y-%m-%d")
+        docker tag $IMAGE_NAME:latest $IMAGE_ID:latest
         docker push $IMAGE_ID:latest
         docker tag $IMAGE_ID:latest $IMAGE_ID:$TAG
