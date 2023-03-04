@@ -1,111 +1,158 @@
 require("lazy").setup({
-    -- Nvim-tree stuff
-    { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
-    { 'nvim-tree/nvim-tree.lua',
-        opts = require('plugins.nvim-tree').config,
-        keys = require('plugins.nvim-tree').keys },
+        -- Nvim-tree stuff
+        { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
+        {
+            'nvim-tree/nvim-tree.lua',
+            opts = require('plugins.nvim-tree').config,
+            keys = require('plugins.nvim-tree').keys
+        },
 
-    { 'nvim-treesitter/nvim-treesitter',
-        -- treesitter need to be configured after load,
-        -- so let here be init, not config
-        init = require('plugins.treesitter'),
-        build = ':TSUpdate',
-        priority = 400 },
-    -- neovim lsp plugins and depencencies
-    { 'hrsh7th/cmp-nvim-lsp' },
-    { 'hrsh7th/cmp-buffer' },
-    { 'hrsh7th/cmp-cmdline' },
-    { 'hrsh7th/cmp-path' },
-    { 'hrsh7th/nvim-cmp',
-        config = require('plugins.nvim-cmp').init,
-        dependencies = { 'onsails/lspkind.nvim' } },
-    { 'williamboman/mason.nvim',
-        opts = {},
-        priority = 200 },
-    -- mason-lspconfig might need disabling on first run
-    { 'williamboman/mason-lspconfig.nvim',
-        opts = require('plugins.mason-lspconfig').config,
-        dependencies = { 'williamboman/mason.nvim' },
-        priority = 150 },
-    { 'neovim/nvim-lspconfig',
-        init = require('plugins.nvim-lspconfig').init,
-        priority = 100 },
-    { 'mfussenegger/nvim-lint',
-        init = require('plugins.nvim-lint').init },
-    { 'folke/trouble.nvim',
-        opts = require('plugins.trouble').config,
-        keys = require("plugins.trouble").keys
+        {
+            'nvim-treesitter/nvim-treesitter',
+            -- treesitter need to be configured after load,
+            -- so let here be init, not config
+            init = require('plugins.treesitter'),
+            build = ':TSUpdate',
+            priority = 400
+        },
+        -- neovim lsp plugins and depencencies
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-cmdline' },
+        { 'hrsh7th/cmp-path' },
+        {
+            'hrsh7th/nvim-cmp',
+            config = require('plugins.nvim-cmp').init,
+            dependencies = { 'onsails/lspkind.nvim' }
+        },
+        {
+            'williamboman/mason.nvim',
+            opts = {},
+            priority = 200
+        },
+        -- mason-lspconfig might need disabling on first run
+        {
+            'williamboman/mason-lspconfig.nvim',
+            opts = require('plugins.mason-lspconfig').config,
+            dependencies = { 'williamboman/mason.nvim' },
+            priority = 150
+        },
+        {
+            'neovim/nvim-lspconfig',
+            init = require('plugins.nvim-lspconfig').init,
+            priority = 100
+        },
+        {
+            'mfussenegger/nvim-lint',
+            init = require('plugins.nvim-lint').init
+        },
+        {
+            'folke/trouble.nvim',
+            opts = require('plugins.trouble').config,
+            keys = require("plugins.trouble").keys
+        },
+
+        -- various plugins
+        {
+            "folke/which-key.nvim",
+            config = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 300
+                require("which-key").setup(
+                    require('plugins.which-key').conf)
+            end,
+        },
+        {
+            'lewis6991/gitsigns.nvim',
+            opts = require('plugins.gitsigns').config
+        },
+        {
+            'petertriho/nvim-scrollbar',
+            opts = {}
+        },
+        {
+            'kevinhwang91/nvim-hlslens',
+            opts = {},
+            keys = require('plugins.hlslens').keys
+        },
+        { 'L3MON4D3/LuaSnip',        version = '*' },
+        { 'saadparwaiz1/cmp_luasnip' },
+        { 'lambdalisue/suda.vim' },
+        {
+            'akinsho/bufferline.nvim',
+            version = '*',
+            opts = require('plugins.bufferline').config
+        },
+        {
+            'gorbit99/codewindow.nvim',
+            opts = require('plugins.codewindow').config,
+            init = require('plugins.codewindow').build
+        },
+        {
+            'preservim/nerdcommenter',
+            keys = require('plugins.nerdcommenter').keys
+        },
+        { 'rmagatti/auto-session' },
+        { 'tpope/vim-fugitive' },
+        { 'Glench/Vim-Jinja2-Syntax' },
+        { 'vmware-archive/salt-vim' },
+        { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
+        {
+            'lukas-reineke/indent-blankline.nvim',
+            opts = require('plugins.indent-blankline').config
+        },
+        { 'MunifTanjim/nui.nvim' },
+        {
+            'folke/noice.nvim',
+            opts = require("plugins.noice").config,
+            dependencies = {
+                "MunifTanjim/nui.nvim",
+                -- OPTIONAL:
+                --   `nvim-notify` is only needed, if you want to use the notification view.
+                --   If not available, we use `mini` as the fallback
+                "rcarriga/nvim-notify", }
+        },
+        {
+            'rcarriga/nvim-notify',
+            opts = require('plugins.nvim-notify').config
+        },
+        {
+            'nvim-lualine/lualine.nvim',
+            opts = require('plugins.lualine').config
+        },
+        { 'RRethy/vim-illuminate' },
+        { 'sheerun/vim-polyglot' },
+
+        -- themes
+        { 'olimorris/onedarkpro.nvim' },
+        { 'ellisonleao/gruvbox.nvim' },
+        {
+            'Mofiqul/dracula.nvim',
+            priority = 300
+        },
+        { 'vigoux/oak' },
+        { 'NLKNguyen/papercolor-theme' },
+        { 'bluz71/vim-moonfly-colors' },
+        { 'luisiacc/gruvbox-baby' },
+        { 'catppuccin/nvim' },
+        { 'EdenEast/nightfox.nvim' },
+        { 'projekt0n/github-nvim-theme' },
+
+        --Fuzzy search by Telescope and its dependencies:
+        {
+            'nvim-telescope/telescope.nvim',
+            branch = 'master',
+            config = require('plugins.nvim-telescope').config,
+            dependencies = { 'nvim-lua/plenary.nvim' },
+            priority = 100
+        },
+        { 'BurntSushi/ripgrep' },
+
     },
-
-    -- various plugins
-    { 'lewis6991/gitsigns.nvim',
-        opts = require('plugins.gitsigns').config },
-    { 'petertriho/nvim-scrollbar',
-        opts = {} },
-    { 'kevinhwang91/nvim-hlslens',
-        opts = {},
-        keys = require('plugins.hlslens').keys },
-    { 'L3MON4D3/LuaSnip',        version = '*' },
-    { 'saadparwaiz1/cmp_luasnip' },
-    { 'lambdalisue/suda.vim' },
-    { 'akinsho/bufferline.nvim', version = '*',
-        opts = require('plugins.bufferline').config },
-    { 'gorbit99/codewindow.nvim',
-        opts = require('plugins.codewindow').config,
-        init = require('plugins.codewindow').build
-    },
-    { 'preservim/nerdcommenter',
-        keys = require('plugins.nerdcommenter').keys },
-    { 'rmagatti/auto-session' },
-    { 'tpope/vim-fugitive' },
-    { 'Glench/Vim-Jinja2-Syntax' },
-    { 'vmware-archive/salt-vim' },
-    { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
-    { 'lukas-reineke/indent-blankline.nvim',
-        opts = require('plugins.indent-blankline').config },
-    { 'MunifTanjim/nui.nvim' },
-    { 'folke/noice.nvim',
-        opts = require("plugins.noice").config,
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            -- OPTIONAL:
-            --   `nvim-notify` is only needed, if you want to use the notification view.
-            --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify", } },
-    { 'rcarriga/nvim-notify',
-        opts = require('plugins.nvim-notify').config },
-    { 'nvim-lualine/lualine.nvim',
-        opts = require('plugins.lualine').config },
-    { 'RRethy/vim-illuminate' },
-    { 'sheerun/vim-polyglot' },
-
-    -- themes
-    { 'olimorris/onedarkpro.nvim' },
-    { 'ellisonleao/gruvbox.nvim' },
-    { 'Mofiqul/dracula.nvim',
-        priority = 300 },
-    { 'vigoux/oak' },
-    { 'NLKNguyen/papercolor-theme' },
-    { 'bluz71/vim-moonfly-colors' },
-    { 'luisiacc/gruvbox-baby' },
-    { 'catppuccin/nvim' },
-    { 'EdenEast/nightfox.nvim' },
-    { 'projekt0n/github-nvim-theme' },
-
-    --Fuzzy search by Telescope and its dependencies:
-    {
-        'nvim-telescope/telescope.nvim', branch = 'master',
-        config = require('plugins.nvim-telescope').config,
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        priority = 100
-    },
-    { 'BurntSushi/ripgrep' },
-
-},
     {
         root = vim.fn.stdpath("data") .. "/lazy", -- directory where plugins will be installed
         defaults = {
-            lazy = false, -- should plugins be lazy-loaded?
+            lazy = false,                         -- should plugins be lazy-loaded?
             version = nil,
             -- version = "*", -- enable this to try installing the latest stable versions of plugins
         },
@@ -117,7 +164,7 @@ require("lazy").setup({
             -- defaults for the `Lazy log` command
             -- log = { "-10" }, -- show the last 10 commits
             log = { "--since=3 days ago" }, -- show commits from the last 3 days
-            timeout = 120, -- kill processes that take more than 2 minutes
+            timeout = 120,                  -- kill processes that take more than 2 minutes
             url_format = "https://github.com/%s.git",
             -- lazy.nvim requires git >=2.19.0. If you really want to use lazy with an older version,
             -- then set the below to false. This is should work, but is NOT supported and will
@@ -128,7 +175,7 @@ require("lazy").setup({
             -- directory where you store your local plugin projects
             path = "~/projects",
             ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
-            patterns = {}, -- For example {"folke"}
+            patterns = {},    -- For example {"folke"}
             fallback = false, -- Fallback to git when local plugin doesn't exist
         },
         install = {
@@ -175,14 +222,13 @@ require("lazy").setup({
                 -- To disable one of the defaults, set it to false
 
                 -- open lazygit log
-                ["<localleader>l"] = function(plugin)
+                    ["<localleader>l"] = function(plugin)
                     require("lazy.util").float_term({ "lazygit", "log" }, {
                         cwd = plugin.dir,
                     })
                 end,
-
                 -- open a terminal for the plugin dir
-                ["<localleader>t"] = function(plugin)
+                    ["<localleader>t"] = function(plugin)
                     require("lazy.util").float_term(nil, {
                         cwd = plugin.dir,
                     })
@@ -202,7 +248,7 @@ require("lazy").setup({
             -- automatically check for plugin updates
             enabled = false,
             concurrency = nil, ---@type number? set to 1 to check for updates very slowly
-            notify = true, -- get a notification when new updates are found
+            notify = true,    -- get a notification when new updates are found
             frequency = 3600, -- check for updates every hour
         },
         change_detection = {
@@ -222,11 +268,11 @@ require("lazy").setup({
                 disable_events = { "UIEnter", "BufReadPre" },
                 ttl = 3600 * 24 * 5, -- keep unused modules for up to 5 days
             },
-            reset_packpath = true, -- reset the package path to improve startup time
+            reset_packpath = true,   -- reset the package path to improve startup time
             rtp = {
-                reset = true, -- reset the runtime path to $VIMRUNTIME and your config directory
+                reset = true,        -- reset the runtime path to $VIMRUNTIME and your config directory
                 ---@type string[]
-                paths = {}, -- add any custom paths here that you want to includes in the rtp
+                paths = {},          -- add any custom paths here that you want to includes in the rtp
                 ---@type string[] list any plugins you want to disable here
                 disabled_plugins = {
                     -- "gzip",
