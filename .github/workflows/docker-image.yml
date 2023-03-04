@@ -29,3 +29,4 @@ jobs:
         docker tag $IMAGE_NAME:latest $IMAGE_ID:latest
         docker push $IMAGE_ID:latest
         docker tag $IMAGE_ID:latest $IMAGE_ID:$TAG
+        docker push $IMAGE_ID:$TAG
