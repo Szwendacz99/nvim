@@ -16,7 +16,8 @@ ENV NEOVIM_PKGS="\
 
 ENV GENERAL_PKGS="\
     bash-completion \
-    procps"
+    procps \
+    fzf"
 
 ENV PYTHON_DEVEL_PKGS="\
     python3\
@@ -57,5 +58,9 @@ RUN rm /root/.config/nvim/lazy-lock.json || true
 RUN nvim --headless +TSUpdateSync \
     +"MasonInstall ${MASON_PKGS}" \
     +qa || true
+
+RUN echo $'[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash \n\
+[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash \n\
+[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash' >> /root/.bashrc
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
