@@ -94,8 +94,8 @@ require("lazy").setup({
         },
         { 'rmagatti/auto-session' },
         { 'tpope/vim-fugitive' },
-        { 'Glench/Vim-Jinja2-Syntax' },
-        { 'vmware-archive/salt-vim' },
+        { 'Glench/Vim-Jinja2-Syntax', priority=15 },
+        { 'vmware-archive/salt-vim', priority=10 },
         { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
         {
             'lukas-reineke/indent-blankline.nvim',

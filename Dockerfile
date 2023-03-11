@@ -1,5 +1,7 @@
 FROM registry.fedoraproject.org/fedora:37
 
+USER root
+
 ENV NEOVIM_PKGS="\
     wget \
     unzip \
@@ -57,7 +59,7 @@ RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
 RUN nvim --headless +TSUpdateSync \
     +"MasonInstall ${MASON_PKGS}" \
-    +qa || true
+    +qa ; chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/node_modules/buffer-equal-constant-time/
 
 RUN echo $'[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash \n\
 [ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash \n\

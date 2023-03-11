@@ -24,17 +24,17 @@ sudo dnf install -y \
 
 ### Image management
 
-get latest version from ghcr:
+#### get latest version from ghcr
 
 ```bash
 podman pull ghcr.io/szwendacz99/neovim:latest
 ```
-
-build:
+#### or build
 
 ```bash
 git clone https://github.com/Szwendacz99/nvim && \
-podman build -t neovim ./nvim
+podman build -t neovim ./nvim && \
+podman tag localhost/neovim:latest localhost/neovim:$(date +"%Y-%m-%dT%H-%M")
 ```
 
 pack to file with high compression:
