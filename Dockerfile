@@ -59,7 +59,7 @@ RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
 RUN nvim --headless +TSUpdateSync \
     +"MasonInstall ${MASON_PKGS}" \
-    +qa ; chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/node_modules/buffer-equal-constant-time/
+    +qa ; chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/
 
 RUN echo $'[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash \n\
 [ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash \n\
