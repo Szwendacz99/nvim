@@ -77,7 +77,6 @@ require("lazy").setup({
         },
         { 'L3MON4D3/LuaSnip',        version = '*' },
         { 'saadparwaiz1/cmp_luasnip' },
-        { 'lambdalisue/suda.vim' },
         {
             'akinsho/bufferline.nvim',
             version = '*',
