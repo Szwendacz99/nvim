@@ -25,6 +25,8 @@ ENV PYTHON_DEVEL_PKGS="\
     python3\
     conda"
 
+ENV PERL_DEVEL_PKGS="perl-App-cpanminus"
+
 ENV MASON_PKGS=" \
     bash-language-server \
     css-lsp \
@@ -51,9 +53,10 @@ ENV MASON_PKGS=" \
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} \
-    && dnf clean all
-RUN pip install pynvim
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${PERL_DEVEL_PKGS} \
+    && dnf clean all && \
+    cpanm PLS && \
+    pip install pynvim
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
