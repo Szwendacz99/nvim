@@ -20,6 +20,7 @@ require("lazy").setup({
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
         { 'hrsh7th/cmp-path' },
+        { 'FractalBoy/perl-language-server' },
         {
             'hrsh7th/nvim-cmp',
             config = require('plugins.nvim-cmp').init,
@@ -40,7 +41,7 @@ require("lazy").setup({
         {
             'neovim/nvim-lspconfig',
             init = require('plugins.nvim-lspconfig').init,
-            priority = 100
+            priority = 10
         },
         {
             'mfussenegger/nvim-lint',

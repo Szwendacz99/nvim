@@ -127,19 +127,23 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
-        require 'lspconfig'.perlnavigator.setup {
-            settings = {
-                perlnavigator = {
-                    perlPath = 'perl',
-                    enableWarnings = true,
-                    perltidyProfile = '',
-                    perlcriticProfile = '',
-                    perlcriticEnabled = true,
-                }
-            },
+        require'lspconfig'.perlpls.setup{
             on_attach = on_attach,
             capabilities = capabilities,
         }
+        --require 'lspconfig'.perlnavigator.setup {
+            --settings = {
+                --perlnavigator = {
+                    --perlPath = 'perl',
+                    --enableWarnings = true,
+                    --perltidyProfile = '',
+                    --perlcriticProfile = '',
+                    --perlcriticEnabled = true,
+                --}
+            --},
+            --on_attach = on_attach,
+            --capabilities = capabilities,
+        --}
 
         require 'lspconfig'.cssls.setup {
             on_attach = on_attach,
