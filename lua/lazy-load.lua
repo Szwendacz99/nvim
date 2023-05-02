@@ -40,8 +40,7 @@ require("lazy").setup({
         },
         {
             'neovim/nvim-lspconfig',
-            init = require('plugins.nvim-lspconfig').init,
-            priority = 10
+            init = require('plugins.nvim-lspconfig').init
         },
         {
             'mfussenegger/nvim-lint',
@@ -92,10 +91,13 @@ require("lazy").setup({
             'preservim/nerdcommenter',
             keys = require('plugins.nerdcommenter').keys
         },
-        { 'rmagatti/auto-session' },
+        {
+            'rmagatti/auto-session',
+            opts = require('plugins.auto-session').config
+        },
         { 'tpope/vim-fugitive' },
-        { 'Glench/Vim-Jinja2-Syntax', priority=15 },
-        { 'vmware-archive/salt-vim', priority=10 },
+        { 'Glench/Vim-Jinja2-Syntax', priority = 15 },
+        { 'vmware-archive/salt-vim',  priority = 10 },
         { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
         {
             'lukas-reineke/indent-blankline.nvim',
@@ -222,13 +224,13 @@ require("lazy").setup({
                 -- To disable one of the defaults, set it to false
 
                 -- open lazygit log
-                    ["<localleader>l"] = function(plugin)
+                ["<localleader>l"] = function(plugin)
                     require("lazy.util").float_term({ "lazygit", "log" }, {
                         cwd = plugin.dir,
                     })
                 end,
                 -- open a terminal for the plugin dir
-                    ["<localleader>t"] = function(plugin)
+                ["<localleader>t"] = function(plugin)
                     require("lazy.util").float_term(nil, {
                         cwd = plugin.dir,
                     })
