@@ -19,6 +19,16 @@ end
 -- open nvim tree on start
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
+-- disabling virtual text
+VIRTUAL_TEXT_ENABLED = true
+function switch_virtual_text()
+    VIRTUAL_TEXT_ENABLED = not VIRTUAL_TEXT_ENABLED
+    vim.diagnostic.config({
+      virtual_text = VIRTUAL_TEXT_ENABLED,
+    })
+end
+map("n", "<leader>vt", ":lua switch_virtual_text()<CR>")
+
 -- tab lines in normal and visual mode
 map("n", "<Tab>", ">>")
 map("n", "<S-Tab>", "<<")
