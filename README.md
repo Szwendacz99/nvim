@@ -183,22 +183,6 @@ All that is saved in image, so that is why image is so heavy.
 
 ### Commands and keys
 
-#### root perms when editing
-
-```bash
-# Re-open a current file with sudo
-:SudaRead
-# Open /etc/sudoers with sudo
-:SudaRead /etc/sudoers
-```
-
-```bash
-# Forcedly save a current file with sudo
-:SudaWrite
-# Write contents to /etc/profile
-:SudaWrite /etc/profile
-```
-
 #### General
 
 |keys|action|
@@ -335,10 +319,11 @@ GitSings provides some commands for displaying git stuff:
 |\<leader\>wr 	|remove workspace folder|
 |\<leader\>wl |	list workspace folders |
 
-#### LSP diagnostics (trouble.nvim)
+#### LSP diagnostics (custom and trouble.nvim)
 
 |||
 |----|----|
+|\<leader\>vt| 	switch display of virtual text|
 |\<leader\>xx| 	Open diagnostics window|
 |\<leader\>xw	|workspace diagnostics|
 |\<leader\>xd	|document diagnostics|
