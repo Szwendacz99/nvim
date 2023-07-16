@@ -48,7 +48,10 @@ ENV MASON_PKGS=" \
     sqlls \
     typescript-language-server \
     yaml-language-server \
-    markdownlint"
+    markdownlint\
+    ansiblels"
+
+ENV PIP_PKGS = "pynvim ansible ansible-lint"
 
 COPY . /root/.config/nvim
 # install system dependencies
@@ -56,7 +59,7 @@ RUN dnf install -y \
     ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${PERL_DEVEL_PKGS} \
     && dnf clean all && \
     cpanm PLS && \
-    pip install pynvim
+    pip install ${PIP_PKGS}
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
