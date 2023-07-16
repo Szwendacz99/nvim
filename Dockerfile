@@ -51,7 +51,7 @@ ENV MASON_PKGS=" \
     markdownlint\
     ansiblels"
 
-ENV PIP_PKGS = "pynvim ansible ansible-lint"
+ENV PIP_PKGS="pynvim ansible ansible-lint"
 
 COPY . /root/.config/nvim
 # install system dependencies
