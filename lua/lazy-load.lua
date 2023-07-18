@@ -16,6 +16,14 @@ require("lazy").setup({
             priority = 400
         },
         -- neovim lsp plugins and depencencies
+        {
+            'nvimdev/lspsaga.nvim',
+            config = function()
+                require('lspsaga').setup({
+                    lightbulb = { enable = false }
+                })
+            end,
+        },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
