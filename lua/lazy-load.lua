@@ -1,4 +1,5 @@
 require("lazy").setup({
+        { 'terrastruct/d2-vim' },
         -- Nvim-tree stuff
         { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
         {

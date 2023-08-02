@@ -59,7 +59,8 @@ RUN dnf install -y \
     ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${PERL_DEVEL_PKGS} \
     && dnf clean all && \
     cpanm PLS && \
-    pip install ${PIP_PKGS}
+    pip install ${PIP_PKGS} && \
+    curl -fsSL https://d2lang.com/install.sh | sh -s --
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
