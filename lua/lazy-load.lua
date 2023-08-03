@@ -1,5 +1,9 @@
 require("lazy").setup({
-        { 'terrastruct/d2-vim' },
+        {
+            'iamcco/markdown-preview.nvim',
+            build = function() vim.fn["mkdp#util#install"]() end
+        },
+        { 'mracos/mermaid.vim' },
         -- Nvim-tree stuff
         { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
         {

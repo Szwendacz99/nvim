@@ -25,8 +25,6 @@ ENV PYTHON_DEVEL_PKGS="\
     python3\
     conda"
 
-ENV PERL_DEVEL_PKGS="perl-App-cpanminus"
-
 ENV MASON_PKGS=" \
     bash-language-server \
     css-lsp \
@@ -39,7 +37,6 @@ ENV MASON_PKGS=" \
     lemminx \
     lua-language-server \
     marksman \
-    perlnavigator \
     phpcs \
     phpstan \
     pyright \
@@ -56,11 +53,9 @@ ENV PIP_PKGS="pynvim ansible ansible-lint"
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${PERL_DEVEL_PKGS} \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} \
     && dnf clean all && \
-    cpanm PLS && \
-    pip install ${PIP_PKGS} && \
-    curl -fsSL https://d2lang.com/install.sh | sh -s --
+    pip install ${PIP_PKGS}
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason

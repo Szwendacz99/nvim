@@ -12,6 +12,12 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+--mardown preview settings
+vim.cmd [[
+    let g:mkdp_echo_preview_url = 1
+]]
+
+
 ----------------------
 -- general setup start
 ----------------------
