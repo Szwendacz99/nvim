@@ -161,6 +161,24 @@ This container will not be removed on exit, you can reenter later with:
 podman start -ai {project/container name}
 ```
 
+## Additional packages to install as needed
+
+### Perl lang
+
+For Perl language support run this command to install required packages for
+lsp server:
+
+```bash
+dnf install -y perl-App-cpanminus;
+cpanm PLS;
+```
+
+And then in neovim:
+
+```bash
+:MasonInstall perlnavigator
+```
+
 ## Inside vim
 
 ```vim
@@ -239,6 +257,14 @@ All that is saved in image, so that is why image is so heavy.
 |Ctrl+x 	|Open selection as a split|
 |Ctrl+v |	Open selection as a vsplit|
 |Ctrl+t |	Open selection in new tab |
+
+#### Markdown Preview
+
+Mardkown Preview plugin commands:
+
+```bash
+:MarkdownPreview*
+```
 
 #### Git stuff
 
