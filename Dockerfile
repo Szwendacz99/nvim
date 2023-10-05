@@ -25,6 +25,8 @@ ENV PYTHON_DEVEL_PKGS="\
     python3\
     conda"
 
+ENV R_DEVEL_PKGS="R-core R-core-devel"
+
 ENV MASON_PKGS=" \
     bash-language-server \
     css-lsp \
@@ -53,8 +55,9 @@ ENV PIP_PKGS="pynvim ansible ansible-lint"
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} \
-    && dnf clean all && \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} && \
+    R -e 'install.packages("languageserver", repos = "http://cran.us.r-project.org")' && \
+    dnf clean all && \
     pip install ${PIP_PKGS}
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
