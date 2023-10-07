@@ -34,6 +34,7 @@ function switch_virtual_text()
     })
 end
 map("n", "<leader>vt", ":lua switch_virtual_text()<CR>")
+map("t", "<C-r>", ":Telescope command_history<CR>")
 
 -- tab lines in normal and visual mode
 map("n", "<Tab>", ">>")
