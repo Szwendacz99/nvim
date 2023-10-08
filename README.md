@@ -89,7 +89,8 @@ function nvim() {
         local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
     # make sure there is a folder for sessions on default path
-    mkdir -p ~/.local/share/nvim/sessions
+    mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada/
+    touch ~/.local/state/nvim/shada/main.shada
 
     echo "Files mount options: ${MOUNT_FILE[*]}"
     echo "Folder mount options: ${MOUNT_FOLDER[*]}"
@@ -98,6 +99,7 @@ function nvim() {
       -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
       -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
       -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
+      -v ~/.local/state/nvim/shada/main.shada:/root/.local/state/nvim/shada/main.shada:rw \
       "${MOUNT_FILE[@]}" \
       "${MOUNT_FOLDER[@]}" \
           neovim:latest "$@"
@@ -138,7 +140,8 @@ function nvim_project() {
         local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
     # make sure there is a folder for sessions on default path
-    mkdir -p ~/.local/share/nvim/sessions
+    mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada/
+    touch ~/.local/state/nvim/shada/main.shada
 
     echo "Files mount options: ${MOUNT_FILE[*]}"
     echo "Folder mount options: ${MOUNT_FOLDER[*]}"
@@ -147,6 +150,7 @@ function nvim_project() {
       -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
       -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
       -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
+      -v ~/.local/state/nvim/shada/main.shada:/root/.local/state/nvim/shada/main.shada:rw \
       "${MOUNT_FILE[@]}" \
       "${MOUNT_FOLDER[@]}" \
       --entrypoint bash \
@@ -251,9 +255,12 @@ All that is saved in image, so that is why image is so heavy.
 |\<leader\>fg|	Live grep|
 |\<leader\>fb|	Buffers|
 |\<leader\>fh	|Help tags|
+|Ctrl+/|Show mappings for picker actions (insert mode)|
 |Ctrl+q|	Open search result list as a dedicated split (quickfix list) (will overwrite previous one created this way in current tab)|
 |Ctrl+u |	Scroll preview up|
 |Ctrl+d |	Scroll preview down|
+|Ctrl+f|Scroll left in preview window|
+|Ctrl+k|Scroll right in preview window|
 |Ctrl+x 	|Open selection as a split|
 |Ctrl+v |	Open selection as a vsplit|
 |Ctrl+t |	Open selection in new tab |
@@ -277,6 +284,17 @@ Ctrl+g 	show current code chunk changes
 |\<leader\>hr| 	reset hunk|
 |\<leader\>hR|	reset whole buffer|
 |\<leader\>td|	toggle deleted |
+
+##### Telescope git stuff
+
+Commands: `:Telescope git_*`
+
+Bindings:
+|keys|action|
+|----|----|
+|<leader>gs|git_status|
+|<leader>gc|git_commits|
+|<leader>gb|git_branches|
 
 Genreal git commands:
 

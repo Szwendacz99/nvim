@@ -114,7 +114,8 @@ require("lazy").setup({
         { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
         {
             'lukas-reineke/indent-blankline.nvim',
-            opts = require('plugins.indent-blankline').config
+            main = "ibl",
+            init = require('plugins.indent-blankline').init
         },
         { 'MunifTanjim/nui.nvim' },
         {

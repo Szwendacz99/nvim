@@ -34,7 +34,10 @@ function switch_virtual_text()
     })
 end
 map("n", "<leader>vt", ":lua switch_virtual_text()<CR>")
-map("t", "<C-r>", ":Telescope command_history<CR>")
+map("c", "<C-r>", ":Telescope command_history<CR>")
+map("n", "<leader>gs", ":Telescope git_status<CR>")
+map("n", "<leader>gc", ":Telescope git_commits<CR>")
+map("n", "<leader>gb", ":Telescope git_branches<CR>")
 
 -- tab lines in normal and visual mode
 map("n", "<Tab>", ">>")
