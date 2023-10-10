@@ -1,0 +1,13 @@
+name: Gitea Actions Demo
+run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
+on: [push]
+
+jobs:
+  Explore-Gitea-Actions:
+    runs-on: linux_amd64
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: podman build -t gitea.maciej.cloud/packages/neovim .
+      - run: podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" gitea.maciej.cloud
+      - run: podman push gitea.maciej.cloud/packages/neovim
