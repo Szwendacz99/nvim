@@ -204,5 +204,17 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
+        require 'lspconfig'.solargraph.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+        require 'lspconfig'.ruby_ls.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+        require 'lspconfig'.standardrb.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
     end
 }
