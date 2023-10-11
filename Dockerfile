@@ -27,6 +27,8 @@ ENV PYTHON_DEVEL_PKGS="\
 
 ENV R_DEVEL_PKGS="R-core R-core-devel"
 
+ENV RUBY_DEVEL_PKGS="ruby-devel rubygems"
+
 ENV MASON_PKGS=" \
     bash-language-server \
     css-lsp \
@@ -48,14 +50,17 @@ ENV MASON_PKGS=" \
     typescript-language-server \
     yaml-language-server \
     markdownlint\
-    ansible-language-server"
+    ansible-language-server \
+    standardrb \
+    ruby-lsp \
+    solargraph"
 
 ENV PIP_PKGS="pynvim ansible ansible-lint"
 
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} && \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} ${RUBY_DEVEL_PKGS} && \
     R -e 'install.packages("languageserver", repos = "http://cran.us.r-project.org")' && \
     dnf clean all && \
     pip install ${PIP_PKGS}
