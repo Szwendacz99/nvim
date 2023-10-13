@@ -4,8 +4,9 @@ on: [push]
 
 jobs:
   Explore-Gitea-Actions:
-    runs-on: linux_amd64
+    runs-on: ubuntu-latest
     steps:
+      - run: dnf install -y nodejs git
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: podman build -t gitea.maciej.cloud/packages/neovim .
