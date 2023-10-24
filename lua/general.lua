@@ -47,6 +47,14 @@ map("n", "<Tab>", ">>")
 map("v", "<Tab>", ">gv")
 map("v", "<S-Tab>", "<gv")
 
+-- disable underline in lsp diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = false
+  }
+)
 
 vim.opt.mouse = "c" -- set mouse in command line mode
 vim.opt.colorcolumn = "80" -- highlight this column
