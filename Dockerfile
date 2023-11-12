@@ -25,7 +25,7 @@ ENV PYTHON_DEVEL_PKGS="\
     python3\
     conda"
 
-ENV R_DEVEL_PKGS="R-core R-core-devel"
+ENV R_DEVEL_PKGS="R-core R-core-devel cmake"
 
 ENV RUBY_DEVEL_PKGS="ruby-devel rubygems"
 
