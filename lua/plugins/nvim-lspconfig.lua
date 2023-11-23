@@ -47,8 +47,11 @@ return {
             , settings = {
             pylsp = {
                 plugins = {
-                    rope_autoimport = { enabled = false, memory = true },
-                    rope_completion = { enabled = false, eager = true },
+                    rope_autoimport = { enabled = true, memory = true },
+                    rope_completion = { enabled = true, eager = false },
+                    rope = {
+                        ropeFolder = nil
+                    },
                     jedi_completion = {
                         enabled = true,
                         include_params = true,
@@ -62,7 +65,7 @@ return {
                     jedi_references = { enabled = true },
                     jedi_signature_help = { enabled = true },
                     jedi_symbols = { enabled = true },
-                    --ruff = { enabled = true },
+                    ruff = { enabled = false },
                     flake8 = {
                         enabled = false -- ruff_lsp
                     },
@@ -71,7 +74,9 @@ return {
                         args = {
                             -- disable missing module docstring info
                             -- and temporarilt false cannot import errors
-                            '--disable=C0114,E0401'
+                            -- too few public methods
+                            -- missing functon or method doc
+                            '--disable=C0114,E0401,R0903,C0116'
                         }
                     },
                     yapf = {
@@ -80,14 +85,17 @@ return {
                     autopep8 = {
                         enabled = false
                     },
-                    pyflakes = { enabled = false }, -- ruff_lsp
-                    pyodestyle = { enabled = false }, -- ruff_lsp
+                    pyflakes = { enabled = true }, -- ruff_lsp
+                    pycodestyle = { enabled = false }, -- ruff_lsp
                     pydocstyle = {
                         enabled = true,
                         ignore = {
                             'D100', -- disable missing module docstring info
+                            'D101', -- disable missing public class doc
+                            'D102', -- disable missing class method doc
+                            'D103', -- disable missing function doc
                             'D203', -- disable one line before class docstring required
-                            'D213' -- disable multiline docstring summary
+                            'D213', -- disable multiline docstring summary
                             -- should start at the second line
                         }
                     },
@@ -95,10 +103,10 @@ return {
             }
         }
         }
-        require 'lspconfig'.ruff_lsp.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
+        --require 'lspconfig'.ruff_lsp.setup {
+            --on_attach = on_attach,
+            --capabilities = capabilities,
+        --}
         require 'lspconfig'.pyright.setup {
             on_attach = on_attach,
             capabilities = capabilities,

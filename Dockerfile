@@ -45,7 +45,6 @@ ENV MASON_PKGS=" \
     phpstan \
     pyright \
     python-lsp-server \
-    ruff-lsp \
     sqlls \
     typescript-language-server \
     yaml-language-server \
@@ -62,6 +61,7 @@ COPY . /root/.config/nvim
 RUN dnf install -y \
     ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} ${RUBY_DEVEL_PKGS} && \
     R -e 'install.packages("languageserver", repos = "http://cran.us.r-project.org")' && \
+    dnf -y autoremove && \
     dnf clean all && \
     pip install ${PIP_PKGS}
 
