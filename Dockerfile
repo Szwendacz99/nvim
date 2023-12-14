@@ -25,6 +25,8 @@ ENV PYTHON_DEVEL_PKGS="\
     python3\
     conda"
 
+ENV BUILD_ONLY_PKGS="python3-devel"
+
 ENV R_DEVEL_PKGS="R-core R-core-devel cmake"
 
 ENV RUBY_DEVEL_PKGS="ruby-devel rubygems"
@@ -59,11 +61,12 @@ ENV PIP_PKGS="pynvim ansible ansible-lint"
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} ${RUBY_DEVEL_PKGS} && \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} ${RUBY_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
     R -e 'install.packages("languageserver", repos = "http://cran.us.r-project.org")' && \
+    pip install ${PIP_PKGS} && \
+    dnf remove -y ${BUILD_ONLY_PKGS} && \
     dnf -y autoremove && \
-    dnf clean all && \
-    pip install ${PIP_PKGS}
+    dnf clean all
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
