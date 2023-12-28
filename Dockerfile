@@ -27,10 +27,6 @@ ENV PYTHON_DEVEL_PKGS="\
 
 ENV BUILD_ONLY_PKGS="python3-devel"
 
-ENV R_DEVEL_PKGS="R-core R-core-devel cmake"
-
-ENV RUBY_DEVEL_PKGS="ruby-devel rubygems"
-
 ENV MASON_PKGS=" \
     bash-language-server \
     css-lsp \
@@ -50,19 +46,15 @@ ENV MASON_PKGS=" \
     sqlls \
     typescript-language-server \
     yaml-language-server \
-    markdownlint\
-    ansible-language-server \
-    standardrb \
-    ruby-lsp \
-    solargraph"
+    markdownlint \
+    ansible-language-server"
 
 ENV PIP_PKGS="pynvim ansible ansible-lint"
 
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${R_DEVEL_PKGS} ${RUBY_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
-    R -e 'install.packages("languageserver", repos = "http://cran.us.r-project.org")' && \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
     pip install ${PIP_PKGS} && \
     dnf remove -y ${BUILD_ONLY_PKGS} && \
     dnf -y autoremove && \

@@ -183,6 +183,16 @@ And then in neovim:
 :MasonInstall perlnavigator
 ```
 
+### Ruby
+
+```bash
+dnf install -y ruby-devel rubygems
+```
+
+```bash
+:MasonInstall standardrb ruby-lsp solargraph
+```
+
 ## Inside vim
 
 ```vim
