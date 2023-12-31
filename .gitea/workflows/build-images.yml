@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
   schedule:
-    - cron: '30 3 */3 * *'
+    - cron: '30 3 */10 * *'
 
 jobs:
   build-neovim-arm64:
