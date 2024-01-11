@@ -275,6 +275,14 @@ All that is saved in image, so that is why image is so heavy.
 |Ctrl+v |	Open selection as a vsplit|
 |Ctrl+t |	Open selection in new tab |
 
+##### Usefull Telescope commands
+
+Find files including hidden
+
+```bash
+Telescope find_files hidden=true
+```
+
 #### Markdown Preview
 
 Mardkown Preview plugin commands:
