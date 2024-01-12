@@ -75,8 +75,6 @@ RUN nvim --headless +TSUpdateSync \
     +qa; \
     chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/
 
-RUN echo $'[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash \n\
-[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash \n\
-[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash' >> /root/.bashrc
+RUN echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
