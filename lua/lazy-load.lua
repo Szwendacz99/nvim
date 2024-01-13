@@ -17,7 +17,7 @@ require("lazy").setup({
             -- treesitter need to be configured after load,
             -- so let here be init, not config
             init = require('plugins.treesitter'),
-            build = ':TSUpdate',
+            --build = ':TSUpdate', -- not needed in Container workflow
             priority = 400
         },
         -- neovim lsp plugins and depencencies
