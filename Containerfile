@@ -62,16 +62,10 @@ RUN dnf install -y \
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
-RUN nvim --headless +TSInstall all \
+RUN nvim --headless '+TSInstall all' \
     +"MasonInstall ${MASON_PKGS}" \
     +qa ; \
-    nvim --headless +TSInstall all \
-    +qa; \
-    nvim --headless +TSInstall all \
-    +qa; \
-    nvim --headless +TSInstall all \
-    +qa; \
-    nvim --headless +TSInstall all \
+    nvim --headless '+TSInstall all' \
     +qa; \
     chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/
 
