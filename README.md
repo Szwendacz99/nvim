@@ -89,17 +89,17 @@ function nvim() {
         local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
     # make sure there is a folder for sessions on default path
-    mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada/
-    touch ~/.local/state/nvim/shada/main.shada
+    mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada
 
     echo "Files mount options: ${MOUNT_FILE[*]}"
     echo "Folder mount options: ${MOUNT_FOLDER[*]}"
     podman run --privileged -it --rm \
+      --network host \
       -e XDG_RUNTIME_DIR=/runtime_dir \
       -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
       -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
       -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
-      -v ~/.local/state/nvim/shada/main.shada:/root/.local/state/nvim/shada/main.shada:rw \
+      -v ~/.local/state/nvim/shada/:/root/.local/state/nvim/shada/:rw \
       "${MOUNT_FILE[@]}" \
       "${MOUNT_FOLDER[@]}" \
           neovim:latest "$@"
@@ -140,17 +140,17 @@ function nvim_project() {
         local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
     # make sure there is a folder for sessions on default path
-    mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada/
-    touch ~/.local/state/nvim/shada/main.shada
+    mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada
 
     echo "Files mount options: ${MOUNT_FILE[*]}"
     echo "Folder mount options: ${MOUNT_FOLDER[*]}"
     podman run --privileged -it \
+      --network host \
       -e XDG_RUNTIME_DIR=/runtime_dir \
       -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
       -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
       -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
-      -v ~/.local/state/nvim/shada/main.shada:/root/.local/state/nvim/shada/main.shada:rw \
+      -v ~/.local/state/nvim/shada/:/root/.local/state/nvim/shada/:rw \
       "${MOUNT_FILE[@]}" \
       "${MOUNT_FOLDER[@]}" \
       --entrypoint bash \
