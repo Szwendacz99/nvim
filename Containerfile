@@ -47,7 +47,8 @@ ENV MASON_PKGS=" \
     typescript-language-server \
     yaml-language-server \
     markdownlint \
-    ansible-language-server"
+    ansible-language-server \
+    helm-ls"
 
 ENV PIP_PKGS="pynvim ansible ansible-lint"
 
