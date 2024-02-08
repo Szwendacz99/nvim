@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-neovim-arm64:
-    runs-on: linux_arm64
+    runs-on: arm64
     steps:
       - name: install actions deps
         run: | 
@@ -16,14 +16,14 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: |
-          podman build . --tag gitea.maciej.cloud/packages/neovim:arm64
+          podman build . --tag forgejo.maciej.cloud/pkg/neovim:arm64
       - name: login to registry
         run: |
-          podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" gitea.maciej.cloud
+          podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
       - name: Push image
         run: |
           IMAGE_NAME="neovim"
-          IMAGE_ID="gitea.maciej.cloud/packages/$IMAGE_NAME"
+          IMAGE_ID="forgejo.maciej.cloud/pkg/$IMAGE_NAME"
           podman pull $IMAGE_ID:arm64-v1
           podman pull $IMAGE_ID:arm64-v2
           podman tag $IMAGE_ID:arm64-v2 $IMAGE_ID:arm64-v3
@@ -33,7 +33,7 @@ jobs:
           podman push $IMAGE_ID:arm64-v2
           podman push $IMAGE_ID:arm64-v3
   build-neovim-amd64:
-    runs-on: linux_amd64
+    runs-on: amd64
     steps:
       - name: install actions deps
         run: | 
@@ -41,14 +41,14 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: |
-          podman build . --tag gitea.maciej.cloud/packages/neovim:amd64
+          podman build . --tag forgejo.maciej.cloud/pkg/neovim:amd64
       - name: login to registry
         run: |
-          podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" gitea.maciej.cloud
+          podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
       - name: Push image
         run: |
           IMAGE_NAME="neovim"
-          IMAGE_ID="gitea.maciej.cloud/packages/$IMAGE_NAME"
+          IMAGE_ID="forgejo.maciej.cloud/pkg/$IMAGE_NAME"
           podman pull $IMAGE_ID:amd64-v1
           podman pull $IMAGE_ID:amd64-v2
           podman tag $IMAGE_ID:amd64-v2 $IMAGE_ID:amd64-v3
@@ -58,15 +58,15 @@ jobs:
           podman push $IMAGE_ID:amd64-v2
           podman push $IMAGE_ID:amd64-v3
   update-images-manifest:
-    runs-on: [ linux_amd64 ]
+    runs-on: [ amd64 ]
     needs: 
       - build-neovim-arm64
       - build-neovim-amd64
     steps:
       - name: login to registry
-        run: podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" gitea.maciej.cloud
+        run: podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
       - name: Create manifest and push
         run: | 
           echo "Updating manifest for neovim";
-          podman manifest create gitea.maciej.cloud/packages/neovim:latest gitea.maciej.cloud/packages/neovim:amd64-v1 gitea.maciej.cloud/packages/neovim:arm64-v1;
-          podman manifest push gitea.maciej.cloud/packages/neovim:latest gitea.maciej.cloud/packages/neovim:latest;
+          podman manifest create forgejo.maciej.cloud/pkg/neovim:latest forgejo.maciej.cloud/pkg/neovim:amd64-v1 forgejo.maciej.cloud/pkg/neovim:arm64-v1;
+          podman manifest push forgejo.maciej.cloud/pkg/neovim:latest forgejo.maciej.cloud/pkg/neovim:latest;
