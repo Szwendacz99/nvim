@@ -68,6 +68,10 @@ RUN nvim --headless '+TSInstall all' \
     +qa ; \
     nvim --headless '+TSInstall all' \
     +qa; \
+    nvim --headless '+TSInstall all' \
+    +qa; \
+    nvim --headless '+TSInstall all' \
+    +qa; \
     chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/
 
 RUN echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
