@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:39
+FROM registry.fedoraproject.org/fedora-minimal:39
 
 USER root
 
@@ -54,12 +54,12 @@ ENV PIP_PKGS="pynvim ansible ansible-lint"
 
 COPY . /root/.config/nvim
 # install system dependencies
-RUN dnf install -y \
+RUN dnf5 install -y \
     ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
     pip install ${PIP_PKGS} && \
-    dnf remove -y ${BUILD_ONLY_PKGS} && \
-    dnf -y autoremove && \
-    dnf clean all
+    dnf5 remove -y ${BUILD_ONLY_PKGS} && \
+    dnf5 -y autoremove && \
+    dnf5 clean all
 
 RUN rm /root/.config/nvim/lazy-lock.json || true
 # install lsp and linters using mason
