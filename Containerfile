@@ -59,21 +59,12 @@ RUN dnf5 install -y \
     pip install ${PIP_PKGS} && \
     dnf5 remove -y ${BUILD_ONLY_PKGS} && \
     dnf5 -y autoremove && \
-    dnf5 clean all
-
-RUN rm /root/.config/nvim/lazy-lock.json || true
-# install lsp and linters using mason
-RUN nvim --headless '+TSInstall all' \
+    dnf5 clean all && \
+    rm /root/.config/nvim/lazy-lock.json; \
+    nvim --headless \
     +"MasonInstall ${MASON_PKGS}" \
     +qa ; \
-    nvim --headless '+TSInstall all' \
-    +qa; \
-    nvim --headless '+TSInstall all' \
-    +qa; \
-    nvim --headless '+TSInstall all' \
-    +qa; \
-    chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/
-
-RUN echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
+    chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/ && \
+    echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
