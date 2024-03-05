@@ -19,7 +19,8 @@ ENV NEOVIM_PKGS="\
 ENV GENERAL_PKGS="\
     bash-completion \
     procps \
-    fzf"
+    fzf \
+    tar"
 
 ENV PYTHON_DEVEL_PKGS="\
     python3\
