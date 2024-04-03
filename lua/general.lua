@@ -39,6 +39,11 @@ map("n", "<leader>gs", ":Telescope git_status<CR>")
 map("n", "<leader>gc", ":Telescope git_commits<CR>")
 map("n", "<leader>gb", ":Telescope git_branches<CR>")
 
+-- dap
+map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
+map("n", "<leader>dc", ":lua require'dap'.continue()<CR>")
+map("n", "<leader>dg", ":lua require'dapui'.toggle()<CR>")
+
 -- tab lines in normal and visual mode
 map("n", "<Tab>", ">>")
 map("n", "<S-Tab>", "<<")

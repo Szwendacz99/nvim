@@ -1,12 +1,13 @@
-FROM registry.fedoraproject.org/fedora-minimal:39
+FROM registry.fedoraproject.org/fedora-minimal
 
 USER root
+
+ENV LANG="en_US.UTF-8"
 
 ENV NEOVIM_PKGS="\
     wget \
     unzip \
 	git \
-    python3-pip \
 	neovim \
     ripgrep \
     fd-find \
@@ -14,7 +15,7 @@ ENV NEOVIM_PKGS="\
     ShellCheck \
     tree-sitter-cli \
     wl-clipboard \
-    clang"
+    python3-neovim"
 
 ENV GENERAL_PKGS="\
     bash-completion \
@@ -22,9 +23,9 @@ ENV GENERAL_PKGS="\
     fzf \
     tar"
 
-ENV PYTHON_DEVEL_PKGS="\
-    python3\
-    conda"
+ENV PYTHON_DEVEL_PKGS="python3 python3-pip"
+
+ENV PIP_PKGS="debugpy"
 
 ENV BUILD_ONLY_PKGS="python3-devel"
 
@@ -49,9 +50,9 @@ ENV MASON_PKGS=" \
     yaml-language-server \
     markdownlint \
     ansible-language-server \
+    ansible-lint \
     helm-ls"
 
-ENV PIP_PKGS="pynvim ansible ansible-lint"
 
 COPY . /root/.config/nvim
 # install system dependencies
@@ -61,11 +62,9 @@ RUN dnf5 install -y \
     dnf5 remove -y ${BUILD_ONLY_PKGS} && \
     dnf5 -y autoremove && \
     dnf5 clean all && \
-    rm /root/.config/nvim/lazy-lock.json; \
     nvim --headless \
     +"MasonInstall ${MASON_PKGS}" \
-    +qa ; \
-    chown -R root:root /root/.local/share/nvim/mason/packages/sqlls/node_modules/sql-language-server/ && \
+    +qa && \
     echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
 
 ENTRYPOINT [ "/usr/bin/nvim" ]

@@ -223,6 +223,14 @@ All that is saved in image, so that is why image is so heavy.
 |----|----|
 |\<leader\>l|disable (search) highlighting|
 
+#### DAP - Debug Adapter Protocol
+
+|keys|action|
+|----|----|
+|\<leader\> d b|set breakpoint|
+|\<leader\> d c|launch/continue|
+|\<leader\> d g|toggle dap UI|
+
 #### Opened files navigation
 
 |keys|action|
