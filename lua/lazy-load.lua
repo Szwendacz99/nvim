@@ -29,6 +29,11 @@ require("lazy").setup({
                 })
             end,
         },
+        {
+            "rcarriga/nvim-dap-ui",
+            dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
+            config = require('plugins.nvim-dap').init
+        },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
