@@ -38,7 +38,6 @@ ENV MASON_PKGS=" \
     html-lsp \
     intelephense \
     json-lsp \
-    lemminx \
     lua-language-server \
     marksman \
     phpcs \
@@ -50,8 +49,9 @@ ENV MASON_PKGS=" \
     yaml-language-server \
     markdownlint \
     ansible-language-server \
-    ansible-lint \
-    helm-ls"
+    ansible-lint"
+
+ENV MASON_PKGS_NO_ARM="lemminx helm-ls"
 
 
 COPY . /root/.config/nvim
@@ -62,9 +62,8 @@ RUN dnf5 install -y \
     dnf5 remove -y ${BUILD_ONLY_PKGS} && \
     dnf5 -y autoremove && \
     dnf5 clean all && \
-    nvim --headless \
-    +"MasonInstall ${MASON_PKGS}" \
-    +qa && \
+    nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
+    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa ; \
     echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
