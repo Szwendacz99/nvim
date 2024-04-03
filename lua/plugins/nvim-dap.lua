@@ -17,8 +17,9 @@ return {
         -- adapters
         dap.adapters.python = {
             type = 'executable',
-            command = '/usr/bin/python',
+            command = '/root/.local/share/nvim/mason/packages/debugpy/venv/bin/python',
             args = { '-m', 'debugpy.adapter' },
+            --args = { '-m', 'debugpy.adapter' },
         }
 
         -- setup dapui
