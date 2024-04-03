@@ -47,7 +47,7 @@ return {
             , settings = {
             pylsp = {
                 plugins = {
-                    rope_autoimport = { enabled = true, memory = true },
+                    rope_autoimport = { enabled = false, memory = false },
                     rope_completion = { enabled = true, eager = false },
                     rope = {
                         ropeFolder = nil
