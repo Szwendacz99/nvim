@@ -34,6 +34,10 @@ require("lazy").setup({
             dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
             config = require('plugins.nvim-dap').init
         },
+        {
+            "folke/neodev.nvim",
+            config = require('plugins.neodev').init
+        },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
