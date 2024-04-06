@@ -88,6 +88,19 @@ function nvim() {
         # use list as a trick to allow paths with spaces
         local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
+
+    if [ -f "$HOME/.gitconfig" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$HOME/.gitconfig:/root/.gitconfig:ro")
+    fi
+
+    if [ -f "$HOME/.ssh/known_hosts" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$HOME/.ssh/known_hosts:/root/.ssh/known_hosts:ro")
+    fi
+
+    if [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$XDG_RUNTIME_DIR/ssh-agent.socket:/runtime_dir/ssh-agent.socket:rw")
+    fi
+
     # make sure there is a folder for sessions on default path
     mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada
 
@@ -95,7 +108,9 @@ function nvim() {
     echo "Folder mount options: ${MOUNT_FOLDER[*]}"
     podman run --privileged -it --rm \
       --network host \
+      --tz Europe/Warsaw \
       -e XDG_RUNTIME_DIR=/runtime_dir \
+      -e SSH_AUTH_SOCK=/runtime_dir/ssh-agent.socket \
       -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
       -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
       -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
@@ -139,6 +154,19 @@ function nvim_project() {
         base_path="$(pwd)"
         local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
+
+    if [ -f "$HOME/.gitconfig" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$HOME/.gitconfig:/root/.gitconfig:ro")
+    fi
+
+    if [ -f "$HOME/.ssh/known_hosts" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$HOME/.ssh/known_hosts:/root/.ssh/known_hosts:ro")
+    fi
+
+    if [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$XDG_RUNTIME_DIR/ssh-agent.socket:/runtime_dir/ssh-agent.socket:rw")
+    fi
+
     # make sure there is a folder for sessions on default path
     mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada
 
@@ -146,7 +174,9 @@ function nvim_project() {
     echo "Folder mount options: ${MOUNT_FOLDER[*]}"
     podman run --privileged -it \
       --network host \
+      --tz Europe/Warsaw \
       -e XDG_RUNTIME_DIR=/runtime_dir \
+      -e SSH_AUTH_SOCK=/runtime_dir/ssh-agent.socket \
       -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
       -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
       -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
@@ -154,7 +184,7 @@ function nvim_project() {
       "${MOUNT_FILE[@]}" \
       "${MOUNT_FOLDER[@]}" \
       --entrypoint bash \
-      --name $container_name \
+      --name "nvim-$container_name" \
           neovim:latest
 }
 ```
