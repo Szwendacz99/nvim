@@ -16,7 +16,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: |
-          podman build . --tag forgejo.maciej.cloud/pkg/neovim:arm64
+          podman build --ulimit nofile=10240:10240 . --tag forgejo.maciej.cloud/pkg/neovim:arm64
       - name: login to registry
         run: |
           podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
@@ -41,7 +41,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: |
-          podman build . --tag forgejo.maciej.cloud/pkg/neovim:amd64
+          podman build --ulimit nofile=10240:10240 . --tag forgejo.maciej.cloud/pkg/neovim:amd64
       - name: login to registry
         run: |
           podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
