@@ -331,15 +331,24 @@ Mardkown Preview plugin commands:
 
 #### Git stuff
 
-|keys|action|
-|----|----|
-Ctrl+g 	show current code chunk changes
-|\<leader\>hb |	show full git blame of current line (double use to enter displayed diff)|
-|\<leader\>hD	|show splitted blame diff (double use to enter displayed diff)|
-|\<leader\>hd|	show splitted diff|
-|\<leader\>hr| 	reset hunk|
-|\<leader\>hR|	reset whole buffer|
-|\<leader\>td|	toggle deleted |
+##### Neogit
+
+Just run `:Neogit` to launch it, `?` for help, changing parameters is
+done usually by adding `-` before letter assigned to specific option.
+
+##### Diffview
+
+Diff log / file history:
+
+```bash
+:DiffviewFileHistory
+```
+
+Diff log of single file (or dir):
+
+```bash
+:DiffviewFileHistory <filename/dirname>
+```
 
 ##### Telescope git stuff
 
@@ -352,31 +361,6 @@ Bindings:
 |<leader>gc|git_commits|
 |<leader>gb|git_branches|
 
-Genreal git commands:
-
-```bash
-:Git <command>
-
-#Commands with dedicated display
-:Git # show nice interactive summary of whole git project state
-:Git mergetool, :Git difftool # load their changesets into the quickfix list
-:Git blame # this will nicely show \
-		   # for every line in separate split
-           # Useful shortcuts for blame mode:
-           # o - jump to patch or blob in horizontal split
-           # A, C, D - different display (lenght) modes
-           # g? - other keybindings
-
-#other examples:
-:Git add .
-:Git commit
-```
-
-Nice single file diff viewer:
-
-```
-:Gdiffsplit
-```
 
 GitSings provides some commands for displaying git stuff:
 
