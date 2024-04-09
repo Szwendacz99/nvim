@@ -117,7 +117,19 @@ require("lazy").setup({
             'rmagatti/auto-session',
             opts = require('plugins.auto-session').config
         },
-        { 'tpope/vim-fugitive' },
+        {
+            "NeogitOrg/neogit",
+            dependencies = {
+                "nvim-lua/plenary.nvim", -- required
+                "sindrets/diffview.nvim", -- optional - Diff integration
+
+                -- Only one of these is needed, not both.
+                "nvim-telescope/telescope.nvim", -- optional
+                "ibhagwan/fzf-lua",  -- optional
+            },
+            config = true
+        },
+
         { 'Glench/Vim-Jinja2-Syntax', priority = 15 },
         { 'vmware-archive/salt-vim',  priority = 10 },
         { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
