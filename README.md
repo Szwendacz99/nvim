@@ -333,7 +333,7 @@ Mardkown Preview plugin commands:
 
 ##### Neogit
 
-Just run `:Neogit` to launch it, `?` for help, changing parameters is
+Just run `:Neogit` (shortcut: `<leader>ng`) to launch it, `?` for help, changing parameters is
 done usually by adding `-` before letter assigned to specific option.
 
 ##### Diffview
