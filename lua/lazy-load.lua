@@ -125,9 +125,8 @@ require("lazy").setup({
 
                 -- Only one of these is needed, not both.
                 "nvim-telescope/telescope.nvim", -- optional
-                "ibhagwan/fzf-lua",  -- optional
             },
-            config = true
+            opts = require('plugins.neogit').config
         },
 
         { 'Glench/Vim-Jinja2-Syntax', priority = 15 },
