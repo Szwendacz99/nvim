@@ -42,7 +42,6 @@ require("lazy").setup({
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
         { 'hrsh7th/cmp-path' },
-        { 'FractalBoy/perl-language-server' },
         {
             'hrsh7th/nvim-cmp',
             config = require('plugins.nvim-cmp').init,
@@ -120,7 +119,7 @@ require("lazy").setup({
         {
             "NeogitOrg/neogit",
             dependencies = {
-                "nvim-lua/plenary.nvim", -- required
+                "nvim-lua/plenary.nvim",  -- required
                 "sindrets/diffview.nvim", -- optional - Diff integration
 
                 -- Only one of these is needed, not both.
@@ -129,9 +128,9 @@ require("lazy").setup({
             opts = require('plugins.neogit').config
         },
 
-        { 'Glench/Vim-Jinja2-Syntax', priority = 15 },
-        { 'vmware-archive/salt-vim',  priority = 10 },
-        { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
+        --{ 'Glench/Vim-Jinja2-Syntax', priority = 15 },
+        --{ 'vmware-archive/salt-vim',  priority = 10 },
+        --{ 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
         {
             'lukas-reineke/indent-blankline.nvim',
             main = "ibl",
@@ -160,19 +159,10 @@ require("lazy").setup({
         { 'sheerun/vim-polyglot' },
 
         -- themes
-        { 'olimorris/onedarkpro.nvim' },
-        { 'ellisonleao/gruvbox.nvim' },
         {
             'Mofiqul/dracula.nvim',
-            priority = 300
         },
-        { 'vigoux/oak' },
-        { 'NLKNguyen/papercolor-theme' },
-        { 'bluz71/vim-moonfly-colors' },
-        { 'luisiacc/gruvbox-baby' },
-        { 'catppuccin/nvim' },
-        { 'EdenEast/nightfox.nvim' },
-        { 'projekt0n/github-nvim-theme' },
+        { "ellisonleao/gruvbox.nvim", priority = 1000,  config = true },
 
         --Fuzzy search by Telescope and its dependencies:
         {

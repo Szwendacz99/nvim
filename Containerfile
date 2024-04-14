@@ -15,7 +15,8 @@ ENV NEOVIM_PKGS="\
     ShellCheck \
     tree-sitter-cli \
     wl-clipboard \
-    python3-neovim"
+    python3-neovim \
+    ansible-config"
 
 ENV GENERAL_PKGS="\
     bash-completion \
