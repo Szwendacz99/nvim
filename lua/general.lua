@@ -76,5 +76,6 @@ vim.opt.expandtab = true -- converts tabs to white space
 vim.opt.shiftwidth = 4 -- width for autoindents
 vim.cmd [[
     highlight clear
-    colorscheme dracula
+    colorscheme gruvbox
+    autocmd BufNewFile,BufRead *.sls set syntax=yaml.jinja2
 ]]
