@@ -221,7 +221,7 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
-        require 'lspconfig'.ruby_ls.setup {
+        require 'lspconfig'.ruby_lsp.setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }
