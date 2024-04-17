@@ -6,6 +6,8 @@ on:
   schedule:
     - cron: '30 3 */10 * *'
 
+env:
+  IMAGE: forgejo.maciej.cloud/pkg/neovim
 jobs:
   build-neovim-arm64:
     runs-on: arm64
@@ -16,22 +18,13 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: |
-          podman build --ulimit nofile=10240:10240 . --tag forgejo.maciej.cloud/pkg/neovim:arm64
+          podman build --ulimit nofile=10240:10240 . --tag $IMAGE:arm64
       - name: login to registry
         run: |
           podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
       - name: Push image
         run: |
-          IMAGE_NAME="neovim"
-          IMAGE_ID="forgejo.maciej.cloud/pkg/$IMAGE_NAME"
-          podman pull $IMAGE_ID:arm64-v1
-          podman pull $IMAGE_ID:arm64-v2
-          podman tag $IMAGE_ID:arm64-v2 $IMAGE_ID:arm64-v3
-          podman tag $IMAGE_ID:arm64-v1 $IMAGE_ID:arm64-v2
-          podman tag $IMAGE_ID:arm64 $IMAGE_ID:arm64-v1
-          podman push $IMAGE_ID:arm64-v1
-          podman push $IMAGE_ID:arm64-v2
-          podman push $IMAGE_ID:arm64-v3
+          podman push $IMAGE:arm64
   build-neovim-amd64:
     runs-on: amd64
     steps:
@@ -41,22 +34,13 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - run: |
-          podman build --ulimit nofile=10240:10240 . --tag forgejo.maciej.cloud/pkg/neovim:amd64
+          podman build --ulimit nofile=10240:10240 . --tag $IMAGE:amd64
       - name: login to registry
         run: |
           podman login -u "${{ secrets.PACKAGES_USERNAME }}" -p "${{ secrets.PACKAGES_PASSWD }}" forgejo.maciej.cloud
       - name: Push image
         run: |
-          IMAGE_NAME="neovim"
-          IMAGE_ID="forgejo.maciej.cloud/pkg/$IMAGE_NAME"
-          podman pull $IMAGE_ID:amd64-v1
-          podman pull $IMAGE_ID:amd64-v2
-          podman tag $IMAGE_ID:amd64-v2 $IMAGE_ID:amd64-v3
-          podman tag $IMAGE_ID:amd64-v1 $IMAGE_ID:amd64-v2
-          podman tag $IMAGE_ID:amd64 $IMAGE_ID:amd64-v1
-          podman push $IMAGE_ID:amd64-v1
-          podman push $IMAGE_ID:amd64-v2
-          podman push $IMAGE_ID:amd64-v3
+          podman push $IMAGE:amd64
   update-images-manifest:
     runs-on: [ amd64 ]
     needs: 
@@ -68,5 +52,5 @@ jobs:
       - name: Create manifest and push
         run: | 
           echo "Updating manifest for neovim";
-          podman manifest create forgejo.maciej.cloud/pkg/neovim:latest forgejo.maciej.cloud/pkg/neovim:amd64-v1 forgejo.maciej.cloud/pkg/neovim:arm64-v1;
-          podman manifest push forgejo.maciej.cloud/pkg/neovim:latest forgejo.maciej.cloud/pkg/neovim:latest;
+          podman manifest create $IMAGE:latest $IMAGE:amd64 $IMAGE:arm64;
+          podman manifest push $IMAGE:latest $IMAGE:latest;
