@@ -1,8 +1,8 @@
 FROM registry.fedoraproject.org/fedora-minimal
 
 USER root
-
-ENV LANG="en_US.UTF-8"
+# required by ansible-config
+ENV LANG="C.UTF-8"
 
 ENV NEOVIM_PKGS="\
     wget \
