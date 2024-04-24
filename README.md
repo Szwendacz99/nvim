@@ -252,6 +252,7 @@ All that is saved in image, so that is why image is so heavy.
 |keys|action|
 |----|----|
 |\<leader\>l|disable (search) highlighting|
+|\<leader\>cb|Close all buffers (:bufdo bd)|
 
 #### DAP - Debug Adapter Protocol
 
