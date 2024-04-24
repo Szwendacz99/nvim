@@ -41,6 +41,8 @@ map("n", "<leader>gb", ":Telescope git_branches<CR>")
 
 map("n", "<leader>ng", ":Neogit<CR>")
 
+map("n", "<leader>cb", ":bufdo bd<CR>")
+
 -- dap
 map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
 map("n", "<leader>dc", ":lua require'dap'.continue()<CR>")
