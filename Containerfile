@@ -4,6 +4,7 @@ USER root
 # required by ansible-config
 ENV LANG="C.UTF-8"
 
+# libicu - for marksman linter
 ENV NEOVIM_PKGS="\
     wget \
     unzip \
@@ -16,7 +17,8 @@ ENV NEOVIM_PKGS="\
     tree-sitter-cli \
     wl-clipboard \
     python3-neovim \
-    ansible-config"
+    ansible-config \
+    libicu"
 
 ENV GENERAL_PKGS="\
     bash-completion \
