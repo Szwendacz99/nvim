@@ -18,6 +18,7 @@ ENV NEOVIM_PKGS="\
     wl-clipboard \
     python3-neovim \
     ansible-config \
+    ansible \
     libicu"
 
 ENV GENERAL_PKGS="\
