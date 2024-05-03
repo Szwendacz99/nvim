@@ -1,8 +1,4 @@
-FROM registry.fedoraproject.org/fedora-minimal
-
-USER root
-# required by ansible-config
-ENV LANG="C.UTF-8"
+FROM forgejo.maciej.cloud/pkg/mc-fedora-base
 
 # libicu - for marksman linter
 ENV NEOVIM_PKGS="\
@@ -22,9 +18,6 @@ ENV NEOVIM_PKGS="\
     libicu"
 
 ENV GENERAL_PKGS="\
-    bash-completion \
-    procps \
-    fzf \
     tar"
 
 ENV PYTHON_DEVEL_PKGS="python3"
@@ -65,7 +58,6 @@ RUN dnf5 install -y \
     dnf5 -y autoremove && \
     dnf5 clean all && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
-    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa ; \
-    echo '[ -f /usr/share/fzf/shell/key-bindings.bash ] && source /usr/share/fzf/shell/key-bindings.bash' >> /root/.bashrc
+    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa ;
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
