@@ -58,6 +58,6 @@ RUN dnf5 install -y \
     dnf5 -y autoremove && \
     dnf5 clean all && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
-    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa ;
+    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
