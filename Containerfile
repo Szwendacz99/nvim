@@ -36,7 +36,6 @@ ENV MASON_PKGS=" \
     html-lsp \
     intelephense \
     json-lsp \
-    lua-language-server \
     marksman \
     phpcs \
     phpstan \
@@ -50,7 +49,7 @@ ENV MASON_PKGS=" \
     ansible-lint \
     debugpy"
 
-ENV MASON_PKGS_NO_ARM="lemminx helm-ls"
+ENV MASON_PKGS_NO_ARM="lemminx helm-ls lua-language-server"
 
 
 COPY . /root/.config/nvim
