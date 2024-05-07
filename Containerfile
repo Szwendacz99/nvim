@@ -2,6 +2,7 @@ FROM forgejo.maciej.cloud/pkg/mc-fedora-base
 
 # required by ansible-config
 ENV LANG="C.UTF-8"
+ENV LC_ALL="C.UTF-8"
 
 # libicu - for marksman linter
 ENV NEOVIM_PKGS="\
