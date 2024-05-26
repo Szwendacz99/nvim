@@ -79,5 +79,5 @@ vim.opt.shiftwidth = 4 -- width for autoindents
 vim.cmd [[
     highlight clear
     colorscheme gruvbox
+    autocmd BufNewFile,BufRead *.sls set filetype=sls.yaml.jinja2
 ]]
-    --autocmd BufNewFile,BufRead *.sls set filetype=yaml.jinja2

@@ -128,9 +128,9 @@ require("lazy").setup({
             opts = require('plugins.neogit').config
         },
 
-        { 'Glench/Vim-Jinja2-Syntax', priority = 15 },
-        { 'vmware-archive/salt-vim',  priority = 10 },
-        { 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
+        --{ 'Glench/Vim-Jinja2-Syntax', priority = 15 },
+        --{ 'vmware-archive/salt-vim',  priority = 10 },
+        --{ 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
         {
             'lukas-reineke/indent-blankline.nvim',
             main = "ibl",
