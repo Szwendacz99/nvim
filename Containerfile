@@ -22,11 +22,10 @@ ENV NEOVIM_PKGS="\
     libicu"
 
 ENV GENERAL_PKGS="\
-    tar"
+    tar \
+    gcc"
 
 ENV PYTHON_DEVEL_PKGS="python3"
-
-ENV BUILD_ONLY_PKGS="python3-devel"
 
 ENV MASON_PKGS=" \
     bash-language-server \
@@ -57,7 +56,6 @@ COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf5 install -y \
     ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
-    dnf5 remove -y ${BUILD_ONLY_PKGS} && \
     dnf5 -y autoremove && \
     dnf5 clean all && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
