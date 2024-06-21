@@ -16,8 +16,8 @@ return {
             follow_files = true
         },
         auto_attach                  = true,
-        attach_to_untracked          = false,
-        current_line_blame           = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+        attach_to_untracked          = true,
+        current_line_blame           = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
         current_line_blame_opts      = {
             virt_text = true,
             virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
@@ -65,6 +65,7 @@ return {
             end)
 
             -- Actions
+            map('n', '<C-g>', gs.preview_hunk)
             map('n', '<leader>hs', gitsigns.stage_hunk)
             map('n', '<leader>hr', gitsigns.reset_hunk)
             map('v', '<leader>hs', function() gitsigns.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end)
@@ -72,7 +73,7 @@ return {
             map('n', '<leader>hS', gitsigns.stage_buffer)
             map('n', '<leader>hu', gitsigns.undo_stage_hunk)
             map('n', '<leader>hR', gitsigns.reset_buffer)
-            map('n', '<leader>hp', gitsigns.preview_hunk)
+            --map('n', '<leader>hp', gitsigns.preview_hunk)
             map('n', '<leader>hb', function() gitsigns.blame_line { full = true } end)
             map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
             map('n', '<leader>hd', gitsigns.diffthis)
