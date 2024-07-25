@@ -159,9 +159,6 @@ require("lazy").setup({
         { 'sheerun/vim-polyglot' },
 
         -- themes
-        {
-            'Mofiqul/dracula.nvim',
-        },
         { "ellisonleao/gruvbox.nvim", priority = 1000,  config = true },
 
         --Fuzzy search by Telescope and its dependencies:
