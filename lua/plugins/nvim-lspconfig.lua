@@ -61,6 +61,9 @@ return {
                         eager = true,
 
                     },
+                    black = {
+                        enabled = true
+                    },
                     jedi_hover = { enabled = true },
                     jedi_references = { enabled = true },
                     jedi_signature_help = { enabled = true },
@@ -80,12 +83,12 @@ return {
                         }
                     },
                     yapf = {
-                        enabled = true
+                        enabled = false
                     },
                     autopep8 = {
                         enabled = false
                     },
-                    pyflakes = { enabled = true }, -- ruff_lsp
+                    pyflakes = { enabled = true },     -- ruff_lsp
                     pycodestyle = { enabled = false }, -- ruff_lsp
                     pydocstyle = {
                         enabled = true,
@@ -104,8 +107,8 @@ return {
         }
         }
         --require 'lspconfig'.ruff_lsp.setup {
-            --on_attach = on_attach,
-            --capabilities = capabilities,
+        --on_attach = on_attach,
+        --capabilities = capabilities,
         --}
         require 'lspconfig'.pyright.setup {
             on_attach = on_attach,
@@ -135,22 +138,22 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
-        require'lspconfig'.perlpls.setup{
+        require 'lspconfig'.perlpls.setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }
         --require 'lspconfig'.perlnavigator.setup {
-            --settings = {
-                --perlnavigator = {
-                    --perlPath = 'perl',
-                    --enableWarnings = true,
-                    --perltidyProfile = '',
-                    --perlcriticProfile = '',
-                    --perlcriticEnabled = true,
-                --}
-            --},
-            --on_attach = on_attach,
-            --capabilities = capabilities,
+        --settings = {
+        --perlnavigator = {
+        --perlPath = 'perl',
+        --enableWarnings = true,
+        --perltidyProfile = '',
+        --perlcriticProfile = '',
+        --perlcriticEnabled = true,
+        --}
+        --},
+        --on_attach = on_attach,
+        --capabilities = capabilities,
         --}
 
         require 'lspconfig'.cssls.setup {
