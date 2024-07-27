@@ -324,10 +324,10 @@ Telescope find_files hidden=true
 
 #### Markdown Preview
 
-Mardkown Preview plugin commands:
+Mardkown plugin commands:
 
 ```bash
-:MarkdownPreview*
+:RenderMarkdown*
 ```
 
 #### Git stuff
