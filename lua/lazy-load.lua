@@ -65,7 +65,9 @@ require("lazy").setup({
         },
         {
             'folke/trouble.nvim',
-            opts = require('plugins.trouble').config,
+            opts = {},
+            cmd = "Trouble",
+            --opts = require('plugins.trouble').config,
             keys = require("plugins.trouble").keys
         },
 

@@ -448,10 +448,6 @@ Rename
 |----|----|
 |\<leader\>vt| 	switch display of virtual text|
 |\<leader\>xx| 	Open diagnostics window|
-|\<leader\>xw	|workspace diagnostics|
-|\<leader\>xd	|document diagnostics|
-|\<leader\>xl|	loclist|
-|\<leader\>xq	|quickfix|
 |gR |	lsp references |
 
 #### Sessions
