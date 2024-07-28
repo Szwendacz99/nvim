@@ -39,8 +39,9 @@ ENV MASON_PKGS=" \
     marksman \
     phpcs \
     phpstan \
-    pyright \
     python-lsp-server \
+    jedi-language-server \
+    ruff \
     sqlls \
     typescript-language-server \
     yaml-language-server \

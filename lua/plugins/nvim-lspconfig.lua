@@ -47,13 +47,13 @@ return {
             , settings = {
             pylsp = {
                 plugins = {
-                    rope_autoimport = { enabled = false, memory = false },
-                    rope_completion = { enabled = true, eager = false },
+                    rope_autoimport = { enabled = true, memory = true },
+                    rope_completion = { enabled = false, eager = false },
                     rope = {
                         ropeFolder = nil
                     },
                     jedi_completion = {
-                        enabled = true,
+                        enabled = false,
                         include_params = true,
                         include_class_objects = true,
                         include_function_objects = true,
@@ -61,13 +61,16 @@ return {
                         eager = true,
 
                     },
-                    black = {
-                        enabled = true
+                    jedi_definition = {
+                        enabled = false,
                     },
-                    jedi_hover = { enabled = true },
-                    jedi_references = { enabled = true },
-                    jedi_signature_help = { enabled = true },
-                    jedi_symbols = { enabled = true },
+                    mccabe = {
+                        enabled = false
+                    },
+                    jedi_hover = { enabled = false },
+                    jedi_references = { enabled = false },
+                    jedi_signature_help = { enabled = false },
+                    jedi_symbols = { enabled = false },
                     ruff = { enabled = false },
                     flake8 = {
                         enabled = false -- ruff_lsp
@@ -88,10 +91,10 @@ return {
                     autopep8 = {
                         enabled = false
                     },
-                    pyflakes = { enabled = true },     -- ruff_lsp
+                    pyflakes = { enabled = false },    -- ruff_lsp
                     pycodestyle = { enabled = false }, -- ruff_lsp
                     pydocstyle = {
-                        enabled = true,
+                        enabled = false,
                         ignore = {
                             'D100', -- disable missing module docstring info
                             'D101', -- disable missing public class doc
@@ -106,14 +109,18 @@ return {
             }
         }
         }
-        --require 'lspconfig'.ruff_lsp.setup {
-        --on_attach = on_attach,
-        --capabilities = capabilities,
-        --}
-        require 'lspconfig'.pyright.setup {
+        require 'lspconfig'.ruff.setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }
+        require 'lspconfig'.jedi_language_server.setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+        --require 'lspconfig'.pyright.setup {
+            --on_attach = on_attach,
+            --capabilities = capabilities,
+        --}
         require 'lspconfig'.sourcekit.setup {
             on_attach = on_attach,
             capabilities = capabilities,
