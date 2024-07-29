@@ -197,6 +197,8 @@ podman start -ai {project/container name}
 
 ## Additional packages to install as needed
 
+**remember to enable them in plugings/nvim-lspconfig.lua**
+
 ### Perl lang
 
 For Perl language support run this command to install required packages for
@@ -221,6 +223,12 @@ dnf install -y ruby-devel rubygems
 
 ```bash
 :MasonInstall standardrb ruby-lsp solargraph
+```
+
+### PHP
+
+```bash
+:MasonInstall php cs phpstan
 ```
 
 ## Inside vim

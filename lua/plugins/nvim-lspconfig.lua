@@ -121,10 +121,6 @@ return {
             --on_attach = on_attach,
             --capabilities = capabilities,
         --}
-        require 'lspconfig'.sourcekit.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
         require 'lspconfig'.bashls.setup {
             on_attach = on_attach,
             capabilities = capabilities,
@@ -133,36 +129,10 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
-        require 'lspconfig'.intelephense.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
         require 'lspconfig'.eslint.setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }
-        require 'lspconfig'.tsserver.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-        require 'lspconfig'.perlpls.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-        --require 'lspconfig'.perlnavigator.setup {
-        --settings = {
-        --perlnavigator = {
-        --perlPath = 'perl',
-        --enableWarnings = true,
-        --perltidyProfile = '',
-        --perlcriticProfile = '',
-        --perlcriticEnabled = true,
-        --}
-        --},
-        --on_attach = on_attach,
-        --capabilities = capabilities,
-        --}
-
         require 'lspconfig'.cssls.setup {
             on_attach = on_attach,
             capabilities = capabilities,
@@ -220,22 +190,6 @@ return {
             capabilities = capabilities,
         }
         require 'lspconfig'.ansiblels.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-        require 'lspconfig'.r_language_server.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-        require 'lspconfig'.solargraph.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-        require 'lspconfig'.ruby_lsp.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-        require 'lspconfig'.standardrb.setup {
             on_attach = on_attach,
             capabilities = capabilities,
         }

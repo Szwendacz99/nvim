@@ -34,16 +34,12 @@ ENV MASON_PKGS=" \
     dockerfile-language-server \
     eslint-lsp \
     html-lsp \
-    intelephense \
     json-lsp \
     marksman \
-    phpcs \
-    phpstan \
     python-lsp-server \
     jedi-language-server \
     ruff \
     sqlls \
-    typescript-language-server \
     yaml-language-server \
     markdownlint \
     ansible-language-server \
