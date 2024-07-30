@@ -36,7 +36,7 @@ ENV MASON_PKGS=" \
     html-lsp \
     json-lsp \
     marksman \
-    python-lsp-server \
+    pyright \
     jedi-language-server \
     ruff \
     sqlls \
