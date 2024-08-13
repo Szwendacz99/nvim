@@ -18,14 +18,6 @@ require("lazy").setup({
         },
         -- neovim lsp plugins and depencencies
         {
-            'nvimdev/lspsaga.nvim',
-            config = function()
-                require('lspsaga').setup({
-                    lightbulb = { enable = false }
-                })
-            end,
-        },
-        {
             "rcarriga/nvim-dap-ui",
             dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
             config = require('plugins.nvim-dap').init
@@ -143,20 +135,17 @@ require("lazy").setup({
                 -- OPTIONAL:
                 --   `nvim-notify` is only needed, if you want to use the notification view.
                 --   If not available, we use `mini` as the fallback
-                "rcarriga/nvim-notify", }
-        },
-        {
-            'rcarriga/nvim-notify',
-            opts = require('plugins.nvim-notify').config
+                --"rcarriga/nvim-notify", }
+            }
         },
         {
             'MeanderingProgrammer/markdown.nvim',
             main = "render-markdown",
             opts = {},
-            name = 'render-markdown',                                              -- Only needed if you have another plugin named markdown.nvim
+            name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
             --dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
             -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-             dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+            dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },  -- if you prefer nvim-web-devicons
         },
         {
             'nvim-lualine/lualine.nvim',
