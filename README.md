@@ -414,41 +414,6 @@ GitSings provides some commands for displaying git stuff:
 |\<leader\>wr 	|remove workspace folder|
 |\<leader\>wl |	list workspace folders |
 
-#### Lspsaga plugin
-
-Display element (function or whatever?) hierarchy
-```bash
-:Lspsaga incoming_calls and :Lspsaga outgoing_calls
-```
-Show avaliable code actions for current line
-```bash
-:Lspsaga code_action
-```
-Element definition
-```text
-Invoke by running :Lspsaga peek_definition and :Lspsaga peek_type_definition. Layout is drawer and is currently the only one available. If you want to go to the definition, use :Lspsaga goto_definition and :Lspsaga goto_type_definition
-```
-Finder - find current element over all files
-```bash
-:Lspsaga finder
-```
-Floating terminal
-```bash
-:Lspsaga term_toggle
-```
-Show hover doc (Use `:Lspsaga hover_doc ++keep` if you want to keep the hover window.)
-```bash
-:Lspsaga hover_doc
-```
-Outline
-```bash
-:Lspsaga outline
-```
-Rename
-```bash
-:Lspsaga rename
-```
-
 
 #### LSP diagnostics (custom and trouble.nvim)
 
@@ -457,6 +422,7 @@ Rename
 |\<leader\>vt| 	switch display of virtual text|
 |\<leader\>xx| 	Open diagnostics window|
 |gR |	lsp references |
+|\<space\>ca |	code action menu |
 
 #### Sessions
 
