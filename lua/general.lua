@@ -30,9 +30,10 @@ VIRTUAL_TEXT_ENABLED = true
 function switch_virtual_text()
     VIRTUAL_TEXT_ENABLED = not VIRTUAL_TEXT_ENABLED
     vim.diagnostic.config({
-      virtual_text = VIRTUAL_TEXT_ENABLED,
+        virtual_text = VIRTUAL_TEXT_ENABLED,
     })
 end
+
 map("n", "<leader>vt", ":lua switch_virtual_text()<CR>")
 map("c", "<C-r>", ":Telescope command_history<CR>")
 map("n", "<leader>gs", ":Telescope git_status<CR>")
@@ -58,26 +59,32 @@ map("v", "<S-Tab>", "<gv")
 
 -- disable underline in lsp diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-  vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    underline = false
-  }
-)
+    vim.lsp.with(
+        vim.lsp.diagnostic.on_publish_diagnostics,
+        {
+            underline = false
+        }
+    )
 
-vim.opt.mouse = "c" -- set mouse in command line mode
+vim.opt.mouse = "c"        -- set mouse in command line mode
 vim.opt.colorcolumn = "80" -- highlight this column
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.clipboard = "unnamedplus" -- synchronize with system clipboard
 vim.opt.swapfile = false
 vim.opt.cursorline = true
-vim.opt.tabstop = 4 -- number of columns occupied by a tab
-vim.opt.softtabstop = 4 -- see multiple spaces as tabstops so <BS> does the right thing
+vim.opt.tabstop = 4      -- number of columns occupied by a tab
+vim.opt.softtabstop = 4  -- see multiple spaces as tabstops so <BS> does the right thing
 vim.opt.expandtab = true -- converts tabs to white space
-vim.opt.shiftwidth = 4 -- width for autoindents
+vim.opt.shiftwidth = 4   -- width for autoindents
+vim.filetype.add({
+    extension = {
+        sls = "sls.yaml.jinja",
+        jinja = 'jinja',
+        jinja2 = 'jinja',
+        j2 = 'jinja',
+    },
+})
 vim.cmd [[
-    highlight clear
     colorscheme gruvbox
-    autocmd BufNewFile,BufRead *.sls set filetype=sls.yaml.jinja2
 ]]
