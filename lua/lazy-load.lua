@@ -152,7 +152,8 @@ require("lazy").setup({
             opts = require('plugins.lualine').config
         },
         { 'RRethy/vim-illuminate' },
-        { 'sheerun/vim-polyglot' },
+        --{ 'sheerun/vim-polyglot' }, -- not maintained
+        { 'HiPhish/jinja.vim' },
 
         -- themes
         { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
