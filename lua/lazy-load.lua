@@ -153,6 +153,7 @@ require("lazy").setup({
         },
         { 'RRethy/vim-illuminate' },
         --{ 'sheerun/vim-polyglot' }, -- not maintained
+        { 'nfnty/vim-nftables' },
         { 'HiPhish/jinja.vim' },
 
         -- themes
