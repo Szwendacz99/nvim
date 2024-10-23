@@ -1,5 +1,4 @@
 require("lazy").setup({
-        { 'mracos/mermaid.vim' },
         -- Nvim-tree stuff
         { 'nvim-tree/nvim-web-devicons' }, -- optional, for file icons
         {
@@ -18,13 +17,7 @@ require("lazy").setup({
         },
         -- neovim lsp plugins and depencencies
         {
-            "rcarriga/nvim-dap-ui",
-            dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
-            config = require('plugins.nvim-dap').init
-        },
-        {
-            "folke/neodev.nvim",
-            config = require('plugins.neodev').init
+            "folke/lazydev.nvim",
         },
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
@@ -94,11 +87,6 @@ require("lazy").setup({
             opts = require('plugins.bufferline').config
         },
         {
-            'gorbit99/codewindow.nvim',
-            opts = require('plugins.codewindow').config,
-            init = require('plugins.codewindow').build
-        },
-        {
             'preservim/nerdcommenter',
             keys = require('plugins.nerdcommenter').keys
         },
@@ -145,7 +133,7 @@ require("lazy").setup({
             name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
             --dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
             -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-            dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },  -- if you prefer nvim-web-devicons
+            dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
         },
         {
             'nvim-lualine/lualine.nvim',

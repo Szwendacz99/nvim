@@ -262,21 +262,10 @@ All that is saved in image, so that is why image is so heavy.
 |\<leader\>l|disable (search) highlighting|
 |\<leader\>cb|Close all buffers (:bufdo bd)|
 
-#### DAP - Debug Adapter Protocol
-
-|keys|action|
-|----|----|
-|\<leader\> d b|set breakpoint|
-|\<leader\> d c|launch/continue|
-|\<leader\> d g|toggle dap UI|
-
 #### Opened files navigation
 
 |keys|action|
 |----|----|
-|\<leader\> m m| 	open minimap|
-|\<leader\> m c |	close minimap|
-|\<leader\> m f |	focus minimap|
 |Ctrl w w| 	Move to next splitted frame|
 |Ctrl w \<arrow\> |	moving throught splitted frame|
 |Ctrl w c |	close split|
