@@ -33,6 +33,17 @@ require("lazy").setup({
             opts = {},
             priority = 200
         },
+        {
+            "stevearc/conform.nvim",
+            --event = { "BufWritePre" },
+            cmd = { "ConformInfo" },
+            -- triggering is in lspconfig conf since it is the same key
+            opts = require("plugins.conform").opts,
+            init = function()
+                -- If you want the formatexpr, here is the place to set it
+                vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+            end,
+        },
         -- mason-lspconfig might need disabling on first run
         {
             'williamboman/mason-lspconfig.nvim',

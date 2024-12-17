@@ -32,7 +32,10 @@ return {
             vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
             vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
             vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-            vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+            vim.keymap.set('n', '<leader>f', function()
+                vim.lsp.buf.format { async = true }
+                require("conform").format({ async = true })
+            end, bufopts)
         end
 
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -42,71 +45,71 @@ return {
         -- attaching all lsp servers, order matters (for example in autocompletion)
         -----------------
         --require 'lspconfig'.pylsp.setup {
-            --on_attach = on_attach,
-            --capabilities = capabilities
-            --, settings = {
-            --pylsp = {
-                --plugins = {
-                    --rope_autoimport = { enabled = true, memory = true },
-                    --rope_completion = { enabled = false, eager = false },
-                    --rope = {
-                        --ropeFolder = nil
-                    --},
-                    --jedi_completion = {
-                        --enabled = false,
-                        --include_params = true,
-                        --include_class_objects = true,
-                        --include_function_objects = true,
-                        --fuzzy = true,
-                        --eager = true,
+        --on_attach = on_attach,
+        --capabilities = capabilities
+        --, settings = {
+        --pylsp = {
+        --plugins = {
+        --rope_autoimport = { enabled = true, memory = true },
+        --rope_completion = { enabled = false, eager = false },
+        --rope = {
+        --ropeFolder = nil
+        --},
+        --jedi_completion = {
+        --enabled = false,
+        --include_params = true,
+        --include_class_objects = true,
+        --include_function_objects = true,
+        --fuzzy = true,
+        --eager = true,
 
-                    --},
-                    --jedi_definition = {
-                        --enabled = false,
-                    --},
-                    --mccabe = {
-                        --enabled = false
-                    --},
-                    --jedi_hover = { enabled = false },
-                    --jedi_references = { enabled = false },
-                    --jedi_signature_help = { enabled = false },
-                    --jedi_symbols = { enabled = false },
-                    --ruff = { enabled = false },
-                    --flake8 = {
-                        --enabled = false -- ruff_lsp
-                    --},
-                    --pylint = {
-                        --enabled = true,
-                        --args = {
-                            ---- disable missing module docstring info
-                            ---- and temporarilt false cannot import errors
-                            ---- too few public methods
-                            ---- missing functon or method doc
-                            --'--disable=C0114,E0401,R0903,C0116'
-                        --}
-                    --},
-                    --yapf = {
-                        --enabled = false
-                    --},
-                    --autopep8 = {
-                        --enabled = false
-                    --},
-                    --pyflakes = { enabled = false },    -- ruff_lsp
-                    --pycodestyle = { enabled = false }, -- ruff_lsp
-                    --pydocstyle = {
-                        --enabled = false,
-                        --ignore = {
-                            --'D100', -- disable missing module docstring info
-                            --'D101', -- disable missing public class doc
-                            --'D102', -- disable missing class method doc
-                            --'D103', -- disable missing function doc
-                            --'D203', -- disable one line before class docstring required
-                            --'D213', -- disable multiline docstring summary
-                            ---- should start at the second line
-                        --}
-                    --},
-                --}
-            --}
+        --},
+        --jedi_definition = {
+        --enabled = false,
+        --},
+        --mccabe = {
+        --enabled = false
+        --},
+        --jedi_hover = { enabled = false },
+        --jedi_references = { enabled = false },
+        --jedi_signature_help = { enabled = false },
+        --jedi_symbols = { enabled = false },
+        --ruff = { enabled = false },
+        --flake8 = {
+        --enabled = false -- ruff_lsp
+        --},
+        --pylint = {
+        --enabled = true,
+        --args = {
+        ---- disable missing module docstring info
+        ---- and temporarilt false cannot import errors
+        ---- too few public methods
+        ---- missing functon or method doc
+        --'--disable=C0114,E0401,R0903,C0116'
+        --}
+        --},
+        --yapf = {
+        --enabled = false
+        --},
+        --autopep8 = {
+        --enabled = false
+        --},
+        --pyflakes = { enabled = false },    -- ruff_lsp
+        --pycodestyle = { enabled = false }, -- ruff_lsp
+        --pydocstyle = {
+        --enabled = false,
+        --ignore = {
+        --'D100', -- disable missing module docstring info
+        --'D101', -- disable missing public class doc
+        --'D102', -- disable missing class method doc
+        --'D103', -- disable missing function doc
+        --'D203', -- disable one line before class docstring required
+        --'D213', -- disable multiline docstring summary
+        ---- should start at the second line
+        --}
+        --},
+        --}
+        --}
         --}
         --}
         require 'lspconfig'.ruff.setup {
