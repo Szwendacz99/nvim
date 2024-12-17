@@ -43,7 +43,8 @@ ENV MASON_PKGS=" \
     yaml-language-server \
     markdownlint \
     ansible-language-server \
-    ansible-lint"
+    ansible-lint \
+    yamlfmt"
 
 ENV MASON_PKGS_NO_ARM="lemminx helm-ls lua-language-server"
 
