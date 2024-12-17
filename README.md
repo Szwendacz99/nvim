@@ -1,7 +1,7 @@
 # My personal **neovim as container** configuration
 
-I made this public so I can easily clone without authentication,  
-but since I treat this as a personal use only stuff,  
+I made this public so I can easily clone without authentication,\
+but since I treat this as a personal use only stuff,\
 there can be some(read "a lot of") messy stuff.
 
 Much of this might have been selectively copy pasted from plugin repos.
@@ -29,6 +29,7 @@ sudo dnf install -y \
 ```bash
 podman pull ghcr.io/szwendacz99/neovim:latest
 ```
+
 #### or build
 
 ```bash
@@ -50,7 +51,7 @@ import file back to local registry:
 podman load -i ./neovim.tar.xz
 ```
 
-### Image usage examples  
+### Image usage examples
 
 basic startup for editing current folder:
 
@@ -75,10 +76,10 @@ function nvim() {
     # Also pass all parameters to neovim as its arguments.
 
     for arg in "$@"; do
-        if [ -f "$arg" ] || [ -d "$arg" ] ; then
+        if [ -f "$arg" ] || [ -d "$arg" ]; then
             local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$arg:$arg:rw")
             echo "Mounting $arg"
-        fi 
+        fi
     done
     if [ -z "$MOUNT_FILE" ]; then
         # mount current workdir if no arguments with path
@@ -86,7 +87,7 @@ function nvim() {
         local base_path="$(pwd)"
 
         # use list as a trick to allow paths with spaces
-        local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
+        local MOUNT_FILE=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
 
     if [ -f "$HOME/.gitconfig" ]; then
@@ -97,27 +98,31 @@ function nvim() {
         local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$HOME/.ssh/known_hosts:/root/.ssh/known_hosts:ro")
     fi
 
-    if [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
-        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$XDG_RUNTIME_DIR/ssh-agent.socket:/runtime_dir/ssh-agent.socket:rw")
+    if [ -d "$XDG_RUNTIME_DIR" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$XDG_RUNTIME_DIR:/runtime_dir:rw")
+    else
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" --tmpfs "/runtime_dir")
+    fi
+
+    if [ -S "$SSH_AUTH_SOCK" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$SSH_AUTH_SOCK:/runtime_dir/ssh-agent.socket:rw")
     fi
 
     # make sure there is a folder for sessions on default path
     mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada
 
     echo "Files mount options: ${MOUNT_FILE[*]}"
-    echo "Folder mount options: ${MOUNT_FOLDER[*]}"
     podman run --privileged -it --rm \
-      --network host \
-      --tz Europe/Warsaw \
-      -e XDG_RUNTIME_DIR=/runtime_dir \
-      -e SSH_AUTH_SOCK=/runtime_dir/ssh-agent.socket \
-      -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
-      -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
-      -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
-      -v ~/.local/state/nvim/shada/:/root/.local/state/nvim/shada/:rw \
-      "${MOUNT_FILE[@]}" \
-      "${MOUNT_FOLDER[@]}" \
-          neovim:latest "$@"
+        --shm-size=0 \
+        --init \
+        --network host \
+        -e XDG_RUNTIME_DIR=/runtime_dir \
+        -e SSH_AUTH_SOCK=/runtime_dir/ssh-agent.socket \
+        -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+        -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
+        -v ~/.local/state/nvim/shada/:/root/.local/state/nvim/shada/:rw \
+        "${MOUNT_FILE[@]}" \
+        neovim:latest "$@"
 }
 ```
 
@@ -128,31 +133,23 @@ then use function below.
 ```bash
 function nvim_project() {
     # Mount current folder to a container that will not be removed on exit.
-    # Requires first argument to be a name for the container so it can be
-    # easily reentered later.
     # If you specify some paths as latter parameters, then these paths will
     # be mounted instead of current folder.
     # Also mounts wayland for clipboard sync.
 
-    if [ -z "$1" ]; then
-        echo "give project/container name as first parameter"
-        return 1
-    fi
-    local container_name="$1"
-    shift # skip first parameter as it can be name of a folder/file in
-          # current dir so it could try mounting it later
+    read -p "Enter container name: " container_name
     for arg in "$@"; do
-        if [ -f "$arg" ] || [ -d "$arg" ] ; then
+        if [ -f "$arg" ] || [ -d "$arg" ]; then
             local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$arg:$arg:rw")
             echo "Mounting $arg"
-        fi 
+        fi
     done
     if [ -z "$MOUNT_FILE" ]; then
         # mount current workdir if no arguments with path
         # mount on base_path to make sessions saving work
         local base_path
         base_path="$(pwd)"
-        local MOUNT_FOLDER=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
+        local MOUNT_FILE=(--workdir "/data$base_path" -v "$base_path:/data$base_path:rw")
     fi
 
     if [ -f "$HOME/.gitconfig" ]; then
@@ -163,29 +160,35 @@ function nvim_project() {
         local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$HOME/.ssh/known_hosts:/root/.ssh/known_hosts:ro")
     fi
 
-    if [ -S "$XDG_RUNTIME_DIR/ssh-agent.socket" ]; then
-        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$XDG_RUNTIME_DIR/ssh-agent.socket:/runtime_dir/ssh-agent.socket:rw")
+    if [ -d "$XDG_RUNTIME_DIR" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$XDG_RUNTIME_DIR:/runtime_dir:rw")
+    else
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" --tmpfs "/runtime_dir")
+    fi
+
+    if [ -S "$SSH_AUTH_SOCK" ]; then
+        local MOUNT_FILE=("${MOUNT_FILE[@]}" -v "$SSH_AUTH_SOCK:/runtime_dir/ssh-agent.socket:rw")
     fi
 
     # make sure there is a folder for sessions on default path
     mkdir -p ~/.local/share/nvim/sessions ~/.local/state/nvim/shada
 
     echo "Files mount options: ${MOUNT_FILE[*]}"
-    echo "Folder mount options: ${MOUNT_FOLDER[*]}"
     podman run --privileged -it \
-      --network host \
-      --tz Europe/Warsaw \
-      -e XDG_RUNTIME_DIR=/runtime_dir \
-      -e SSH_AUTH_SOCK=/runtime_dir/ssh-agent.socket \
-      -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
-      -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
-      -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
-      -v ~/.local/state/nvim/shada/:/root/.local/state/nvim/shada/:rw \
-      "${MOUNT_FILE[@]}" \
-      "${MOUNT_FOLDER[@]}" \
-      --entrypoint bash \
-      --name "nvim-$container_name" \
-          neovim:latest
+        --shm-size=0 \
+        --init \
+        --network host \
+        -e XDG_RUNTIME_DIR=/runtime_dir \
+        -e SSH_AUTH_SOCK=/runtime_dir/ssh-agent.socket \
+        -e WAYLAND_DISPLAY="$WAYLAND_DISPLAY" \
+        -v "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/runtime_dir/$WAYLAND_DISPLAY:rw" \
+        -v ~/.local/share/nvim/sessions:/root/.local/share/nvim/sessions:rw \
+        -v ~/.local/state/nvim/shada/:/root/.local/state/nvim/shada/:rw \
+        "${MOUNT_FILE[@]}" \
+        --entrypoint bash \
+        "$@" \
+        --name "nvim-$container_name" \
+        neovim:latest
 }
 ```
 
@@ -242,7 +245,7 @@ There is need to make sure your system can display (almost) any unicode
 character. Hacked fonts may be needed for filetype icons but there is also
 need for a dedicated package with unicode fonts (like unifont-fonts.noarch)
 that will have every character missing from default font used in Neovim editor.
-Link to hacked fonts:  
+Link to hacked fonts:\
 [https://www.nerdfonts.com/font-downloads](https://www.nerdfonts.com/font-downloads)
 
 ### General info
@@ -259,57 +262,57 @@ All that is saved in image, so that is why image is so heavy.
 
 |keys|action|
 |----|----|
-|\<leader\>l|disable (search) highlighting|
-|\<leader\>cb|Close all buffers (:bufdo bd)|
+|\<leader>l|disable (search) highlighting|
+|\<leader>cb|Close all buffers (:bufdo bd)|
 
 #### Opened files navigation
 
 |keys|action|
 |----|----|
-|Ctrl w w| 	Move to next splitted frame|
-|Ctrl w \<arrow\> |	moving throught splitted frame|
-|Ctrl w c |	close split|
-|Ctrl w v |	split vertically|
-|Ctrl w s| 	split horizontally|
-|Ctrl w x| 	swap places of two splits|
-|gt	|next tab|
-|gT| 	previous tab|
-|:tabnew 	|Create new tab|
-|Ctrl+g Ctrl+t 	|(when in file tree) open selected file in new tab|
-|:bd |	close buffer|
-|:bnext |	next buffer|
-|:b3 	|switch to buffer 3|
-|:buffers |	list buffers and their numbers |
+|Ctrl w w| Move to next splitted frame|
+|Ctrl w \<arrow> | moving throught splitted frame|
+|Ctrl w c | close split|
+|Ctrl w v | split vertically|
+|Ctrl w s| split horizontally|
+|Ctrl w x| swap places of two splits|
+|gt |next tab|
+|gT| previous tab|
+|:tabnew |Create new tab|
+|Ctrl+g Ctrl+t |(when in file tree) open selected file in new tab|
+|:bd | close buffer|
+|:bnext | next buffer|
+|:b3 |switch to buffer 3|
+|:buffers | list buffers and their numbers |
 
 #### File explorer
 
 |keys|action|
 |----|----|
-|Ctrl+t |	Toggle file explorer when not focused on it|
-|f |	Toggle filtering when focused on explorer|
-|\<leader\> n |	Move focus to explorer|
-|d 	|Delete selected file|
-|rn 	|Rename file|
-|c 	|add file to clipboard|
-|p |	paste (file) from clipboard |
+|Ctrl+t | Toggle file explorer when not focused on it|
+|f | Toggle filtering when focused on explorer|
+|\<leader> n | Move focus to explorer|
+|d |Delete selected file|
+|rn |Rename file|
+|c |add file to clipboard|
+|p | paste (file) from clipboard |
 
 #### File searching / Telescope
 
 |keys|action|
 |----|----|
-|\<leader\>ff	|Find files|
-|\<leader\>fg|	Live grep|
-|\<leader\>fb|	Buffers|
-|\<leader\>fh	|Help tags|
+|\<leader>ff |Find files|
+|\<leader>fg| Live grep|
+|\<leader>fb| Buffers|
+|\<leader>fh |Help tags|
 |Ctrl+/|Show mappings for picker actions (insert mode)|
-|Ctrl+q|	Open search result list as a dedicated split (quickfix list) (will overwrite previous one created this way in current tab)|
-|Ctrl+u |	Scroll preview up|
-|Ctrl+d |	Scroll preview down|
+|Ctrl+q| Open search result list as a dedicated split (quickfix list) (will overwrite previous one created this way in current tab)|
+|Ctrl+u | Scroll preview up|
+|Ctrl+d | Scroll preview down|
 |Ctrl+f|Scroll left in preview window|
 |Ctrl+k|Scroll right in preview window|
-|Ctrl+x 	|Open selection as a split|
-|Ctrl+v |	Open selection as a vsplit|
-|Ctrl+t |	Open selection in new tab |
+|Ctrl+x |Open selection as a split|
+|Ctrl+v | Open selection as a vsplit|
+|Ctrl+t | Open selection in new tab |
 
 ##### Usefull Telescope commands
 
@@ -359,7 +362,6 @@ Bindings:
 |<leader>gc|git_commits|
 |<leader>gb|git_branches|
 
-
 GitSings provides some commands for displaying git stuff:
 
 ```bash
@@ -385,33 +387,32 @@ GitSings provides some commands for displaying git stuff:
 
 |||
 |----|----|
-|\<space\>q |	open list with diagnostics postions|
-|\<space\>e 	|open diagnostics floating window|
-|\[d |	next diagnostic|
-|\] |	previous diagnostic|
-|\<leader\>k| 	open hoover box and enter it|
-|\<leader\>rn	|rename element (function name, etc)|
-|\<leader\>f|	format file|
-|gd	|go to definition|
-|gD|	go to declaration|
-|\<space\>D|	go to type definition|
-|gi|	go to implementation|
-|gr|	go to references|
-|Ctrl+f	|scroll down popup with docstring|
-|Ctrl+b	|scroll up popup with docstring|
-|\<leader\>wa 	|add workspace folder|
-|\<leader\>wr 	|remove workspace folder|
-|\<leader\>wl |	list workspace folders |
-
+|\<space>q | open list with diagnostics postions|
+|\<space>e |open diagnostics floating window|
+|\[d | next diagnostic|
+|\] | previous diagnostic|
+|\<leader>k| open hoover box and enter it|
+|\<leader>rn |rename element (function name, etc)|
+|\<leader>f| format file|
+|gd |go to definition|
+|gD| go to declaration|
+|\<space>D| go to type definition|
+|gi| go to implementation|
+|gr| go to references|
+|Ctrl+f |scroll down popup with docstring|
+|Ctrl+b |scroll up popup with docstring|
+|\<leader>wa |add workspace folder|
+|\<leader>wr |remove workspace folder|
+|\<leader>wl | list workspace folders |
 
 #### LSP diagnostics (custom and trouble.nvim)
 
 |||
 |----|----|
-|\<leader\>vt| 	switch display of virtual text|
-|\<leader\>xx| 	Open diagnostics window|
-|gR |	lsp references |
-|\<space\>ca |	code action menu |
+|\<leader>vt| switch display of virtual text|
+|\<leader>xx| Open diagnostics window|
+|gR | lsp references |
+|\<space>ca | code action menu |
 
 #### Sessions
 
@@ -421,5 +422,5 @@ To save new session on specific path, just use :SaveSession, then when opening n
 
 |||
 |----|----|
-|:Notifications 	|show recent notifications|
-|:Telescope notify |	show recent notifications in telescope gui|
+|:Notifications |show recent notifications|
+|:Telescope notify | show recent notifications in telescope gui|

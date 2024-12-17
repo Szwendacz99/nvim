@@ -8,8 +8,8 @@ ENV LC_ALL="C.UTF-8"
 ENV NEOVIM_PKGS="\
     wget \
     unzip \
-	git \
-	neovim \
+    git \
+    neovim \
     ripgrep \
     fd-find \
     npm \
@@ -44,17 +44,19 @@ ENV MASON_PKGS=" \
     markdownlint \
     ansible-language-server \
     ansible-lint \
-    yamlfmt"
+    yamlfmt \
+    mdformat \
+    shfmt"
 
 ENV MASON_PKGS_NO_ARM="lemminx helm-ls lua-language-server"
 
 
 COPY . /root/.config/nvim
 # install system dependencies
-RUN dnf5 install -y \
+RUN dnf install -y \
     ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
-    dnf5 -y autoremove && \
-    dnf5 clean all && \
+    dnf -y autoremove && \
+    dnf clean all && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
     nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true
 
