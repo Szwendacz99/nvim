@@ -7,7 +7,7 @@ return function()
             "hjson", "html", "htmldjango", "http", "ini", "java", "javascript",
             "jsdoc", "json", "json5", "jsonc", "kconfig", "latex", "llvm",
             "lua", "luadoc", "make", "markdown", "markdown_inline", "mermaid",
-            "nix", "org", "passwd", "pem", "perl", "php", "php_only", "phpdoc",
+            "nix", "passwd", "pem", "perl", "php", "php_only", "phpdoc",
             "pod", "printf", "promql", "properties", "python",
             "regex", "requirements", "ruby", "sql", "ssh_config", "strace",
             "terraform", "toml", "typescript", "vim", "vimdoc", "xml", "yaml",
