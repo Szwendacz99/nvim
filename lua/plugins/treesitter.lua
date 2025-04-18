@@ -5,7 +5,7 @@ return function()
             "css", "csv", "devicetree", "diff", "dockerfile", "git_config",
             "git_rebase", "gitattributes", "gitcommit", "go", "graphql",
             "hjson", "html", "htmldjango", "http", "ini", "java", "javascript",
-            "jsdoc", "json", "json5", "jsonc", "kconfig", "latex", "llvm",
+            "jsdoc", "json", "json5", "jsonc", "kconfig", "llvm",
             "lua", "luadoc", "make", "markdown", "markdown_inline", "mermaid",
             "nix", "passwd", "pem", "perl", "php", "php_only", "phpdoc",
             "pod", "printf", "promql", "properties", "python",
