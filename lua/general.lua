@@ -87,6 +87,5 @@ vim.filetype.add({
 })
 vim.cmd [[
     colorscheme gruvbox
-    autocmd BufRead,BufNewFile *{namespace,policy,middleware,configmap,role,deployment,cron,service,volume,secret,ingress,svc,pvc}*.yaml set ft=helm | LspStop yamlls
     autocmd BufRead,BufNewFile *.tpl,*.gotmpl set ft=helm
 ]]
