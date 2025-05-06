@@ -32,13 +32,11 @@ ENV MASON_PKGS=" \
     css-lsp \
     cssmodules-language-server \
     dockerfile-language-server \
-    eslint-lsp \
     html-lsp \
     json-lsp \
     marksman \
     jedi-language-server \
     ruff \
-    sqlls \
     yaml-language-server \
     markdownlint \
     ansible-language-server \

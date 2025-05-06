@@ -132,10 +132,6 @@ return {
             on_attach = on_attach,
             capabilities = capabilities,
         }
-        require 'lspconfig'.eslint.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
         require 'lspconfig'.cssls.setup {
             on_attach = on_attach,
             capabilities = capabilities,
@@ -162,11 +158,6 @@ return {
                     },
                 },
             },
-        }
-
-        require 'lspconfig'.sqlls.setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
         }
 
         require 'lspconfig'.yamlls.setup {
