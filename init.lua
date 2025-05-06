@@ -20,3 +20,4 @@ vim.opt.termguicolors = true
 require("lazy-load")
 -- load general config
 require("general")
+require("mc-functions")
