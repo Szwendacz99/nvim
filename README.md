@@ -258,6 +258,11 @@ All that is saved in image, so that is why image is so heavy.
 
 ### Commands and keys
 
+#### Vim functions for activating different modes
+
+- `MCModeAnsible`
+- `MCModeHelm`
+
 #### General
 
 |keys|action|
