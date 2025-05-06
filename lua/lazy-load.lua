@@ -16,9 +16,9 @@ require("lazy").setup({
             priority = 400
         },
         -- neovim lsp plugins and depencencies
-        {
-            "folke/lazydev.nvim",
-        },
+        --{
+            --"folke/lazydev.nvim",
+        --},
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
@@ -81,17 +81,17 @@ require("lazy").setup({
             'lewis6991/gitsigns.nvim',
             opts = require('plugins.gitsigns').config
         },
-        {
-            'petertriho/nvim-scrollbar',
-            opts = {}
-        },
+        --{
+            --'petertriho/nvim-scrollbar',
+            --opts = {}
+        --},
         {
             'kevinhwang91/nvim-hlslens',
             opts = {},
             keys = require('plugins.hlslens').keys
         },
         { 'L3MON4D3/LuaSnip',        version = '*' },
-        { 'saadparwaiz1/cmp_luasnip' },
+        --{ 'saadparwaiz1/cmp_luasnip' },
         {
             'akinsho/bufferline.nvim',
             version = '*',
@@ -125,18 +125,18 @@ require("lazy").setup({
             main = "ibl",
             init = require('plugins.indent-blankline').init
         },
-        { 'MunifTanjim/nui.nvim' },
-        {
-            'folke/noice.nvim',
-            opts = require("plugins.noice").config,
-            dependencies = {
-                "MunifTanjim/nui.nvim",
-                -- OPTIONAL:
-                --   `nvim-notify` is only needed, if you want to use the notification view.
-                --   If not available, we use `mini` as the fallback
-                --"rcarriga/nvim-notify", }
-            }
-        },
+        --{ 'MunifTanjim/nui.nvim' },
+        --{
+            --'folke/noice.nvim',
+            --opts = require("plugins.noice").config,
+            --dependencies = {
+                --"MunifTanjim/nui.nvim",
+                ---- OPTIONAL:
+                ----   `nvim-notify` is only needed, if you want to use the notification view.
+                ----   If not available, we use `mini` as the fallback
+                ----"rcarriga/nvim-notify", }
+            --}
+        --},
         {
             'MeanderingProgrammer/markdown.nvim',
             main = "render-markdown",
@@ -153,7 +153,7 @@ require("lazy").setup({
         { 'RRethy/vim-illuminate' },
         --{ 'sheerun/vim-polyglot' }, -- not maintained
         { 'nfnty/vim-nftables' },
-        { 'HiPhish/jinja.vim' },
+        --{ 'HiPhish/jinja.vim' },
 
         -- themes
         { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
@@ -166,7 +166,7 @@ require("lazy").setup({
             dependencies = { 'nvim-lua/plenary.nvim' },
             priority = 100
         },
-        { 'BurntSushi/ripgrep' },
+        --{ 'BurntSushi/ripgrep' },
 
     },
     {
