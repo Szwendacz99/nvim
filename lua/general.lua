@@ -86,6 +86,5 @@ vim.filetype.add({
     },
 })
 vim.cmd [[
-    colorscheme gruvbox
     autocmd BufRead,BufNewFile *.tpl,*.gotmpl set ft=helm
 ]]

@@ -16,9 +16,6 @@ require("lazy").setup({
             priority = 400
         },
         -- neovim lsp plugins and depencencies
-        --{
-            --"folke/lazydev.nvim",
-        --},
         { 'hrsh7th/cmp-nvim-lsp' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-cmdline' },
@@ -61,9 +58,7 @@ require("lazy").setup({
         },
         {
             'folke/trouble.nvim',
-            opts = {},
             cmd = "Trouble",
-            --opts = require('plugins.trouble').config,
             keys = require("plugins.trouble").keys
         },
 
@@ -81,24 +76,15 @@ require("lazy").setup({
             'lewis6991/gitsigns.nvim',
             opts = require('plugins.gitsigns').config
         },
-        --{
-            --'petertriho/nvim-scrollbar',
-            --opts = {}
-        --},
         {
             'kevinhwang91/nvim-hlslens',
-            opts = {},
+            lazy = false,
             keys = require('plugins.hlslens').keys
         },
-        { 'L3MON4D3/LuaSnip',        version = '*' },
-        --{ 'saadparwaiz1/cmp_luasnip' },
-        {
-            'akinsho/bufferline.nvim',
-            version = '*',
-            opts = require('plugins.bufferline').config
-        },
+        { 'L3MON4D3/LuaSnip',     version = '*' },
         {
             'preservim/nerdcommenter',
+            lazy = false,
             keys = require('plugins.nerdcommenter').keys
         },
         {
@@ -116,31 +102,15 @@ require("lazy").setup({
             },
             opts = require('plugins.neogit').config
         },
-
-        --{ 'Glench/Vim-Jinja2-Syntax', priority = 15 },
-        --{ 'vmware-archive/salt-vim',  priority = 10 },
-        --{ 'stephpy/vim-yaml' }, -- for proper sls syntax highlighting when jinja
         {
             'lukas-reineke/indent-blankline.nvim',
             main = "ibl",
             init = require('plugins.indent-blankline').init
         },
-        --{ 'MunifTanjim/nui.nvim' },
-        --{
-            --'folke/noice.nvim',
-            --opts = require("plugins.noice").config,
-            --dependencies = {
-                --"MunifTanjim/nui.nvim",
-                ---- OPTIONAL:
-                ----   `nvim-notify` is only needed, if you want to use the notification view.
-                ----   If not available, we use `mini` as the fallback
-                ----"rcarriga/nvim-notify", }
-            --}
-        --},
         {
             'MeanderingProgrammer/markdown.nvim',
             main = "render-markdown",
-            opts = {},
+            lazy = false,
             name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
             --dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
             -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
@@ -151,12 +121,17 @@ require("lazy").setup({
             opts = require('plugins.lualine').config
         },
         { 'RRethy/vim-illuminate' },
-        --{ 'sheerun/vim-polyglot' }, -- not maintained
         { 'nfnty/vim-nftables' },
-        --{ 'HiPhish/jinja.vim' },
-
         -- themes
-        { "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
+        {
+            "ellisonleao/gruvbox.nvim",
+            lazy = false,
+            priority = 1000,
+            config = function()
+                -- load the colorscheme here
+                vim.cmd([[colorscheme gruvbox]])
+            end,
+        },
 
         --Fuzzy search by Telescope and its dependencies:
         {
