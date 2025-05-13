@@ -121,8 +121,8 @@ return {
             capabilities = capabilities,
         }
         --require 'lspconfig'.pyright.setup {
-            --on_attach = on_attach,
-            --capabilities = capabilities,
+        --on_attach = on_attach,
+        --capabilities = capabilities,
         --}
         require 'lspconfig'.bashls.setup {
             on_attach = on_attach,
