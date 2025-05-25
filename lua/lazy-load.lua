@@ -138,7 +138,7 @@ require("lazy").setup({
             'nvim-telescope/telescope.nvim',
             branch = 'master',
             config = require('plugins.nvim-telescope').config,
-            dependencies = { 'nvim-lua/plenary.nvim', "telescope-fzf-native.nvim" },
+            dependencies = { 'nvim-lua/plenary.nvim', "nvim-telescope/telescope-fzf-native.nvim" },
             priority = 100
         },
         --{ 'BurntSushi/ripgrep' },
