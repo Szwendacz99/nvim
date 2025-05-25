@@ -1,16 +1,16 @@
 return function()
     require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all"
-        ensure_installed = { "helm", "awk", "bash", "c", "cmake", "comment", "cpp",
+        ensure_installed = { "helm", "awk", "bash", "comment",
             "css", "csv", "devicetree", "diff", "dockerfile", "git_config",
-            "git_rebase", "gitattributes", "gitcommit", "go", "graphql",
-            "hjson", "html", "htmldjango", "http", "ini", "java", "javascript",
-            "jsdoc", "json", "json5", "jsonc", "kconfig", "llvm",
-            "lua", "luadoc", "make", "markdown", "markdown_inline", "mermaid",
-            "nix", "passwd", "pem", "perl", "php", "php_only", "phpdoc",
-            "pod", "printf", "promql", "properties", "python",
-            "regex", "requirements", "ruby", "sql", "ssh_config", "strace",
-            "terraform", "toml", "typescript", "vim", "vimdoc", "xml", "yaml",
+            "git_rebase", "gitattributes", "gitcommit",
+            "html", "htmldjango", "http", "ini",
+            "json", "kconfig",
+            "lua", "luadoc", "markdown", "markdown_inline", "mermaid",
+            "perl",
+            "pod", "properties", "python",
+            "regex", "requirements", "ssh_config",
+            "toml", "vim", "vimdoc", "xml", "yaml",
         },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
