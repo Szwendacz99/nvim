@@ -11,12 +11,10 @@ ENV NEOVIM_PKGS="\
     git \
     neovim \
     ripgrep \
-    fd-find \
     npm \
     ShellCheck \
     tree-sitter-cli \
     wl-clipboard \
-    python3-neovim \
     ansible-config \
     ansible \
     libicu"
