@@ -83,11 +83,6 @@ require("lazy").setup({
         },
         { 'L3MON4D3/LuaSnip',     version = '*' },
         {
-            'preservim/nerdcommenter',
-            lazy = false,
-            keys = require('plugins.nerdcommenter').keys
-        },
-        {
             'rmagatti/auto-session',
             opts = require('plugins.auto-session').config
         },
