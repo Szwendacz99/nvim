@@ -9,6 +9,7 @@ ENV NEOVIM_PKGS="\
     wget \
     unzip \
     git \
+    git-lfs \
     neovim \
     ripgrep \
     npm \
