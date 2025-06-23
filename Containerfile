@@ -5,6 +5,7 @@ ENV LANG="C.UTF-8"
 ENV LC_ALL="C.UTF-8"
 
 # libicu - for marksman linter
+# ripgrep and fd-find for telescope 
 ENV NEOVIM_PKGS="\
     wget \
     unzip \
@@ -12,6 +13,7 @@ ENV NEOVIM_PKGS="\
     git-lfs \
     neovim \
     ripgrep \
+    fd-find \
     npm \
     ShellCheck \
     tree-sitter-cli \

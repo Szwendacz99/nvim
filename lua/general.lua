@@ -77,6 +77,7 @@ vim.opt.tabstop = 4      -- number of columns occupied by a tab
 vim.opt.softtabstop = 4  -- see multiple spaces as tabstops so <BS> does the right thing
 vim.opt.expandtab = true -- converts tabs to white space
 vim.opt.shiftwidth = 4   -- width for autoindents
+vim.opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- suggested by autosession plugin
 vim.filetype.add({
     extension = {
         sls = "sls.yaml.jinja",
