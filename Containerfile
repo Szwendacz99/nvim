@@ -20,7 +20,8 @@ ENV NEOVIM_PKGS="\
     wl-clipboard \
     ansible-config \
     ansible \
-    libicu"
+    libicu \
+    cmake"
 
 ENV GENERAL_PKGS="\
     tar \
@@ -33,6 +34,7 @@ ENV MASON_PKGS=" \
     css-lsp \
     cssmodules-language-server \
     dockerfile-language-server \
+    cmake-language-server \
     html-lsp \
     json-lsp \
     marksman \

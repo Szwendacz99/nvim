@@ -2,7 +2,7 @@ return function()
     require 'nvim-treesitter.configs'.setup {
         -- A list of parser names, or "all"
         ensure_installed = { "helm", "awk", "bash", "comment",
-            "css", "csv", "devicetree", "diff", "dockerfile", "git_config",
+            "css", "csv", "c", "cmake", "devicetree", "diff", "dockerfile", "git_config",
             "git_rebase", "gitattributes", "gitcommit",
             "html", "htmldjango", "http", "ini",
             "json", "kconfig",
