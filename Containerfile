@@ -4,7 +4,6 @@ FROM forgejo.maciej.cloud/pkg/mc-fedora-base
 ENV LANG="C.UTF-8"
 ENV LC_ALL="C.UTF-8"
 
-# libicu - for marksman linter
 # ripgrep and fd-find for telescope 
 ENV NEOVIM_PKGS="\
     wget \
@@ -15,13 +14,37 @@ ENV NEOVIM_PKGS="\
     ripgrep \
     fd-find \
     npm \
-    ShellCheck \
     tree-sitter-cli \
     wl-clipboard \
-    ansible-config \
-    ansible \
-    libicu \
+    python3-pip \
+    rubygems \
     cmake"
+
+# libicu - for marksman linter
+ENV DNF_LSP_PKGS="shfmt \
+    ansible-config \
+    libicu \
+    ansible \
+    ShellCheck \
+    ansible-lint \
+    ruff \
+    nodejs-bash-language-server \
+    "
+
+# mdl=markdownlint
+ENV RUBY_PKGS="mdl"
+
+ENV NPM_PKGS="vscode-langservers-extracted \
+    dockerfile-language-server-nodejs\
+    yaml-language-server \
+    @ansible/ansible-language-server \
+    "
+
+ENV PIP_PKGS="yamlfmt \
+    cmake-language-server \
+    jedi-language-server \
+    mdformat \
+    "
 
 ENV GENERAL_PKGS="\
     tar \
@@ -30,34 +53,24 @@ ENV GENERAL_PKGS="\
 ENV PYTHON_DEVEL_PKGS="python3"
 
 ENV MASON_PKGS=" \
-    bash-language-server \
-    css-lsp \
-    cssmodules-language-server \
-    dockerfile-language-server \
-    cmake-language-server \
-    html-lsp \
-    json-lsp \
     marksman \
-    jedi-language-server \
-    ruff \
-    yaml-language-server \
-    markdownlint \
-    ansible-language-server \
-    ansible-lint \
-    yamlfmt \
-    mdformat \
-    shfmt"
+    "
 
-ENV MASON_PKGS_NO_ARM="lemminx helm-ls lua-language-server"
+ENV MASON_PKGS_NO_ARM="lemminx lua-language-server"
 
 
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${BUILD_ONLY_PKGS} && \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${DNF_LSP_PKGS} && \
     dnf -y autoremove && \
     dnf clean all && \
+    npm i -g ${NPM_PKGS} && \
+    pip install ${PIP_PKGS} && \
+    curl -L https://github.com/mrjosh/helm-ls/releases/download/master/helm_ls_linux_amd64 --output /usr/local/bin/helm_ls && \
+    gem install ${RUBY_PKGS} && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
-    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true
+    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true; \
+    rm -rf /root/.npm/ /root/.cache/
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
