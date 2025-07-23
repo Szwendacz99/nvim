@@ -17,7 +17,6 @@ ENV NEOVIM_PKGS="\
     tree-sitter-cli \
     wl-clipboard \
     python3-pip \
-    rubygems \
     cmake"
 
 # libicu - for marksman linter
@@ -30,9 +29,6 @@ ENV DNF_LSP_PKGS="shfmt \
     ruff \
     nodejs-bash-language-server \
     "
-
-# mdl=markdownlint
-ENV RUBY_PKGS="mdl"
 
 ENV NPM_PKGS="vscode-langservers-extracted \
     dockerfile-language-server-nodejs\
@@ -54,6 +50,7 @@ ENV PYTHON_DEVEL_PKGS="python3"
 
 ENV MASON_PKGS=" \
     marksman \
+    markdownlint \
     "
 
 ENV MASON_PKGS_NO_ARM="lemminx lua-language-server"
@@ -68,7 +65,6 @@ RUN dnf install -y \
     npm i -g ${NPM_PKGS} && \
     pip install ${PIP_PKGS} && \
     curl -L https://github.com/mrjosh/helm-ls/releases/download/master/helm_ls_linux_amd64 --output /usr/local/bin/helm_ls && \
-    gem install ${RUBY_PKGS} && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
     nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true; \
     rm -rf /root/.npm/ /root/.cache/
