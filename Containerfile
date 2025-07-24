@@ -1,3 +1,9 @@
+FROM forgejo.maciej.cloud/pkg/mc-fedora-base as builder
+
+COPY ./build_stage.sh /build_stage.sh
+
+RUN bash /build_stage.sh
+
 FROM forgejo.maciej.cloud/pkg/mc-fedora-base
 
 # required by ansible-config
@@ -53,8 +59,9 @@ ENV MASON_PKGS=" \
     markdownlint \
     "
 
-ENV MASON_PKGS_NO_ARM="lemminx lua-language-server"
+ENV MASON_PKGS_NO_ARM="lemminx"
 
+COPY --from=builder /outputs/ /usr/bin/
 
 COPY . /root/.config/nvim
 # install system dependencies
