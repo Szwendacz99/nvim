@@ -64,7 +64,7 @@ RUN dnf install -y \
     dnf clean all && \
     npm i -g ${NPM_PKGS} && \
     pip install ${PIP_PKGS} && \
-    curl -L https://github.com/mrjosh/helm-ls/releases/download/master/helm_ls_linux_amd64 --output /usr/local/bin/helm_ls && \
+    bash /root/.config/nvim/github_download.sh "https://github.com/mrjosh/helm-ls/releases/download/master/helm_ls_linux_{arch}" /usr/bin/helm_ls && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
     nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true; \
     rm -rf /root/.npm/ /root/.cache/
