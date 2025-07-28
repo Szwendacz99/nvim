@@ -7,7 +7,7 @@ return function()
             "html", "htmldjango", "http", "ini",
             "json", "kconfig",
             "lua", "luadoc", "markdown", "markdown_inline", "mermaid",
-            "perl",
+            "perl", "php",
             "pod", "properties", "python",
             "regex", "requirements", "ssh_config",
             "toml", "vim", "vimdoc", "xml", "yaml",

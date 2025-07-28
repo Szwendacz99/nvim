@@ -15,4 +15,4 @@ cd lua-language-server
 
 ./make.sh
 
-cp /lua-language-server/build/bin/lua-language-server /outputs/
+mv /lua-language-server/build/bin/* /outputs/

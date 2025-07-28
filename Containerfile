@@ -42,11 +42,12 @@ ENV NPM_PKGS="vscode-langservers-extracted \
     @ansible/ansible-language-server \
     "
 
-ENV PIP_PKGS="yamlfmt \
-    cmake-language-server \
+ENV PIP_PKGS="\
     jedi-language-server \
     mdformat \
     "
+
+ENV BUILD_PKGS="golang"
 
 ENV GENERAL_PKGS="\
     tar \
@@ -66,14 +67,18 @@ COPY --from=builder /outputs/ /usr/bin/
 COPY . /root/.config/nvim
 # install system dependencies
 RUN dnf install -y \
-    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${DNF_LSP_PKGS} && \
-    dnf -y autoremove && \
-    dnf clean all && \
+    ${GENERAL_PKGS} ${NEOVIM_PKGS} ${PYTHON_DEVEL_PKGS} ${DNF_LSP_PKGS} ${BUILD_PKGS} && \
     npm i -g ${NPM_PKGS} && \
     pip install ${PIP_PKGS} && \
+    go install github.com/google/yamlfmt/cmd/yamlfmt@latest && \
+    mv /root/go/bin/yamlfmt /usr/local/bin/ && \
+    rm -rf /root/go && \
     bash /root/.config/nvim/github_download.sh "https://github.com/mrjosh/helm-ls/releases/download/master/helm_ls_linux_{arch}" /usr/bin/helm_ls && \
     nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
     nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true; \
+    dnf remove -y ${BUILD_PKGS} && \
+    dnf -y autoremove && \
+    dnf clean all && \
     rm -rf /root/.npm/ /root/.cache/
 
 ENTRYPOINT [ "/usr/bin/nvim" ]
