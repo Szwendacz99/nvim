@@ -8,7 +8,6 @@ return {
             --'pycodestyle',
             --'pydocstyle'
             --},
-            php = { 'phpcs', },
             markdown = { 'markdownlint' }
         }
 
