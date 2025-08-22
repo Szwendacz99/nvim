@@ -19,5 +19,5 @@ mkdir -p /outputs/usr/local/bin
 
 cp -r script /outputs/usr/local/
 cp main.lua /outputs/usr/local/
-cp debugger.lua /outputs/usr/usr/local/
+cp debugger.lua /outputs/usr/local/
 mv /lua-language-server/bin/* /outputs/usr/local/bin/
