@@ -62,7 +62,7 @@ ENV MASON_PKGS=" \
 
 ENV MASON_PKGS_NO_ARM="lemminx"
 
-COPY --from=builder /outputs/ /usr/bin/
+COPY --from=builder /outputs/ /
 
 COPY . /root/.config/nvim
 # install system dependencies
