@@ -18,6 +18,7 @@ cd lua-language-server
 mkdir -p /outputs/usr/local/bin
 
 cp -r script /outputs/usr/local/
+cp -r locale /outputs/usr/local/
 cp main.lua /outputs/usr/local/
 cp debugger.lua /outputs/usr/local/
 mv /lua-language-server/bin/* /outputs/usr/local/bin/
