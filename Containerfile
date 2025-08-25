@@ -40,6 +40,7 @@ ENV NPM_PKGS="vscode-langservers-extracted \
     dockerfile-language-server-nodejs\
     yaml-language-server \
     @ansible/ansible-language-server \
+    markdownlint-cli \
     "
 
 ENV PIP_PKGS="\
@@ -55,13 +56,6 @@ ENV GENERAL_PKGS="\
 
 ENV PYTHON_DEVEL_PKGS="python3"
 
-ENV MASON_PKGS=" \
-    marksman \
-    markdownlint \
-    "
-
-ENV MASON_PKGS_NO_ARM="lemminx"
-
 COPY --from=builder /outputs/ /
 
 COPY . /root/.config/nvim
@@ -74,8 +68,7 @@ RUN dnf install -y \
     mv /root/go/bin/yamlfmt /usr/local/bin/ && \
     rm -rf /root/go && \
     bash /root/.config/nvim/github_download.sh "https://github.com/mrjosh/helm-ls/releases/download/master/helm_ls_linux_{arch}" /usr/bin/helm_ls && \
-    nvim --headless +"MasonInstall ${MASON_PKGS}" +qa || exit 1 ; \
-    nvim --headless +"MasonInstall ${MASON_PKGS_NO_ARM}" +qa || true; \
+    nvim --headless +qa || exit 1 ; \
     dnf remove -y ${BUILD_PKGS} && \
     dnf -y autoremove && \
     dnf clean all && \

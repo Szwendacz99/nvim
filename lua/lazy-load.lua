@@ -26,11 +26,6 @@ require("lazy").setup({
             dependencies = { 'onsails/lspkind.nvim' }
         },
         {
-            'williamboman/mason.nvim',
-            opts = {},
-            priority = 200
-        },
-        {
             "stevearc/conform.nvim",
             --event = { "BufWritePre" },
             cmd = { "ConformInfo" },
@@ -40,13 +35,6 @@ require("lazy").setup({
                 -- If you want the formatexpr, here is the place to set it
                 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
             end,
-        },
-        -- mason-lspconfig might need disabling on first run
-        {
-            'williamboman/mason-lspconfig.nvim',
-            opts = require('plugins.mason-lspconfig').config,
-            dependencies = { 'williamboman/mason.nvim' },
-            priority = 150
         },
         {
             'neovim/nvim-lspconfig',
