@@ -1,10 +1,11 @@
 name: Build neovim image
 run-name: Build Neovim image yay
+enable-email-notifications: true
 on:
   push:
     branches: [ "main" ]
   schedule:
-    - cron: '30 3 */10 * *'
+    - cron: '30 3 */11 * *'
 
 env:
   IMAGE: forgejo.maciej.cloud/pkg/neovim
