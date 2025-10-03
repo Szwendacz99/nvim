@@ -44,7 +44,7 @@ return {
         -----------------
         -- attaching all lsp servers, order matters (for example in autocompletion)
         -----------------
-        --require 'lspconfig'.pylsp.setup {
+        --vim.lsp.config("pylsp", {
         --on_attach = on_attach,
         --capabilities = capabilities
         --, settings = {
@@ -112,42 +112,49 @@ return {
         --}
         --}
         --}
-        require 'lspconfig'.ruff.setup {
+        vim.lsp.config("ruff", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        require 'lspconfig'.jedi_language_server.setup {
+        })
+        vim.lsp.enable({"ruff"})
+        vim.lsp.config("jedi_language_server", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        --require 'lspconfig'.pyright.setup {
+        })
+        vim.lsp.enable({"jedi_language_server"})
+        --vim.lsp.config("pyright", {
         --on_attach = on_attach,
         --capabilities = capabilities,
         --}
-        require 'lspconfig'.bashls.setup {
+        vim.lsp.config("bashls", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        require 'lspconfig'.dockerls.setup {
+        })
+        vim.lsp.enable({"bashls"})
+        vim.lsp.config("dockerls", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        require 'lspconfig'.cssls.setup {
+        })
+        vim.lsp.enable({"dockerls"})
+        vim.lsp.config("cssls", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
+        vim.lsp.enable({"cssls"})
 
-        require 'lspconfig'.cssmodules_ls.setup {
+        vim.lsp.config("cssmodules_ls", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
+        vim.lsp.enable({"cssmodules_ls"})
 
-        require 'lspconfig'.jsonls.setup {
+        vim.lsp.config("jsonls", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
+        vim.lsp.enable({"jsonls"})
 
-        require 'lspconfig'.lua_ls.setup {
+        vim.lsp.config("lua_ls", {
             on_attach = on_attach,
             capabilities = capabilities,
             settings = {
@@ -158,9 +165,10 @@ return {
                     },
                 },
             },
-        }
+        })
+        vim.lsp.enable({"lua_ls"})
 
-        require 'lspconfig'.yamlls.setup {
+        vim.lsp.config("yamlls", {
             on_attach = on_attach,
             capabilities = capabilities,
             settings = {
@@ -168,28 +176,34 @@ return {
                     schemas = { kubernetes = "*{namespace,policy,middleware,configmap,role,deployment,cron,service,volume,secret,ingress,svc,pvc}*.yaml" },
                 }
             }
-        }
+        })
+        vim.lsp.enable({"yamlls"})
 
-        require 'lspconfig'.lemminx.setup {
+        vim.lsp.config("lemminx", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
+        vim.lsp.enable({"lemminx"})
 
-        require 'lspconfig'.marksman.setup {
+        vim.lsp.config("marksman", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        require 'lspconfig'.html.setup {
+        })
+        vim.lsp.enable({"marksman"})
+        vim.lsp.config("html", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        require 'lspconfig'.ansiblels.setup {
+        })
+        vim.lsp.enable({"html"})
+        vim.lsp.config("ansiblels", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
-        require 'lspconfig'.helm_ls.setup {
+        })
+        vim.lsp.enable({"ansiblels"})
+        vim.lsp.config("helm_ls", {
             on_attach = on_attach,
             capabilities = capabilities,
-        }
+        })
+        vim.lsp.enable({"helm_ls"})
     end
 }
