@@ -154,19 +154,19 @@ return {
         })
         vim.lsp.enable({"jsonls"})
 
-        vim.lsp.config("lua_ls", {
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        -- Get the language server to recognize the `vim` global
-                        globals = { 'vim' },
-                    },
-                },
-            },
-        })
-        vim.lsp.enable({"lua_ls"})
+        -- vim.lsp.config("lua_ls", {
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        --     settings = {
+        --         Lua = {
+        --             diagnostics = {
+        --                 -- Get the language server to recognize the `vim` global
+        --                 globals = { 'vim' },
+        --             },
+        --         },
+        --     },
+        -- })
+        -- vim.lsp.enable({"lua_ls"})
 
         vim.lsp.config("yamlls", {
             on_attach = on_attach,
