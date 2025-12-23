@@ -21,6 +21,46 @@ vim.cmd [[
 ----------------------
 -- general setup start
 ----------------------
+---
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
+    'awk',
+    'bash', 'sh',
+    'c',
+    'cmake',
+    'css',
+    'csv',
+    'devicetree',
+    'diff',
+    'dockerfile',
+    'gitconfig', 'gitrebase', 'gitattributes', 'gitcommit',
+    'html',
+    'htmldjango',
+    'http',
+    'ini',
+    'json',
+    'kconfig',
+    'lua',
+    'markdown',
+    'mermaid',
+    'perl',
+    'php',
+    'pod',
+    'properties',
+    'python',
+    'regex',
+    'requirements',
+    'sshconfig',
+    'toml',
+    'vim',
+    'xml',
+    'yaml',
+  },
+  callback = function() vim.treesitter.start() end,
+})
+vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.wo[0][0].foldmethod = 'expr'
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- open nvim tree on start
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
