@@ -12,7 +12,7 @@ return function()
     }
     local ts = require("nvim-treesitter")
     -- Install each parser sequentially
-    for parser in parsers do
+    for _, parser in ipairs(parsers) do
         ts.install({ parser }):wait(30000)
     end
 end
