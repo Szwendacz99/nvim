@@ -23,40 +23,42 @@ vim.cmd [[
 ----------------------
 ---
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = {
-    'awk',
-    'bash', 'sh',
-    'c',
-    'cmake',
-    'css',
-    'csv',
-    'devicetree',
-    'diff',
-    'dockerfile',
-    'gitconfig', 'gitrebase', 'gitattributes', 'gitcommit',
-    'html',
-    'htmldjango',
-    'http',
-    'ini',
-    'json',
-    'kconfig',
-    'lua',
-    'markdown',
-    'mermaid',
-    'perl',
-    'php',
-    'pod',
-    'properties',
-    'python',
-    'regex',
-    'requirements',
-    'sshconfig',
-    'toml',
-    'vim',
-    'xml',
-    'yaml',
-  },
-  callback = function() vim.treesitter.start() end,
+    pattern = {
+        'awk',
+        'bash', 'sh',
+        'c',
+        'cmake',
+        'css',
+        'csv',
+        'devicetree',
+        'diff',
+        'dockerfile',
+        'gitconfig', 'gitrebase', 'gitattributes', 'gitcommit', 'gitignore',
+        'html',
+        'htmldjango',
+        'http',
+        'ini',
+        'json',
+        'kconfig',
+        'lua',
+        'markdown',
+        'mermaid',
+        'perl',
+        'php',
+        'pod',
+        'properties',
+        'python',
+        'regex',
+        'requirements',
+        'ruby',
+        'sshconfig',
+        'sql',
+        'toml',
+        'vim',
+        'xml',
+        'yaml',
+    },
+    callback = function() vim.treesitter.start() end,
 })
 vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.wo[0][0].foldmethod = 'expr'
@@ -113,11 +115,12 @@ vim.opt.number = true
 vim.opt.clipboard = "unnamedplus" -- synchronize with system clipboard
 vim.opt.swapfile = false
 vim.opt.cursorline = true
-vim.opt.tabstop = 4      -- number of columns occupied by a tab
-vim.opt.softtabstop = 4  -- see multiple spaces as tabstops so <BS> does the right thing
-vim.opt.expandtab = true -- converts tabs to white space
-vim.opt.shiftwidth = 4   -- width for autoindents
-vim.opt.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- suggested by autosession plugin
+vim.opt.tabstop = 4                                                                                    -- number of columns occupied by a tab
+vim.opt.softtabstop = 4                                                                                -- see multiple spaces as tabstops so <BS> does the right thing
+vim.opt.expandtab = true                                                                               -- converts tabs to white space
+vim.opt.shiftwidth = 4                                                                                 -- width for autoindents
+vim.opt.sessionoptions =
+"blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"                        -- suggested by autosession plugin
 vim.filetype.add({
     extension = {
         sls = "sls.yaml.jinja",
