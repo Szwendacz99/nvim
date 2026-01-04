@@ -24,7 +24,7 @@ mkdir -p /outputs/usr/local/bin
 
 # marksman
 mv ~/.local/bin/marksman /outputs/usr/local/bin/
-lua-language-server
+# lua-language-server
 cd /lua-language-server
 cp -r script /outputs/usr/local/
 cp -r locale /outputs/usr/local/
