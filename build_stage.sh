@@ -14,6 +14,7 @@ git clone https://github.com/LuaLS/lua-language-server
 git clone https://github.com/artempyanykh/marksman.git
 
 cd lua-language-server
+chmod +x make.sh
 ./make.sh
 
 cd /marksman
