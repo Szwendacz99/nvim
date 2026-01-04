@@ -173,7 +173,7 @@ return {
             capabilities = capabilities,
             settings = {
                 yaml = {
-                    schemas = { kubernetes = "*{namespace,policy,middleware,configmap,role,deployment,cron,service,volume,secret,ingress,svc,pvc}*.yaml" },
+                    schemas = { kubernetes = "*{namespace,policy,middleware,configmap,role,deployment,cron,service,volume,secret,ingress,svc,pvc}*.y*ml" },
                 }
             }
         })
