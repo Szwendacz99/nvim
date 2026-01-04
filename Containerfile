@@ -44,7 +44,7 @@ ENV NPM_PKGS="vscode-langservers-extracted \
     "
 
 ENV PIP_PKGS="\
-    \"python-lsp-server[all]\" \
+    python-lsp-server[all] \
     pyright \
     mdformat \
     "
