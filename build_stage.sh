@@ -10,11 +10,11 @@ dnf install -y git libstdc++-static gcc ninja-build g++ dotnet-sdk-8.0 dotnet-sd
 
 cd /
 
-# git clone https://github.com/LuaLS/lua-language-server
+git clone https://github.com/LuaLS/lua-language-server
 git clone https://github.com/artempyanykh/marksman.git
 
-# cd lua-language-server
-# ./make.sh
+cd lua-language-server
+./make.sh
 
 cd /marksman
 make install
@@ -23,10 +23,10 @@ mkdir -p /outputs/usr/local/bin
 
 # marksman
 mv ~/.local/bin/marksman /outputs/usr/local/bin/
-# lua-language-server
-# cd /lua-language-server
-# cp -r script /outputs/usr/local/
-# cp -r locale /outputs/usr/local/
-# cp main.lua /outputs/usr/local/
-# cp debugger.lua /outputs/usr/local/
-# mv /lua-language-server/bin/* /outputs/usr/local/bin/
+lua-language-server
+cd /lua-language-server
+cp -r script /outputs/usr/local/
+cp -r locale /outputs/usr/local/
+cp main.lua /outputs/usr/local/
+cp debugger.lua /outputs/usr/local/
+mv /lua-language-server/bin/* /outputs/usr/local/bin/
