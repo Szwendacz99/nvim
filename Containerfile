@@ -44,7 +44,8 @@ ENV NPM_PKGS="vscode-langservers-extracted \
     "
 
 ENV PIP_PKGS="\
-    jedi-language-server \
+    \"python-lsp-server[all]\" \
+    pyright \
     mdformat \
     "
 

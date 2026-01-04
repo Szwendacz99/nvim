@@ -24,13 +24,7 @@ sudo dnf install -y \
 
 ### Image management
 
-#### get latest version from ghcr
-
-```bash
-podman pull ghcr.io/szwendacz99/neovim:latest
-```
-
-#### or build
+#### build
 
 ```bash
 git clone https://github.com/Szwendacz99/nvim && \
