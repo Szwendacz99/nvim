@@ -24,6 +24,7 @@ vim.cmd [[
 ---
 vim.api.nvim_create_autocmd('FileType', {
     pattern = {
+        'helm',
         'awk',
         'bash', 'sh',
         'c',
