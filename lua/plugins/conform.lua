@@ -5,7 +5,7 @@ return {
     opts = {
         -- Define your formatters
         formatters_by_ft = {
-            yaml = { "yamlfmt" },
+            -- yaml = { "yamlfmt" },
             markdown = { "mdformat" },
             bash = { "shfmt" },
             --lua = { "stylua" },
@@ -19,10 +19,10 @@ return {
         -- Set up format-on-save
         --format_on_save = { timeout_ms = 500 },
         -- Customize formatters
-        formatters = {
-            yamlfmt = {
-                prepend_args = { "-formatter", "retain_line_breaks=true,indentless_arrays=true" },
-            },
-        },
+        -- formatters = {
+        --     yamlfmt = {
+        --         prepend_args = { "-formatter", "retain_line_breaks=true,indentless_arrays=true" },
+        --     },
+        -- },
     }
 }
