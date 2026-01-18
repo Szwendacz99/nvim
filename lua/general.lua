@@ -59,11 +59,13 @@ vim.api.nvim_create_autocmd('FileType', {
         'xml',
         'yaml',
     },
-    callback = function() vim.treesitter.start() end,
+    callback = function()
+        vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+        vim.wo[0][0].foldmethod = 'expr'
+        vim.treesitter.start()
+    end,
 })
 
---vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
---vim.wo[0][0].foldmethod = 'expr'
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 -- open nvim tree on start
@@ -117,12 +119,12 @@ vim.opt.number = true
 vim.opt.clipboard = "unnamedplus" -- synchronize with system clipboard
 vim.opt.swapfile = false
 vim.opt.cursorline = true
-vim.opt.tabstop = 4                                                                                    -- number of columns occupied by a tab
-vim.opt.softtabstop = 4                                                                                -- see multiple spaces as tabstops so <BS> does the right thing
-vim.opt.expandtab = true                                                                               -- converts tabs to white space
-vim.opt.shiftwidth = 4                                                                                 -- width for autoindents
+vim.opt.tabstop = 4                                                             -- number of columns occupied by a tab
+vim.opt.softtabstop = 4                                                         -- see multiple spaces as tabstops so <BS> does the right thing
+vim.opt.expandtab = true                                                        -- converts tabs to white space
+vim.opt.shiftwidth = 4                                                          -- width for autoindents
 vim.opt.sessionoptions =
-"blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"                        -- suggested by autosession plugin
+"blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions" -- suggested by autosession plugin
 vim.filetype.add({
     extension = {
         sls = "sls.yaml.jinja",
