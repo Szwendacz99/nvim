@@ -13,6 +13,7 @@ ENV LC_ALL="C.UTF-8"
 # ripgrep and fd-find for telescope 
 ENV NEOVIM_PKGS="\
     wget \
+    gzip \
     unzip \
     git \
     git-lfs \
